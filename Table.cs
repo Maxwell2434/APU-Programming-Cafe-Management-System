@@ -9,6 +9,7 @@ namespace APU_Programming_Café_Management_System
 {
     internal class Table
     {
+        //Test
         private List<Collumn> _collumns = new List<Collumn>();
         private List<Row> _rows = new List<Row>(); 
 
