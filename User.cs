@@ -41,8 +41,8 @@ namespace APU_Programming_Café_Management_System
 
         public bool login_Attempt(Programming_Café_DB Programming_Café_Database)
         {
-            DataRow[] dataRows = Programming_Café_DB.Get_DataRows_From_DataTable(Programming_Café_Database.userTable, "Username", _username);
-            if (dataRows.Length == 1 )
+            int count = Programming_Café_Database.studentTable2.Get_Count_of_Rows_Matching_Value(Programming_Café_Database, "Username", _username);
+            if (count == 1 )
             {
                 if (dataRows[0]["Password"].ToString() == _password)
                 {
