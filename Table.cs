@@ -33,13 +33,14 @@ namespace APU_Programming_Café_Management_System
         }
        
         //Constructor
+        /*
         public Table(string tableName, List<Collumn> collumns, List<Row> rows)
         {
             this.tableName = tableName;
             this.collumns = collumns;
             this.rows = rows;
         }
-
+        */
         public void Add_Collumn (Collumn collumn)
         {
             collumns.Add(collumn);
@@ -53,11 +54,17 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
+
+
         public Collumn Get_Collumn(string Name)
         {
             return (collumns.Find(Collumn => Collumn.Name == Name));
         }
 
+        public Collumn Get_Primary_Key_Collumn()
+        {
+            return (collumns.Find(Collumn => Collumn.IsKey == true));
+        }
         public List<Row> Search_Row_For_Value(Collumn collumn, string value)
         {
             List<Row> result = new List<Row>();

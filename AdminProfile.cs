@@ -46,7 +46,7 @@ namespace APU_Programming_Café_Management_System
             _administrator.Address= txtBoxAddress.Text;
             _administrator.Phone= txtBoxPhone.Text;
             _administrator.Email= txtBoxEmail.Text;
-            programming_Café_Database.Update_Table_Database(new Table(programming_Café_Database.adminTable.TableName, programming_Café_Database.adminTable.))
+            //programming_Café_Database.Update_Table_Database(new Table(programming_Café_Database.adminTable.TableName, programming_Café_Database.adminTable.))
                 
         }
     }

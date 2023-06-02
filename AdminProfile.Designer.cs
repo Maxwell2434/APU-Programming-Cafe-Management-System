@@ -54,7 +54,7 @@
             // 
             this.txtBoxName.BackColor = System.Drawing.Color.Silver;
             this.txtBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBoxName.ForeColor = System.Drawing.SystemColors.Control;
+            this.txtBoxName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtBoxName.Location = new System.Drawing.Point(336, 82);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(132, 22);
@@ -64,7 +64,7 @@
             // 
             this.txtBoxAddress.BackColor = System.Drawing.Color.Silver;
             this.txtBoxAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBoxAddress.ForeColor = System.Drawing.SystemColors.Control;
+            this.txtBoxAddress.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtBoxAddress.Location = new System.Drawing.Point(336, 133);
             this.txtBoxAddress.Name = "txtBoxAddress";
             this.txtBoxAddress.Size = new System.Drawing.Size(132, 22);
@@ -85,7 +85,7 @@
             // 
             this.txtBoxEmail.BackColor = System.Drawing.Color.Silver;
             this.txtBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBoxEmail.ForeColor = System.Drawing.SystemColors.Control;
+            this.txtBoxEmail.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtBoxEmail.Location = new System.Drawing.Point(336, 241);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(132, 22);
@@ -106,7 +106,7 @@
             // 
             this.txtBoxPhone.BackColor = System.Drawing.Color.Silver;
             this.txtBoxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBoxPhone.ForeColor = System.Drawing.SystemColors.Control;
+            this.txtBoxPhone.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtBoxPhone.Location = new System.Drawing.Point(336, 190);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(132, 22);

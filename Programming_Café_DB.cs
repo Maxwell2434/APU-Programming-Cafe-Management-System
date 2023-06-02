@@ -13,7 +13,7 @@ namespace APU_Programming_Café_Management_System
 
         private DataSet _dataset;
         SqlConnection connection;
-        private Administrator_Table _adminTable;
+        private static Administrator_Table _adminTable;
         private Student_Table _studentTable;
         private User_Table _userTable;
        
@@ -60,7 +60,7 @@ namespace APU_Programming_Café_Management_System
             set { _userTable = value; }
         }
 
-        public Administrator_Table adminTable
+        public static Administrator_Table adminTable
         {
             get { return _adminTable; }
             set { _adminTable = value; }
@@ -100,26 +100,48 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public static void Update_Table_Database(Table table)
+        public static void Update_Table_Database(string tableName, Row rowToBeUpdated, Dictionary<Collumn, string> values)
         {
-            string commandString = "UPDATE " + table.TableName + "SET ";
+            string commandString = "UPDATE " + tableName + " SET ";
             string p_Key = "";
-            foreach(Collumn collumn in table.Collumns)
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            foreach (KeyValuePair<Collumn, string> kvp in values)
             {
-                if(collumn.IsKey == false) 
+                if (!kvp.Key.IsKey)
                 {
-                    commandString += collumn.Name + " ='" + ;
+                    commandString += kvp.Key.Name + " = @" + kvp.Key.Name + ", ";
+
+                    // Add parameter for the value
+                    SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
+                    parameters.Add(parameter);
                 }
-                else if (p_Key == "") 
-                { 
-                    p_Key = collumn.Name; 
+                else if (string.IsNullOrEmpty(p_Key))
+                {
+                    p_Key = kvp.Key.Name;
                 }
             }
-            commandString += "' WHERE " + p_Key + "='" 
 
+            // Remove trailing comma and space
+            commandString = commandString.TrimEnd(',', ' ');
+
+            // Add WHERE clause
+            commandString += " WHERE " + p_Key + " = @" + p_Key;
+
+            // Add parameter for the primary key value
+            SqlParameter primaryKeyParameter = new SqlParameter("@" + p_Key, rowToBeUpdated.values[Programming_Café_DB.adminTable.Id]);
+            parameters.Add(primaryKeyParameter);
+
+            // Execute the query
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand())
+            using (SqlCommand cmd = new SqlCommand(commandString, connection))
+            {
+                cmd.Parameters.AddRange(parameters.ToArray());
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
+
 
         public static DataRow[] Get_DataRows_From_DataTable(DataTable dt, string columnName, string value)
         {

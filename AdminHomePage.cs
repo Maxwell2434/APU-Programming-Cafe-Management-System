@@ -19,23 +19,23 @@ namespace APU_Programming_Café_Management_System
         public AdminHomePage(Programming_Café_DB programming_Café_DB, string UserId)
         {
             InitializeComponent();
-            administrator = new Administrator(programming_Café_DB.adminTable, UserId);
+            administrator = new Administrator(UserId);
         }
 
         private void AdminHomePage_Load(object sender, EventArgs e)
         {
+            adminProfilePage.administrator = administrator;
 
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
             adminProfilePage.Visible = true;
-            
+
         }
 
         private void adminProfilePage_Load(object sender, EventArgs e)
         {
-            adminProfilePage.administrator = administrator;
         }
     }
 }

@@ -76,7 +76,7 @@ namespace APU_Programming_Café_Management_System
                 _role.isStudent = true;
             }
 
-            else if (Programming_Café_Database.adminTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            else if (Programming_Café_DB.adminTable.Search_Row_For_Value("UserId", _id).Count == 1)
             {
                 _role.isAdministrator = true;
             }
