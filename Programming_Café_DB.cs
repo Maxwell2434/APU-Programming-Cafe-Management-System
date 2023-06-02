@@ -12,19 +12,17 @@ namespace APU_Programming_Café_Management_System
         private string _connectionString;
         private DataSet _dataset;
         SqlConnection connection;
-        private DataTable _studentTable;
-        private DataTable _userTable;
         private DataTable _adminTable;
-        private Student_Table _studentTable2;
+        private Student_Table _studentTable;
+        private User_Table _userTable;
        
         //Constructor
         public Programming_Café_DB()
         {
             connectionString = ConfigurationManager.ConnectionStrings["APU_Programming_Café_Management_System_DB"].ConnectionString;
             _dataset = dataSet;
-            studentTable = _dataset.Tables["Students"];
-            _studentTable2 = new Student_Table(dataSet.Tables["Students"]);
-            userTable = _dataset.Tables["Users"];
+            _studentTable = new Student_Table(dataSet.Tables["Students"]);
+            userTable = new User_Table(_dataset.Tables["Users"]);
             _adminTable = _dataset.Tables["Administrators"];
         }
 
@@ -48,19 +46,14 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public DataTable studentTable
+
+        public Student_Table studentTable
         {
             get { return _studentTable; }
             set { _studentTable = value; }
         }
 
-        public Student_Table studentTable2
-        {
-            get { return _studentTable2; }
-            set { _studentTable2 = value; }
-        }
-
-        public DataTable userTable
+        public User_Table userTable
         {
             get { return _userTable; }
             set { _userTable = value; }

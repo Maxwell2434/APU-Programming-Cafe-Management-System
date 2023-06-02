@@ -85,6 +85,7 @@
     <Compile Include="StudentTable.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="User_Table.cs" />
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>
     </EmbeddedResource>

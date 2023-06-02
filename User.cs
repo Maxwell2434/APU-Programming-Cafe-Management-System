@@ -41,13 +41,13 @@ namespace APU_Programming_Café_Management_System
 
         public bool login_Attempt(Programming_Café_DB Programming_Café_Database)
         {
-            int count = Programming_Café_Database.studentTable2.Get_Count_of_Rows_Matching_Value(Programming_Café_Database, "Username", _username);
-            if (count == 1 )
+            List<Row> rows = Programming_Café_Database.userTable.Search_Row_For_Username_Value(_username);
+            if (rows.Count == 1)
             {
-                if (dataRows[0]["Password"].ToString() == _password)
+                if (rows[0].values["Password"] == _password)
                 {
                     
-                    int p_Key = Convert.ToInt32(dataRows[0]["Id"].ToString());
+                    string p_Key = rows[0].values["Id"];
                     Check_User_Role(Programming_Café_Database, p_Key);
                     return true;
                 }
@@ -61,11 +61,10 @@ namespace APU_Programming_Café_Management_System
             return true;
         }
 
-        public void Check_User_Role(Programming_Café_DB Programming_Café_Database, int p_Key)
+        public void Check_User_Role(Programming_Café_DB Programming_Café_Database, string p_Key)
         {
-            
-            DataRow[] dataRows = Programming_Café_DB.Get_DataRows_From_DataTable(Programming_Café_Database.studentTable, "UserId", p_Key);
-            if (dataRows.Length == 1)
+            List<Row> rows = Programming_Café_Database.studentTable.Get_Rows_Matching_Value(p_Key);
+            if (rows.Count == 1)
             {
                 _role.isStudent = true;
             }

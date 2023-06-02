@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
@@ -13,6 +14,7 @@ namespace APU_Programming_Café_Management_System
         //Test
         private List<Collumn> _collumns = new List<Collumn>();
         private List<Row> _rows = new List<Row>(); 
+        private static int _collumnSeed = 0;
 
         public List<Collumn> collumns 
         {
@@ -25,26 +27,41 @@ namespace APU_Programming_Café_Management_System
             set { _rows = value; }
         }
 
-        public void Add_Collumn (string collumn_Name)
+
+        public void Add_Collumn (Collumn collumn)
         {
-            _collumns.Add(new Collumn(collumn_Name));
+            _collumns.Add(collumn);
         }
 
         public void Add_Rows (DataTable dt)
         {
             foreach (DataRow dr in dt.Rows)
             {
-                _rows.Add(new Row(dt));
+                _rows.Add(new Row(dr, _collumns));
             }
         }
 
-    
-
-        public int Get_Count_of_Rows_Matching_Value (Programming_Café_DB Programming_Café_Database, string Name, string value)
+        public Collumn Get_Collumn(string Name)
         {
-            return(Programming_Café_Database.studentTable2.collumns.Find(column => column.collumnName == Name).Search_RowIndex_For_Value(value).Count());
-
+            return(_collumns.Find(Collumn => Collumn.collumnName == Name));
         }
+
+        public List<Row> Search_Row_For_Value(Collumn collumn, string value)
+        {
+            List<Row> result = new List<Row>();
+            foreach (Row row in rows)
+            {
+                if (row.values[collumn.collumnName] == value)
+                {
+                    result.Add(row);
+                }
+            }
+            return result;
+        }
+
+
+
+
 
     }
 }

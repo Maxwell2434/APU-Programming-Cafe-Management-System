@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+using System.Xml.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Collumn : Table
+    internal class Collumn
     {
         //FIELDS
         private string _collumnName;
-        private int _collumnIndex;
-        private static int collumnSeed = 0;
+        private string[] _values;
 
         //PROPERTIES
         public string collumnName
@@ -20,33 +21,35 @@ namespace APU_Programming_Café_Management_System
             set { _collumnName = value; }
         }
 
-        public int collumnIndex
+
+
+        public string[] values
         {
-            get { return _collumnIndex; }
-            set { _collumnIndex = value; }
+            get { return _values; }
+            set { _values = value; }
         }
 
         //CONSTRUCTOR
         public Collumn(string name) 
         { 
-            _collumnName = name; 
-            _collumnIndex = collumnSeed; 
-            collumnSeed++; 
+            _collumnName = name;
         }
 
         //METHODS
-        public int[] Search_RowIndex_For_Value(string value)
+
+ 
+
+
+        /*
+        public List<Row> Get_Rows_Matching_Value(string value)
         {
-            int[] result = new int[0];
-            foreach(Row row in rows)
-            {
-                if (row.values[collumnIndex] == value)
-                {
-                    result.Append(row.rowIndex);
-                }
-            }
-            return result;
+            Collumn coluumn = Get_Collumn(Name);
+            List<Row> result = coluumn.Search_Row_For_Value(rows, value);
+            return (Get_Collumn(Name).Search_Row_For_Value(rows, value));
         }
+        */
+
+
 
 
     }
