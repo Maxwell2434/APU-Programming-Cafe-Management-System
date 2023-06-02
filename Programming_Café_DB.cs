@@ -6,13 +6,13 @@ using System.Data.SqlClient;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Programming_Café_DB
+    public class Programming_Café_DB
     {
         //Fields
         private string _connectionString;
         private DataSet _dataset;
         SqlConnection connection;
-        private DataTable _adminTable;
+        private Administrator_Table _adminTable;
         private Student_Table _studentTable;
         private User_Table _userTable;
        
@@ -23,7 +23,7 @@ namespace APU_Programming_Café_Management_System
             _dataset = dataSet;
             _studentTable = new Student_Table(dataSet.Tables["Students"]);
             userTable = new User_Table(_dataset.Tables["Users"]);
-            _adminTable = _dataset.Tables["Administrators"];
+            _adminTable = new Administrator_Table(_dataset.Tables["Administrators"]);
         }
 
         //Property
@@ -59,6 +59,11 @@ namespace APU_Programming_Café_Management_System
             set { _userTable = value; }
         }
 
+        public Administrator_Table adminTable
+        {
+            get { return _adminTable; }
+            set { _adminTable = value; }
+        }
 
         public string connectionString
         {

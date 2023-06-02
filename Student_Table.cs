@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Student_Table : Table
+    public class Student_Table : Table
     {
         public Collumn Id;
         public Collumn Name;

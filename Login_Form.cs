@@ -25,8 +25,17 @@ namespace APU_Programming_Café_Management_System
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
-            User user1 = new User(txtbox_Username.Text, txtbox_Password.Text);
-            user1.login_Attempt(Programming_Café_Database);
+            User user = new User(txtbox_Username.Text, txtbox_Password.Text);
+            if(user.login_Attempt(Programming_Café_Database) == true)
+            {
+                if(user.role.isAdministrator == true)
+                {
+                    this.Hide();
+                    AdminHomePage adminHomePage = new AdminHomePage(Programming_Café_Database, user.Id);
+                    adminHomePage.ShowDialog();
+                    this.Close();
+                }
+            }
         }
 
         private void Login_Form_Load(object sender, EventArgs e)

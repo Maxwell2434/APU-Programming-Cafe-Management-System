@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Collumn
+    public class Collumn
     {
         //FIELDS
         private string _collumnName;
@@ -20,7 +20,6 @@ namespace APU_Programming_Café_Management_System
             get { return _collumnName; }
             set { _collumnName = value; }
         }
-
 
 
         public string[] values

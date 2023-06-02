@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Table
+    public class Table
     {
         //Test
         private List<Collumn> _collumns = new List<Collumn>();
@@ -43,7 +43,7 @@ namespace APU_Programming_Café_Management_System
 
         public Collumn Get_Collumn(string Name)
         {
-            return(_collumns.Find(Collumn => Collumn.collumnName == Name));
+            return (_collumns.Find(Collumn => Collumn.collumnName == Name));
         }
 
         public List<Row> Search_Row_For_Value(Collumn collumn, string value)
@@ -51,7 +51,20 @@ namespace APU_Programming_Café_Management_System
             List<Row> result = new List<Row>();
             foreach (Row row in rows)
             {
-                if (row.values[collumn.collumnName] == value)
+                if (row.values[collumn] == value)
+                {
+                    result.Add(row);
+                }
+            }
+            return result;
+        }
+
+        public List<Row> Search_Row_For_Value(string collumnName, string value)
+        {
+            List<Row> result = new List<Row>();
+            foreach (Row row in rows)
+            {
+                if (row.values[Get_Collumn(collumnName)] == value)
                 {
                     result.Add(row);
                 }

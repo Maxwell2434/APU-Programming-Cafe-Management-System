@@ -62,6 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminHomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminHomePage.Designer.cs">
+      <DependentUpon>AdminHomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator.cs" />
+    <Compile Include="Administrator_Table.cs" />
     <Compile Include="Collumn.cs" />
     <Compile Include="Programming_Café_DB.cs" />
     <Compile Include="Login_Form.cs">
@@ -86,6 +94,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="User_Table.cs" />
+    <EmbeddedResource Include="AdminHomePage.resx">
+      <DependentUpon>AdminHomePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Row
+    public class Row
     {
         //FIELDS
-        private Dictionary<string, string> _values;
+        private Dictionary<Collumn, string> _values;
 
         //PROPERTIES
-        public Dictionary<string, string> values
+        public Dictionary<Collumn, string> values
         {
             get { return _values; }
             set { _values = value; }
@@ -24,10 +24,10 @@ namespace APU_Programming_Café_Management_System
         //CONSTRUCTOR
         public Row(DataRow dr, List<Collumn> collumns) 
         {
-            _values = new Dictionary<string, string>();
+            _values = new Dictionary<Collumn, string>();
             for (int i = 0; i< dr.ItemArray.Length; i++)
             {
-                _values.Add(collumns[i].collumnName, dr[i].ToString());
+                _values.Add(collumns[i], dr[i].ToString());
             }
 
         }

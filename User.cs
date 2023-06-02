@@ -13,16 +13,23 @@ namespace APU_Programming_Café_Management_System
 {
     internal class User
     {
+        private string _id;
         private string _username; 
         private string _password;
         private Role _role;
         public User(string Username, string Password) 
         {
+
             _username = Username;
             _password = Password;
             _role = new Role();
         }
 
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
         public string Username
         {
             get{ return _username; }
@@ -44,11 +51,11 @@ namespace APU_Programming_Café_Management_System
             List<Row> rows = Programming_Café_Database.userTable.Search_Row_For_Username_Value(_username);
             if (rows.Count == 1)
             {
-                if (rows[0].values["Password"] == _password)
+                if (rows[0].values[Programming_Café_Database.userTable.Password] == _password)
                 {
                     
-                    string p_Key = rows[0].values["Id"];
-                    Check_User_Role(Programming_Café_Database, p_Key);
+                    _id = rows[0].values[Programming_Café_Database.userTable.Id];
+                    Check_User_Role(Programming_Café_Database);
                     return true;
                 }
 
@@ -58,15 +65,20 @@ namespace APU_Programming_Café_Management_System
             {
                 MessageBox.Show("Username doesn't exist");
             }
-            return true;
+            return false;
         }
 
-        public void Check_User_Role(Programming_Café_DB Programming_Café_Database, string p_Key)
+        public void Check_User_Role(Programming_Café_DB Programming_Café_Database)
         {
-            List<Row> rows = Programming_Café_Database.studentTable.Get_Rows_Matching_Value(p_Key);
-            if (rows.Count == 1)
+            
+            if (Programming_Café_Database.studentTable.Search_Row_For_Value("UserId", _id).Count == 1)
             {
                 _role.isStudent = true;
+            }
+
+            else if (Programming_Café_Database.adminTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            {
+                _role.isAdministrator = true;
             }
 
         }
