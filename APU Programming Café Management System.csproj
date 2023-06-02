@@ -70,7 +70,19 @@
     </Compile>
     <Compile Include="Administrator.cs" />
     <Compile Include="Administrator_Table.cs" />
+    <Compile Include="AdminProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminProfile.Designer.cs">
+      <DependentUpon>AdminProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Collumn.cs" />
+    <Compile Include="Feedback.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Feedback.Designer.cs">
+      <DependentUpon>Feedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Programming_Café_DB.cs" />
     <Compile Include="Login_Form.cs">
       <SubType>Form</SubType>
@@ -96,6 +108,12 @@
     <Compile Include="User_Table.cs" />
     <EmbeddedResource Include="AdminHomePage.resx">
       <DependentUpon>AdminHomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminProfile.resx">
+      <DependentUpon>AdminProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feedback.resx">
+      <DependentUpon>Feedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>

@@ -12,10 +12,14 @@ namespace APU_Programming_Café_Management_System
 {
     public partial class AdminHomePage : Form
     {
+        private Administrator administrator;
+
+
+
         public AdminHomePage(Programming_Café_DB programming_Café_DB, string UserId)
         {
             InitializeComponent();
-            Administrator administrator = new Administrator(programming_Café_DB.adminTable, UserId);
+            administrator = new Administrator(programming_Café_DB.adminTable, UserId);
         }
 
         private void AdminHomePage_Load(object sender, EventArgs e)
@@ -25,7 +29,13 @@ namespace APU_Programming_Café_Management_System
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
+            adminProfilePage.Visible = true;
+            
+        }
 
+        private void adminProfilePage_Load(object sender, EventArgs e)
+        {
+            adminProfilePage.administrator = administrator;
         }
     }
 }

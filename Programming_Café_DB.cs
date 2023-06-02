@@ -9,7 +9,8 @@ namespace APU_Programming_Café_Management_System
     public class Programming_Café_DB
     {
         //Fields
-        private string _connectionString;
+        public static string connectionString;
+
         private DataSet _dataset;
         SqlConnection connection;
         private Administrator_Table _adminTable;
@@ -65,11 +66,7 @@ namespace APU_Programming_Café_Management_System
             set { _adminTable = value; }
         }
 
-        public string connectionString
-        {
-            get { return _connectionString; }
-            set { _connectionString = value; }
-        }
+
 
         //Methods
 
@@ -90,9 +87,9 @@ namespace APU_Programming_Café_Management_System
         }
 
         //a that takes a parameter of a tablename and then returns a DataTable from the database
-        public DataTable Get_DataTable_From_Table(string table)
+        public static DataTable Get_DataTable_From_Table(string table)
         {
-            using (connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlDataAdapter da = new SqlDataAdapter("select * from " + table, connection))
             {
                 connection.Open();
@@ -101,6 +98,27 @@ namespace APU_Programming_Café_Management_System
                 return (dt);
             }
 
+        }
+
+        public static void Update_Table_Database(Table table)
+        {
+            string commandString = "UPDATE " + table.TableName + "SET ";
+            string p_Key = "";
+            foreach(Collumn collumn in table.Collumns)
+            {
+                if(collumn.IsKey == false) 
+                {
+                    commandString += collumn.Name + " ='" + ;
+                }
+                else if (p_Key == "") 
+                { 
+                    p_Key = collumn.Name; 
+                }
+            }
+            commandString += "' WHERE " + p_Key + "='" 
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand())
         }
 
         public static DataRow[] Get_DataRows_From_DataTable(DataTable dt, string columnName, string value)

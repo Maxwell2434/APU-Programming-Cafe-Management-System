@@ -11,16 +11,22 @@ namespace APU_Programming_Café_Management_System
     public class Collumn
     {
         //FIELDS
-        private string _collumnName;
+        private string name;
+        private bool isKey;
         private string[] _values;
 
         //PROPERTIES
-        public string collumnName
+        public string Name
         {
-            get { return _collumnName; }
-            set { _collumnName = value; }
+            get { return name; }
+            set { name = value; }
         }
 
+        public bool IsKey
+        {
+            get { return isKey; }
+            set { isKey = value; }  
+        }
 
         public string[] values
         {
@@ -31,7 +37,11 @@ namespace APU_Programming_Café_Management_System
         //CONSTRUCTOR
         public Collumn(string name) 
         { 
-            _collumnName = name;
+            this.name = name;
+            if(name.Contains("Id"))
+            {
+                this.isKey = true;
+            }
         }
 
         //METHODS

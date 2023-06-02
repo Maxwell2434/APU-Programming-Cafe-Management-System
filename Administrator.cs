@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Administrator
+    public class Administrator
     {
         private string _id;
         private string _name;
@@ -57,6 +57,7 @@ namespace APU_Programming_Café_Management_System
                 _phone = rows[0].values[adminTable.Phone];
                 _email = rows[0].values[adminTable.Email];
                 _userId = rows[0].values[adminTable.UserId];
+                
             }
 
         }

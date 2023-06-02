@@ -12,26 +12,26 @@ namespace APU_Programming_Café_Management_System
 
         public Collumn Id
         {
-            get { return collumns[0]; }
-            set { collumns[0] = value; }
+            get { return Collumns[0]; }
+            set { Collumns[0] = value; }
         }
 
         public Collumn Username
         {
-            get { return collumns[1]; }
-            set { collumns[1] = value; }
+            get { return Collumns[1]; }
+            set { Collumns[1] = value; }
         }
 
         public Collumn Password
         {
-            get { return collumns[2]; }
-            set { collumns[2] = value; }
+            get { return Collumns[2]; }
+            set { Collumns[2] = value; }
         }
 
         public Collumn Role
         {
-            get { return collumns[3]; }
-            set { collumns[3] = value; }
+            get { return Collumns[3]; }
+            set { Collumns[3] = value; }
         }
 
         public User_Table(DataTable dt) 
