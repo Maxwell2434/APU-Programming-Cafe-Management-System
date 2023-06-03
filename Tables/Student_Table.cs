@@ -10,23 +10,23 @@ namespace APU_Programming_Café_Management_System
 {
     public class Student_Table : Table
     {
-        public Collumn Id;
-        public Collumn Name;
-        public Collumn TP_Number;
-        public Collumn Address;
-        public Collumn Phone;
-        public Collumn Email;
-        public Collumn UserId;
+        public Column Id;
+        public Column Name;
+        public Column TP_Number;
+        public Column Address;
+        public Column Phone;
+        public Column Email;
+        public Column UserId;
 
         public Student_Table(DataTable dt)
         {
-            Id = new Collumn("Id");
-            Name = new Collumn("Name");
-            TP_Number = new Collumn("TP_Number");
-            Address = new Collumn("Address");
-            Phone = new Collumn("Phone");
-            Email = new Collumn("Email");
-            UserId = new Collumn("UserId");
+            Id = new Column("Id");
+            Name = new Column("Name");
+            TP_Number = new Column("TP_Number");
+            Address = new Column("Address");
+            Phone = new Column("Phone");
+            Email = new Column("Email");
+            UserId = new Column("UserId");
 
             Add_Collumn(Id);
             Add_Collumn(Name);

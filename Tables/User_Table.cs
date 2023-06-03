@@ -10,19 +10,19 @@ namespace APU_Programming_Café_Management_System
     public class User_Table : Table
     {
 
-        public Collumn Id
+        public Column Id
         {
             get { return Collumns[0]; }
             set { Collumns[0] = value; }
         }
 
-        public Collumn Username
+        public Column Username
         {
             get { return Collumns[1]; }
             set { Collumns[1] = value; }
         }
 
-        public Collumn Password
+        public Column Password
         {
             get { return Collumns[2]; }
             set { Collumns[2] = value; }
@@ -32,9 +32,9 @@ namespace APU_Programming_Café_Management_System
         public User_Table(DataTable dt) 
         {
             TableName = dt.TableName;
-            Add_Collumn(new Collumn("Id"));
-            Add_Collumn(new Collumn("Username"));
-            Add_Collumn(new Collumn("Password")); 
+            Add_Collumn(new Column("Id"));
+            Add_Collumn(new Column("Username"));
+            Add_Collumn(new Column("Password")); 
             
             Add_Rows(dt);
 

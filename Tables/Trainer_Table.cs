@@ -9,37 +9,37 @@ namespace APU_Programming_Café_Management_System
 {
     public class Trainer_Table : Table
     {
-        public Collumn Id
+        public Column Id
         {
             get { return Collumns[0]; }
             set { Collumns[0] = value; }
         }
 
-        public Collumn Name
+        public Column Name
         {
             get { return Collumns[1]; }
             set { Collumns[1] = value; }
         }
 
-        public Collumn Address
+        public Column Address
         {
             get { return Collumns[2]; }
             set { Collumns[2] = value; }
         }
 
-        public Collumn Phone
+        public Column Phone
         {
             get { return Collumns[3]; }
             set { Collumns[3] = value; }
         }
 
-        public Collumn Email
+        public Column Email
         {
             get { return Collumns[4]; }
             set { Collumns[4] = value; }
         }
 
-        public Collumn UserId
+        public Column UserId
         {
             get { return Collumns[5]; }
             set { Collumns[5] = value; }
@@ -48,12 +48,12 @@ namespace APU_Programming_Café_Management_System
         public Trainer_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Collumn("Id"));
-            Add_Collumn(new Collumn("Name"));
-            Add_Collumn(new Collumn("Address"));
-            Add_Collumn(new Collumn("Phone"));
-            Add_Collumn(new Collumn("Email"));
-            Add_Collumn(new Collumn("UserId"));
+            Add_Collumn(new Column("Id"));
+            Add_Collumn(new Column("Name"));
+            Add_Collumn(new Column("Address"));
+            Add_Collumn(new Column("Phone"));
+            Add_Collumn(new Column("Email"));
+            Add_Collumn(new Column("UserId"));
 
             Add_Rows(dt);
 

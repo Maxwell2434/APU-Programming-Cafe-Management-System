@@ -12,7 +12,7 @@ namespace APU_Programming_Café_Management_System
     public class Table
     {
         private string tableName;
-        private List<Collumn> collumns = new List<Collumn>();
+        private List<Column> columns = new List<Column>();
         private List<Row> rows = new List<Row>(); 
 
 
@@ -21,10 +21,10 @@ namespace APU_Programming_Café_Management_System
             get { return tableName; }
             set { tableName = value; }
         }
-        public List<Collumn> Collumns 
+        public List<Column> Collumns 
         {
-            get { return collumns; }
-            set { collumns = value; }
+            get { return columns; }
+            set { columns = value; }
         }
         public List<Row> Rows
         {
@@ -41,16 +41,16 @@ namespace APU_Programming_Café_Management_System
             this.rows = rows;
         }
         */
-        public void Add_Collumn (Collumn collumn)
+        public void Add_Collumn (Column collumn)
         {
-            collumns.Add(collumn);
+            columns.Add(collumn);
         }
 
         public void Add_Rows (DataTable dt)
         {
             foreach (DataRow dr in dt.Rows)
             {
-                rows.Add(new Row(dr, collumns));
+                rows.Add(new Row(dr, columns));
             }
         }
 
@@ -59,17 +59,23 @@ namespace APU_Programming_Café_Management_System
             rows.Add(row);
         }
 
-
-        public Collumn Get_Collumn(string Name)
+        public void Del_Row (List<string> values)
         {
-            return (collumns.Find(Collumn => Collumn.Name == Name));
+            Row rowToBeDeleted = new Row(this.TableName, this.columns, values);
+            rows.Remove(rowToBeDeleted);
+            Programming_Café_DB.Delete_Row_Database(this, rowToBeDeleted);
         }
 
-        public Collumn Get_Primary_Key_Collumn()
+        public Column Get_Collumn(string Name)
         {
-            return (collumns.Find(Collumn => Collumn.IsKey == true));
+            return (columns.Find(Collumn => Collumn.Name == Name));
         }
-        public List<Row> Search_Row_For_Value(Collumn collumn, string value)
+
+        public Column Get_Primary_Key_Collumn()
+        {
+            return (columns.Find(Collumn => Collumn.IsPKey == true));
+        }
+        public List<Row> Search_Row_For_Value(Column collumn, string value)
         {
             List<Row> result = new List<Row>();
             foreach (Row row in Rows)

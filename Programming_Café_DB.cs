@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 namespace APU_Programming_Café_Management_System
 {
@@ -108,15 +110,15 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public static void Update_Table_Database(string tableName, Row rowToBeUpdated, Dictionary<Collumn, string> values)
+        public static void Update_Table_Database(string tableName, Row rowToBeUpdated, Dictionary<Column, string> values)
         {
             string commandString = "UPDATE " + tableName + " SET ";
-            Collumn key = null;
+            Column key = null;
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            foreach (KeyValuePair<Collumn, string> kvp in values)
+            foreach (KeyValuePair<Column, string> kvp in values)
             {
-                if (!kvp.Key.IsKey)
+                if (!kvp.Key.IsPKey)
                 {
                     commandString += kvp.Key.Name + " = @" + kvp.Key.Name + ", ";
 
@@ -150,7 +152,7 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public static void Insert_Row_Database(string tableName, Dictionary<Collumn, string> values)
+        public static void Insert_Row_Database(string tableName, Dictionary<Column, string> values)
         {
             // Check if the row already exists
             bool rowExists = Check_Row_Exists(tableName, values);
@@ -160,9 +162,9 @@ namespace APU_Programming_Café_Management_System
                 string valueString = "VALUES (";
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
-                foreach (KeyValuePair<Collumn, string> kvp in values)
+                foreach (KeyValuePair<Column, string> kvp in values)
                 {
-                    if (kvp.Key.IsKey == false)
+                    if (kvp.Key.IsPKey == false)
                     {
                         commandString += kvp.Key.Name + ", ";
                         valueString += "@" + kvp.Key.Name + ", ";
@@ -187,7 +189,7 @@ namespace APU_Programming_Café_Management_System
                 {
                     cmd.Parameters.AddRange(parameters.ToArray());
                     connection.Open();
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteScalar();
                 }
             }
             else
@@ -197,12 +199,43 @@ namespace APU_Programming_Café_Management_System
             
         }
 
-        public static bool Check_Row_Exists(string tableName, Dictionary<Collumn, string> values)
+        public static void Delete_Row_Database(Table table, Row rowToBeDeleted)
+        {
+            
+            foreach(Column column in table.Collumns)
+            {
+                if(column.IsPKey)
+                {
+                    Column primaryKeyColumn = column;
+                    string primaryKeyColumnName = column.Name;
+                    string primaryKeyValue = rowToBeDeleted.values[primaryKeyColumn];
+
+                    string commandString = "DELETE FROM " + table.TableName + " WHERE " + primaryKeyColumnName + " = @" + primaryKeyColumnName;
+                    SqlParameter parameter = new SqlParameter("@" + primaryKeyColumnName, primaryKeyValue);
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand(commandString, connection))
+                    {
+                        cmd.Parameters.Add(parameter);
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    break;
+                }
+                MessageBox.Show("Primary Key Not Found");
+
+            }
+
+
+
+        }
+
+        public static bool Check_Row_Exists(string tableName, Dictionary<Column, string> values)
         {
             string commandString = "SELECT COUNT(*) FROM " + tableName + " WHERE ";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            foreach (KeyValuePair<Collumn, string> kvp in values)
+            foreach (KeyValuePair<Column, string> kvp in values)
             {
                 if(kvp.Key.Name == "Username")
                 {

@@ -39,8 +39,8 @@ namespace APU_Programming_Café_Management_System
             lstViewTrainer.Sorting = SortOrder.Ascending;
 
 
-            List<Collumn> collumns = Programming_Café_DB.trainerTable.Collumns;
-            foreach (Collumn collumn in collumns)
+            List<Column> collumns = Programming_Café_DB.trainerTable.Collumns;
+            foreach (Column collumn in collumns)
             {
                 lstViewTrainer.Columns.Add(collumn.Name);
             }
@@ -71,7 +71,19 @@ namespace APU_Programming_Café_Management_System
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstViewTrainer
+            foreach(ListViewItem item in lstViewTrainer.Items)
+            {
+                if(item.Checked)
+                {
+                    List<string> valuesList = new List<string>();
+                    foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                    {
+                        valuesList.Add(subItem.Text);
+                    }
+                    Programming_Café_DB.trainerTable.Del_Row(valuesList);
+                    SetupListView();
+                }
+            }
         }
     }
 }

@@ -88,7 +88,7 @@
     <Compile Include="AdminForm\AdminProfile.Designer.cs">
       <DependentUpon>AdminProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tables\Collumn.cs" />
+    <Compile Include="Tables\Column.cs" />
     <Compile Include="AdminForm\Feedback.cs">
       <SubType>UserControl</SubType>
     </Compile>

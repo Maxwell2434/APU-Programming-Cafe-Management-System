@@ -8,11 +8,11 @@ using System.Xml.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
-    public class Collumn
+    public class Column
     {
         //FIELDS
         private string name;
-        private bool isKey;
+        private bool isPKey;
         private string[] _values;
 
         //PROPERTIES
@@ -22,10 +22,10 @@ namespace APU_Programming_Café_Management_System
             set { name = value; }
         }
 
-        public bool IsKey
+        public bool IsPKey
         {
-            get { return isKey; }
-            set { isKey = value; }  
+            get { return isPKey; }
+            set { isPKey = value; }  
         }
 
         public string[] values
@@ -35,12 +35,12 @@ namespace APU_Programming_Café_Management_System
         }
 
         //CONSTRUCTOR
-        public Collumn(string name) 
+        public Column(string name) 
         { 
             this.name = name;
             if(name == "Id")
             {
-                this.isKey = true;
+                this.isPKey = true;
             }
         }
 

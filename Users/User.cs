@@ -101,7 +101,7 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public void Update(Collumn collumnAffected, string value)
+        public void Update(Column collumnAffected, string value)
         {
             Row rowToBeChanged = Programming_Café_DB.userTable.Rows.Find(row => row.values[Programming_Café_DB.userTable.Id] == _id);
             for (int i = 0; i < Programming_Café_DB.userTable.Rows.Count; i++)
@@ -109,7 +109,7 @@ namespace APU_Programming_Café_Management_System
                 if (Programming_Café_DB.userTable.Rows[i] == rowToBeChanged)
                 {
                     // Update the dictionary using the property's setter
-                    Dictionary<Collumn, string> updatedValues = Programming_Café_DB.userTable.Rows[i].values;
+                    Dictionary<Column, string> updatedValues = Programming_Café_DB.userTable.Rows[i].values;
                     updatedValues[collumnAffected] = value;
                     Programming_Café_DB.userTable.Rows[i].values = updatedValues;
                 }

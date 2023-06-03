@@ -28,7 +28,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Dictionary<Collumn, string> values = new Dictionary<Collumn, string>();
+            Dictionary<Column, string> values = new Dictionary<Column, string>();
             string[] userValues =
             {
                 "",
@@ -48,7 +48,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
             string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
             Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
-            values = new Dictionary<Collumn, string>();
+            values = new Dictionary<Column, string>();
             string[] trainerValues =
             {
                 "",
