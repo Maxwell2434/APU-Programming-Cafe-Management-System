@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace APU_Programming_Café_Management_System
 {
-    public class Administrator
+    public class Administrator : User
     {
         private string _id;
         private string _name;
         private string _address;
         private string _phone;
         private string _email;
-        private string _userId;
 
-        public string Id
+        public new string Id
         {
             get { return _id; }
             set { _id = value; }
@@ -43,14 +42,14 @@ namespace APU_Programming_Café_Management_System
         }
         public string UserId
         {
-            get { return _userId; }
-            set { _userId = value; Update(Programming_Café_DB.adminTable.UserId, value); }
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        public Administrator(string UserId) 
+        public Administrator(User user) : base(user)
         {
             Administrator_Table adminTable = Programming_Café_DB.adminTable;
-            List<Row> rows = adminTable.Search_Row_For_Value(adminTable.UserId, UserId);
+            List<Row> rows = adminTable.Search_Row_For_Value(adminTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[adminTable.Id];
@@ -58,7 +57,6 @@ namespace APU_Programming_Café_Management_System
                 _address = rows[0].values[adminTable.Address];
                 _phone = rows[0].values[adminTable.Phone];
                 _email = rows[0].values[adminTable.Email];
-                _userId = rows[0].values[adminTable.UserId];
                 
             }
 

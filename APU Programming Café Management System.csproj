@@ -62,25 +62,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminHomePage.cs">
+    <Compile Include="AdminForm\AdminHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\AdminHome.Designer.cs">
+      <DependentUpon>AdminHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm\AdminUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminHomePage.Designer.cs">
-      <DependentUpon>AdminHomePage.cs</DependentUpon>
+    <Compile Include="AdminForm\AdminUI.Designer.cs">
+      <DependentUpon>AdminUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator.cs" />
-    <Compile Include="Administrator_Table.cs" />
-    <Compile Include="AdminProfile.cs">
+    <Compile Include="AdminForm\TrainerListAdd.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminProfile.Designer.cs">
+    <Compile Include="AdminForm\TrainerListAdd.Designer.cs">
+      <DependentUpon>TrainerListAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Administrator.cs" />
+    <Compile Include="Tables\Administrator_Table.cs" />
+    <Compile Include="AdminForm\AdminProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\AdminProfile.Designer.cs">
       <DependentUpon>AdminProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Collumn.cs" />
-    <Compile Include="Feedback.cs">
+    <Compile Include="Tables\Collumn.cs" />
+    <Compile Include="AdminForm\Feedback.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Feedback.Designer.cs">
+    <Compile Include="AdminForm\Feedback.Designer.cs">
       <DependentUpon>Feedback.cs</DependentUpon>
     </Compile>
     <Compile Include="Programming_Café_DB.cs" />
@@ -97,23 +109,37 @@
       <DependentUpon>Programming_Café_DatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="Row.cs" />
-    <Compile Include="Student_Table.cs" />
-    <Compile Include="Table.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="StudentTable.cs">
+    <Compile Include="Users\Role.cs" />
+    <Compile Include="Tables\Row.cs" />
+    <Compile Include="Tables\Student_Table.cs" />
+    <Compile Include="Tables\Table.cs" />
+    <Compile Include="Users\Trainer.cs" />
+    <Compile Include="AdminForm\TrainerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\TrainerList.Designer.cs">
+      <DependentUpon>TrainerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Trainer_Table.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Tables\StudentTable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="User_Table.cs" />
-    <EmbeddedResource Include="AdminHomePage.resx">
-      <DependentUpon>AdminHomePage.cs</DependentUpon>
+    <Compile Include="Tables\User_Table.cs" />
+    <EmbeddedResource Include="AdminForm\AdminHome.resx">
+      <DependentUpon>AdminHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminProfile.resx">
+    <EmbeddedResource Include="AdminForm\AdminUI.resx">
+      <DependentUpon>AdminUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\AdminProfile.resx">
       <DependentUpon>AdminProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Feedback.resx">
+    <EmbeddedResource Include="AdminForm\Feedback.resx">
       <DependentUpon>Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\TrainerListAdd.resx">
+      <DependentUpon>TrainerListAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>
@@ -127,6 +153,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminForm\TrainerList.resx">
+      <DependentUpon>TrainerList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Programming_Café_DatabaseDataSet.xsc">
       <DependentUpon>Programming_Café_DatabaseDataSet.xsd</DependentUpon>
     </None>
@@ -153,10 +182,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Programming Café Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Programming Café Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Programming Café Database.mdf</DependentUpon>
     </Content>
   </ItemGroup>

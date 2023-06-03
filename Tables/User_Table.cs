@@ -28,23 +28,18 @@ namespace APU_Programming_Café_Management_System
             set { Collumns[2] = value; }
         }
 
-        public Collumn Role
-        {
-            get { return Collumns[3]; }
-            set { Collumns[3] = value; }
-        }
 
         public User_Table(DataTable dt) 
         {
+            TableName = dt.TableName;
             Add_Collumn(new Collumn("Id"));
             Add_Collumn(new Collumn("Username"));
             Add_Collumn(new Collumn("Password")); 
-            Add_Collumn(new Collumn("Role"));
             
             Add_Rows(dt);
 
-
         }
+
 
         public List<Row> Search_Row_For_Username_Value(string value)
         {

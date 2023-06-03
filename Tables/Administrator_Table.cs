@@ -47,6 +47,7 @@ namespace APU_Programming_Café_Management_System
 
         public Administrator_Table(DataTable dt)
         {
+            TableName = dt.TableName;
             Add_Collumn(new Collumn("Id"));
             Add_Collumn(new Collumn("Name"));
             Add_Collumn(new Collumn("Address"));

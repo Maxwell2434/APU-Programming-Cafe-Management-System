@@ -54,6 +54,10 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
+        public void Add_Row(Row row)
+        {
+            rows.Add(row);
+        }
 
 
         public Collumn Get_Collumn(string Name)
@@ -91,7 +95,11 @@ namespace APU_Programming_Café_Management_System
             return result;
         }
 
-
+        public void Refresh_Table_Values()
+        {
+            rows.Clear();
+            Add_Rows(Programming_Café_DB.Get_DataTable_From_Table(tableName));
+        }
 
 
 

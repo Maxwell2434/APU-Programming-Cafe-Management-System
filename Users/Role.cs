@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APU_Programming_Café_Management_System
 {
-    internal class Role
+    public class Role
     {
         private bool _isAdministrator;
         private bool _isTrainer;

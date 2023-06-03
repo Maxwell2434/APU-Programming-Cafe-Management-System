@@ -37,6 +37,10 @@
             this.txtBoxPhone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtBoxPassword = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtBoxUsername = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -136,11 +140,57 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtBoxPassword
+            // 
+            this.txtBoxPassword.BackColor = System.Drawing.Color.Silver;
+            this.txtBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBoxPassword.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtBoxPassword.Location = new System.Drawing.Point(117, 133);
+            this.txtBoxPassword.Name = "txtBoxPassword";
+            this.txtBoxPassword.Size = new System.Drawing.Size(132, 22);
+            this.txtBoxPassword.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(114, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 16);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Password :";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtBoxUsername
+            // 
+            this.txtBoxUsername.BackColor = System.Drawing.Color.Silver;
+            this.txtBoxUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBoxUsername.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtBoxUsername.Location = new System.Drawing.Point(117, 82);
+            this.txtBoxUsername.Name = "txtBoxUsername";
+            this.txtBoxUsername.Size = new System.Drawing.Size(132, 22);
+            this.txtBoxUsername.TabIndex = 23;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(114, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 16);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Username :";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AdminProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.txtBoxPassword);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtBoxUsername);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtBoxEmail);
             this.Controls.Add(this.label3);
@@ -169,5 +219,9 @@
         private System.Windows.Forms.TextBox txtBoxPhone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtBoxPassword;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtBoxUsername;
+        private System.Windows.Forms.Label label6;
     }
 }
