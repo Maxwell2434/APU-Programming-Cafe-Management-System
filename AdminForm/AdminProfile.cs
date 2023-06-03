@@ -32,14 +32,21 @@ namespace APU_Programming_Café_Management_System
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            administrator.Username= txtBoxUsername.Text;
-            administrator.Password= txtBoxPassword.Text;
-            administrator.Name= txtBoxName.Text;
-            administrator.Address= txtBoxAddress.Text;
-            administrator.Phone= txtBoxPhone.Text;
-            administrator.Email= txtBoxEmail.Text;
-            //programming_Café_Database.Update_Table_Database(new Table(programming_Café_Database.adminTable.TableName, programming_Café_Database.adminTable.))
-                
+            try
+            {
+                administrator.Username = txtBoxUsername.Text;
+                administrator.Password = txtBoxPassword.Text;
+                administrator.Name = txtBoxName.Text;
+                administrator.Address = txtBoxAddress.Text;
+                administrator.Phone = txtBoxPhone.Text;
+                administrator.Email = txtBoxEmail.Text;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Save Failed");
+            }
+            
+            MessageBox.Show("Saved");
         }
     }
 }

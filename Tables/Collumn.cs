@@ -38,7 +38,7 @@ namespace APU_Programming_Café_Management_System
         public Collumn(string name) 
         { 
             this.name = name;
-            if(name.Contains("Id"))
+            if(name == "Id")
             {
                 this.isKey = true;
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
+using System.Linq;
 
 namespace APU_Programming_Café_Management_System
 {
@@ -154,41 +154,47 @@ namespace APU_Programming_Café_Management_System
         {
             // Check if the row already exists
             bool rowExists = Check_Row_Exists(tableName, values);
-            if (rowExists)
+            if (rowExists == false)
             {
-                MessageBox.Show("Row already exists.");
-                return;
+                string commandString = "INSERT INTO " + tableName + " (";
+                string valueString = "VALUES (";
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                foreach (KeyValuePair<Collumn, string> kvp in values)
+                {
+                    if (kvp.Key.IsKey == false)
+                    {
+                        commandString += kvp.Key.Name + ", ";
+                        valueString += "@" + kvp.Key.Name + ", ";
+
+                        // Add parameter for the value
+                        SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
+                        parameters.Add(parameter);
+                    }
+
+                }
+
+                // Remove trailing comma and space
+                commandString = commandString.TrimEnd(',', ' ');
+                valueString = valueString.TrimEnd(',', ' ');
+
+                // Complete the command and combine the strings
+                commandString += ") " + valueString + ")";
+
+                // Execute the query
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(commandString, connection))
+                {
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
             }
-
-            string commandString = "INSERT INTO " + tableName + " (";
-            string valueString = "VALUES (";
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            foreach (KeyValuePair<Collumn, string> kvp in values)
+            else
             {
-                commandString += kvp.Key.Name + ", ";
-                valueString += "@" + kvp.Key.Name + ", ";
-
-                // Add parameter for the value
-                SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
-                parameters.Add(parameter);
+                System.Windows.Forms.MessageBox.Show("Row already exists.");
             }
-
-            // Remove trailing comma and space
-            commandString = commandString.TrimEnd(',', ' ');
-            valueString = valueString.TrimEnd(',', ' ');
-
-            // Complete the command and combine the strings
-            commandString += ") " + valueString + ")";
-
-            // Execute the query
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(commandString, connection))
-            {
-                cmd.Parameters.AddRange(parameters.ToArray());
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
+            
         }
 
         public static bool Check_Row_Exists(string tableName, Dictionary<Collumn, string> values)
@@ -198,6 +204,20 @@ namespace APU_Programming_Café_Management_System
 
             foreach (KeyValuePair<Collumn, string> kvp in values)
             {
+                if(kvp.Key.Name == "Username")
+                {
+                    if(Get_DataRows_From_DataTable(Get_DataTable_From_Table(tableName),kvp.Key.Name, kvp.Value).Length > 0)
+                    {
+                        return true;
+                    }
+                }
+                else if(kvp.Key.Name == "UserId")
+                {
+                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(tableName), kvp.Key.Name, kvp.Value).Length > 0)
+                    {
+                        return true;
+                    }
+                }
                 commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
 
                 // Add parameter for the value

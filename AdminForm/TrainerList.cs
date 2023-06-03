@@ -21,7 +21,12 @@ namespace APU_Programming_Café_Management_System
 
         private void TrainerList_Load(object sender, EventArgs e)
         {
+            SetupListView();
+        }
 
+        public void SetupListView()
+        {
+            lstViewTrainer.Clear();
             // Set the view to show details.
             lstViewTrainer.View = View.Details;
             // Display check boxes.
@@ -33,7 +38,7 @@ namespace APU_Programming_Café_Management_System
             // Sort the items in the list in ascending order.
             lstViewTrainer.Sorting = SortOrder.Ascending;
 
-           
+
             List<Collumn> collumns = Programming_Café_DB.trainerTable.Collumns;
             foreach (Collumn collumn in collumns)
             {
@@ -41,17 +46,17 @@ namespace APU_Programming_Café_Management_System
             }
 
             List<Row> rows = Programming_Café_DB.trainerTable.Rows;
-            foreach(Row row in rows)
+            foreach (Row row in rows)
             {
-                string [] arr_value = row.Get_Value_Arr();
-                
+                string[] arr_value = row.Get_Value_Arr();
+
                 lstViewTrainer.Items.Add(new ListViewItem(arr_value));
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            TrainerListAdd trainerListAdd = new TrainerListAdd();
+            TrainerListAdd trainerListAdd = new TrainerListAdd(this);
             Initialize_UserControl(trainerListAdd);
             trainerListAdd.BringToFront();
 
@@ -62,6 +67,11 @@ namespace APU_Programming_Café_Management_System
             userControl.Show();
             Controls.Add(userControl);
             userControl.Dock = DockStyle.Fill;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            lstViewTrainer
         }
     }
 }
