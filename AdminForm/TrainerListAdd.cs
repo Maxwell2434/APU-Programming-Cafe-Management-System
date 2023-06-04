@@ -55,19 +55,29 @@ namespace APU_Programming_Café_Management_System.AdminForm
             }
             else
             {
+                //Record the number of rows in userTable
+                int rowCount = Programming_Café_DB.userTable.Rows.Count;
+
+                //Insert new User
                 Programming_Café_DB.userTable.Insert_Row(userValues);
 
-                //Find The Id in the newly created row in the userTable
-                List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
-                string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
 
-                //Add the foreign key, userId to the trainerValues
-                trainerValues.Add(UserId);
+                //Check if a new User has been created if Yes then associate the new User as a trainer
+                if(rowCount < Programming_Café_DB.userTable.Rows.Count)
+                {
+                    //Find The Id in the newly created row in the userTable
+                    List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
+                    string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
 
-                Programming_Café_DB.trainerTable.Insert_Row(trainerValues);
-                trainerList.Load_Trainer_ListView();
-                this.Dispose();
-                
+                    //Add the foreign key, userId to the trainerValues
+                    trainerValues.Add(UserId);
+
+                    Programming_Café_DB.trainerTable.Insert_Row(trainerValues);
+                    trainerList.Load_Trainer_ListView();
+                    this.Dispose();
+
+                }
+
             }
             
         }

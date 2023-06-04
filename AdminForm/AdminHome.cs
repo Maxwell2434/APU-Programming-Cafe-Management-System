@@ -12,9 +12,16 @@ namespace APU_Programming_Café_Management_System.AdminForm
 {
     public partial class AdminHome : UserControl
     {
-        public AdminHome()
+        Administrator administrator;
+        public AdminHome(Administrator administrator)
         {
             InitializeComponent();
+            this.administrator= administrator;
+        }
+
+        private void AdminHome_Load(object sender, EventArgs e)
+        {
+            lblWelcome.Text = "Welcome, " + administrator.Name;
         }
     }
 }

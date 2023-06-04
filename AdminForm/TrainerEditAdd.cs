@@ -12,10 +12,12 @@ namespace APU_Programming_Café_Management_System.AdminForm
 {
     public partial class TrainerEditAdd : UserControl
     {
+        private TrainerEdit trainerEdit;
         private string trainerId;
-        public TrainerEditAdd(string trainerId)
+        public TrainerEditAdd(TrainerEdit trainerEdit, string trainerId)
         {
             InitializeComponent();
+            this.trainerEdit = trainerEdit;
             this.trainerId = trainerId;
             foreach (Row row in Programming_Café_DB.module_Table.Rows)
             {
@@ -65,11 +67,14 @@ namespace APU_Programming_Café_Management_System.AdminForm
             };
 
             Programming_Café_DB.classTable.Insert_Row(values);
+            trainerEdit.Load_ListView();
+            this.Dispose();
             
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            
             this.Dispose();
         }
     }

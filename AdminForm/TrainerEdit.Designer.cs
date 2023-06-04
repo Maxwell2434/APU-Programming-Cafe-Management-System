@@ -30,7 +30,7 @@
         {
             this.lstViewTrainer = new System.Windows.Forms.ListView();
             this.btnBack = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -56,18 +56,18 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnChange
+            // btnRemove
             // 
-            this.btnChange.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChange.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnChange.Location = new System.Drawing.Point(599, 40);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(75, 31);
-            this.btnChange.TabIndex = 25;
-            this.btnChange.Text = "Change";
-            this.btnChange.UseVisualStyleBackColor = false;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.btnRemove.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRemove.Location = new System.Drawing.Point(591, 40);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(83, 31);
+            this.btnRemove.TabIndex = 25;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -89,7 +89,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lstViewTrainer);
             this.Name = "TrainerEdit";
             this.Size = new System.Drawing.Size(800, 406);
@@ -101,7 +101,7 @@
 
         private System.Windows.Forms.ListView lstViewTrainer;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
     }
 }

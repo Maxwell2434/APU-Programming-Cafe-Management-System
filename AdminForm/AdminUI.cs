@@ -14,7 +14,7 @@ namespace APU_Programming_Café_Management_System
     public partial class AdminUI : Form
     {
         private Administrator administrator;
-        AdminHome adminHome = new AdminHome();
+        AdminHome adminHome;
         AdminProfile adminProfilePage;
         TrainerList trainerList = new TrainerList();
 
@@ -24,6 +24,7 @@ namespace APU_Programming_Café_Management_System
         {
             InitializeComponent();
             administrator = new Administrator(user);
+            adminHome = new AdminHome(administrator);
             adminProfilePage = new AdminProfile(administrator);
         }
 
@@ -32,6 +33,7 @@ namespace APU_Programming_Café_Management_System
             Initialize_UserControl(adminHome, Controls);
             Initialize_UserControl(adminProfilePage, Controls);
             Initialize_UserControl(trainerList, Controls);
+            adminHome.BringToFront();
         }
 
 

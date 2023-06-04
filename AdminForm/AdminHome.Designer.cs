@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblWelcome.Location = new System.Drawing.Point(321, 93);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(147, 32);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Welcome, ";
             // 
             // AdminHome
             // 
@@ -36,12 +48,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Controls.Add(this.lblWelcome);
             this.Name = "AdminHome";
             this.Size = new System.Drawing.Size(800, 406);
+            this.Load += new System.EventHandler(this.AdminHome_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblWelcome;
     }
 }

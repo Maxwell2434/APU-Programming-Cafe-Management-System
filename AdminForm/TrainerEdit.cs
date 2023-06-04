@@ -28,14 +28,33 @@ namespace APU_Programming_Café_Management_System.AdminForm
             this.Dispose();
         }
 
-        private void btnChange_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            TrainerEditAdd trainerEditAdd = new TrainerEditAdd(trainerId);
-            AdminUI.Initialize_UserControl(trainerEditAdd, Controls);
-            trainerEditAdd.BringToFront();
+            int i = 0;
+            foreach (ListViewItem item in lstViewTrainer.Items)
+            {
+                if (item.Checked || item.Selected)
+                {
+
+                    string classId = Programming_Café_DB.classTable.Rows[item.Index + i].values[Programming_Café_DB.classTable.Id];
+                    Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
+
+
+                    //Delete the class from the classTable and Database
+                    columnToSearch = Programming_Café_DB.classTable.Id;
+                    List<Row> rows = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, classId);
+                    Programming_Café_DB.classTable.Del_Row(rows[0]);
+
+
+
+                    //Update ListView
+                    Load_ListView();
+                    i++;
+                }
+            }
         }
 
-        private void Load_ListView()
+        public void Load_ListView()
         {
             lstViewTrainer.Items.Clear();
             //Get all columns & rows from matching trainerId from classTable
@@ -84,6 +103,9 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            TrainerEditAdd trainerEditAdd = new TrainerEditAdd(this, trainerId);
+            AdminUI.Initialize_UserControl(trainerEditAdd, Controls);
+            trainerEditAdd.BringToFront();
 
         }
     }

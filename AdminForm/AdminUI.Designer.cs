@@ -115,9 +115,9 @@
             // 
             this.btnSignOut.FlatAppearance.BorderSize = 0;
             this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignOut.Location = new System.Drawing.Point(721, 0);
+            this.btnSignOut.Location = new System.Drawing.Point(679, 0);
             this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(67, 50);
+            this.btnSignOut.Size = new System.Drawing.Size(109, 50);
             this.btnSignOut.TabIndex = 5;
             this.btnSignOut.Text = "Sign Out";
             this.btnSignOut.UseVisualStyleBackColor = true;

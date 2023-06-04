@@ -15,6 +15,7 @@ namespace APU_Programming_Café_Management_System
 {
     public partial class TrainerList : UserControl
     {
+        List<string> trainerIds;
         public TrainerList()
         {
             InitializeComponent();
@@ -41,21 +42,21 @@ namespace APU_Programming_Café_Management_System
 
         public static void SetupListView(System.Windows.Forms.ListView lstView, List<Column> columns, List<Row> rows, List<string> columnsToInclude)
         {
+            //Clear the List
             lstView.Clear();
-            // Set the view to show details.
+            //Set the view to show details.
             lstView.View = View.Details;
-            // Display check boxes.
+            //Display check boxes.
             lstView.CheckBoxes = true;
-            // Select the item and subitems when selection is made.
+            //Select the item and subitems when selection is made.
             lstView.FullRowSelect = true;
-            // Display grid lines.
+            //Display grid lines.
             lstView.GridLines = true;
-            // Sort the items in the list in ascending order.
-            lstView.Sorting = SortOrder.Ascending;
-
+            
             List<int> indexes = new List<int>();
             for(int i = 0; i < columns.Count; i++)
             {
+                //Checks if the column is in the columnsToInclude if it is then add the column to the ListView
                 if (columnsToInclude.Contains(columns[i].Name))
                 {
                     lstView.Columns.Add(columns[i].Name);
@@ -74,6 +75,9 @@ namespace APU_Programming_Café_Management_System
                 }
                 lstView.Items.Add(new ListViewItem(values.ToArray()));
             }
+
+            //Resize the columns to match the content size
+            lstView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
 
@@ -88,30 +92,44 @@ namespace APU_Programming_Café_Management_System
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int i = 0;
             foreach (ListViewItem item in lstViewTrainer.Items)
             {
                 if (item.Checked || item.Selected)
                 {
-                    List<string> valuesList = new List<string>();
-                    foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                    {
-                        valuesList.Add(subItem.Text);
-                    }
+                    
+                    string trainerId = Programming_Café_DB.trainerTable.Rows[item.Index+i].values[Programming_Café_DB.trainerTable.Id];
+                    Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
 
-                    //Delete the dependencies of the trainer on multiple tables
-                    string IdColumn = "TrainerId";
-                    string IdValue = item.SubItems[0].Text;
-                    List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(IdColumn, IdValue);
+
+                    //Delete the dependencies of the trainer on the classes table
+                    List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainerId);
                     foreach(Row row in classRowsByTrainerId)
                     {
                         Programming_Café_DB.classTable.Del_Row(row);
                     }
+                    columnToSearch = Programming_Café_DB.trainerTable.Id;
+                    Column columnToReturn = Programming_Café_DB.trainerTable.UserId;
+                    string userId = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerId, columnToReturn);
 
                     //Delete the trainer from the trainerTable and Database
-                    Programming_Café_DB.trainerTable.Del_Row(valuesList);
+                    columnToSearch = Programming_Café_DB.trainerTable.Id;
+                    List<Row> rows = Programming_Café_DB.trainerTable.Search_Row_For_Value(columnToSearch, trainerId);
+                    Programming_Café_DB.trainerTable.Del_Row(rows[0]);
+
+                    //Delete the trainer from the User table 
+                    columnToSearch = Programming_Café_DB.userTable.Id;
+                    List<Row> userRowsByUserId = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, userId);
+                    foreach(Row row in userRowsByUserId)
+                    {
+                        Programming_Café_DB.userTable.Del_Row(row);
+                    }
+
+                    
 
                     //Update ListView
                     Load_Trainer_ListView();
+                    i++;
                 }
             }
         }
