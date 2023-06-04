@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APU_Programming_Café_Management_System.Tables;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,6 +20,8 @@ namespace APU_Programming_Café_Management_System
         private static Trainer_Table _trainerTable;
         private static Student_Table _studentTable;
         private static User_Table _userTable;
+        private static Class_Table _classTable;
+        private static Module_Table _moduleTable;
        
         //Constructor
         public Programming_Café_DB()
@@ -29,6 +32,8 @@ namespace APU_Programming_Café_Management_System
             userTable = new User_Table(_dataset.Tables["Users"]);
             _adminTable = new Administrator_Table(_dataset.Tables["Administrators"]);
             _trainerTable = new Trainer_Table(_dataset.Tables["Trainers"]);
+            _classTable = new Class_Table(_dataset.Tables["Classes"]);
+            _moduleTable = new Module_Table(_dataset.Tables["Modules"]);
         }
 
         //Property
@@ -76,7 +81,17 @@ namespace APU_Programming_Café_Management_System
             set { _trainerTable = value; }
         }
 
+        public static Class_Table classTable
+        {
+            get { return _classTable; }
+            set { _classTable = value; }
+        }
 
+        public static Module_Table module_Table
+        {
+            get { return _moduleTable; }
+            set { _moduleTable = value; }
+        }
 
         //Methods
 
@@ -152,17 +167,17 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public static void Insert_Row_Database(string tableName, Dictionary<Column, string> values)
+        public static void Insert_Row_Database(Table table, Row rowToBeInserted)
         {
             // Check if the row already exists
-            bool rowExists = Check_Row_Exists(tableName, values);
+            bool rowExists = Check_Row_Exists(table, rowToBeInserted);
             if (rowExists == false)
             {
-                string commandString = "INSERT INTO " + tableName + " (";
+                string commandString = "INSERT INTO " + table.TableName + " (";
                 string valueString = "VALUES (";
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
-                foreach (KeyValuePair<Column, string> kvp in values)
+                foreach (KeyValuePair<Column, string> kvp in rowToBeInserted.values)
                 {
                     if (kvp.Key.IsPKey == false)
                     {
@@ -173,7 +188,6 @@ namespace APU_Programming_Café_Management_System
                         SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
                         parameters.Add(parameter);
                     }
-
                 }
 
                 // Remove trailing comma and space
@@ -196,13 +210,12 @@ namespace APU_Programming_Café_Management_System
             {
                 System.Windows.Forms.MessageBox.Show("Row already exists.");
             }
-            
         }
 
         public static void Delete_Row_Database(Table table, Row rowToBeDeleted)
         {
             
-            foreach(Column column in table.Collumns)
+            foreach(Column column in table.Columns)
             {
                 if(column.IsPKey)
                 {
@@ -230,27 +243,21 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public static bool Check_Row_Exists(string tableName, Dictionary<Column, string> values)
+        public static bool Check_Row_Exists(Table table, Row row)
         {
-            string commandString = "SELECT COUNT(*) FROM " + tableName + " WHERE ";
+            string commandString = "SELECT COUNT(*) FROM " + table.TableName + " WHERE ";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            foreach (KeyValuePair<Column, string> kvp in values)
+            foreach (KeyValuePair<Column, string> kvp in row.values)
             {
-                if(kvp.Key.Name == "Username")
+                if (kvp.Key.Name == "Username" || kvp.Key.Name == "UserId")
                 {
-                    if(Get_DataRows_From_DataTable(Get_DataTable_From_Table(tableName),kvp.Key.Name, kvp.Value).Length > 0)
+                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(table.TableName),kvp.Key.Name, kvp.Value).Length > 0)
                     {
                         return true;
                     }
                 }
-                else if(kvp.Key.Name == "UserId")
-                {
-                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(tableName), kvp.Key.Name, kvp.Value).Length > 0)
-                    {
-                        return true;
-                    }
-                }
+
                 commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
 
                 // Add parameter for the value
@@ -271,6 +278,7 @@ namespace APU_Programming_Café_Management_System
                 return count > 0;
             }
         }
+        
 
         public static DataRow[] Get_DataRows_From_DataTable(DataTable dt, string columnName, string value)
         {

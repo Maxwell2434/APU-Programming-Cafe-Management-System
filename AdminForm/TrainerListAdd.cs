@@ -28,43 +28,65 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Dictionary<Column, string> values = new Dictionary<Column, string>();
-            string[] userValues =
+            List<string> userValues = new List<string>
             {
+                //The first value is an empty string because it is the primary key which cannot be inserted into
                 "",
                 txtBoxUsername.Text,
                 txtBoxPassword.Text,
             };
-            for (int i = 0; i < Programming_Café_DB.userTable.Collumns.Count; i++)
+            //Create the values for the new row in the trainerTable
+            List<string> trainerValues = new List<string>
             {
-                values.Add(Programming_Café_DB.userTable.Collumns[i], userValues[i]);
+                    "",
+                    txtBoxName.Text,
+                    txtBoxAddress.Text,
+                    txtBoxPhone.Text,
+                    txtBoxEmail.Text,
+            };
+
+            if (Check_If_Empty(userValues))
+            {
+                MessageBox.Show("User section contains empty values");
+            }
+            else if(Check_If_Empty(trainerValues))
+            {
+                MessageBox.Show("Trainer section contains empty values");
+            }
+            else
+            {
+                Programming_Café_DB.userTable.Insert_Row(userValues);
+
+                //Find The Id in the newly created row in the userTable
+                List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
+                string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
+
+                //Add the foreign key, userId to the trainerValues
+                trainerValues.Add(UserId);
+
+                Programming_Café_DB.trainerTable.Insert_Row(trainerValues);
+                trainerList.Load_Trainer_ListView();
+                this.Dispose();
+                
             }
             
-            //Row row = new Row(Programming_Café_DB.userTable.TableName, values, Programming_Café_DB.userTable.Collumns);
-            Programming_Café_DB.Insert_Row_Database(Programming_Café_DB.userTable.TableName, values);
+        }
 
-            Programming_Café_DB.userTable.Refresh_Table_Values();
-
-            List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
-            string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
-            Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
-            values = new Dictionary<Column, string>();
-            string[] trainerValues =
+        private bool Check_If_Empty(List<string> value)
+        {
+            bool is_Empty = false;
+            //starts at 1 because the first value is always empty
+            for(int i = 1; i < value.Count; i++)
             {
-                "",
-                txtBoxName.Text,
-                txtBoxAddress.Text,
-                txtBoxPhone.Text,
-                txtBoxEmail.Text,
-                UserId
-            };
-            for (int i = 0; i < Programming_Café_DB.trainerTable.Collumns.Count; i++)
-            {
-                values.Add(Programming_Café_DB.trainerTable.Collumns[i], trainerValues[i]);
+                if (value[i] == null || value[i] == "")
+                {
+                    is_Empty= true;
+                }
             }
-            Programming_Café_DB.Insert_Row_Database(Programming_Café_DB.trainerTable.TableName, values);
-            Programming_Café_DB.trainerTable.Refresh_Table_Values();
-            trainerList.SetupListView();
+            return is_Empty;
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
             this.Dispose();
         }
     }

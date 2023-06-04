@@ -11,38 +11,38 @@ namespace APU_Programming_Café_Management_System
     {
         public Column Id
         {
-            get { return Collumns[0]; }
-            set { Collumns[0] = value; }
+            get { return Columns[0]; }
+            set { Columns[0] = value; }
         }
 
         public Column Name
         {
-            get { return Collumns[1]; }
-            set { Collumns[1] = value; }
+            get { return Columns[1]; }
+            set { Columns[1] = value; }
         }
 
         public Column Address
         {
-            get { return Collumns[2]; }
-            set { Collumns[2] = value; }
+            get { return Columns[2]; }
+            set { Columns[2] = value; }
         }
 
         public Column Phone
         {
-            get { return Collumns[3]; }
-            set { Collumns[3] = value; }
+            get { return Columns[3]; }
+            set { Columns[3] = value; }
         }
 
         public Column Email
         {
-            get { return Collumns[4]; }
-            set { Collumns[4] = value; }
+            get { return Columns[4]; }
+            set { Columns[4] = value; }
         }
 
         public Column UserId
         {
-            get { return Collumns[5]; }
-            set { Collumns[5] = value; }
+            get { return Columns[5]; }
+            set { Columns[5] = value; }
         }
 
         public Trainer_Table(DataTable dt)

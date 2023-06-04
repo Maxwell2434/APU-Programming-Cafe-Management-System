@@ -44,19 +44,16 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        //METHODS
-
- 
-
-
-        /*
-        public List<Row> Get_Rows_Matching_Value(string value)
+        public override bool Equals(object obj)
         {
-            Collumn coluumn = Get_Collumn(Name);
-            List<Row> result = coluumn.Search_Row_For_Value(rows, value);
-            return (Get_Collumn(Name).Search_Row_For_Value(rows, value));
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Column otherColumn = (Column)obj;
+            return name == otherColumn.name && isPKey == otherColumn.isPKey;
         }
-        */
 
 
 

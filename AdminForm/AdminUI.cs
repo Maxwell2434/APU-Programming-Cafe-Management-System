@@ -29,10 +29,12 @@ namespace APU_Programming_Café_Management_System
 
         private void AdminUI_Load(object sender, EventArgs e)
         {
-            Initialize_UserControl(adminHome);
-            Initialize_UserControl(adminProfilePage);
-            Initialize_UserControl(trainerList);
+            Initialize_UserControl(adminHome, Controls);
+            Initialize_UserControl(adminProfilePage, Controls);
+            Initialize_UserControl(trainerList, Controls);
         }
+
+
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
@@ -45,10 +47,10 @@ namespace APU_Programming_Café_Management_System
             trainerList.BringToFront();
         }
 
-        private void Initialize_UserControl(UserControl userControl)
+        public static void Initialize_UserControl(UserControl userControl, Control.ControlCollection controls)
         {
             userControl.Show();
-            Controls.Add(userControl);
+            controls.Add(userControl);
             userControl.Dock = DockStyle.Fill;
         }
 

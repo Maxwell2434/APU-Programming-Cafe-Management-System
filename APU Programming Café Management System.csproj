@@ -74,12 +74,27 @@
     <Compile Include="AdminForm\AdminUI.Designer.cs">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminForm\TrainerEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\TrainerEdit.Designer.cs">
+      <DependentUpon>TrainerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm\TrainerEditAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\TrainerEditAdd.Designer.cs">
+      <DependentUpon>TrainerEditAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm\TrainerListAdd.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AdminForm\TrainerListAdd.Designer.cs">
       <DependentUpon>TrainerListAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class.cs" />
+    <Compile Include="Tables\Class_Table.cs" />
+    <Compile Include="Tables\Module_Table.cs" />
     <Compile Include="Users\Administrator.cs" />
     <Compile Include="Tables\Administrator_Table.cs" />
     <Compile Include="AdminForm\AdminProfile.cs">
@@ -137,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\Feedback.resx">
       <DependentUpon>Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\TrainerEdit.resx">
+      <DependentUpon>TrainerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\TrainerEditAdd.resx">
+      <DependentUpon>TrainerEditAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\TrainerListAdd.resx">
       <DependentUpon>TrainerListAdd.cs</DependentUpon>

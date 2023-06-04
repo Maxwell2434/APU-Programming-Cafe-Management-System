@@ -21,7 +21,7 @@ namespace APU_Programming_Café_Management_System
             get { return tableName; }
             set { tableName = value; }
         }
-        public List<Column> Collumns 
+        public List<Column> Columns 
         {
             get { return columns; }
             set { columns = value; }
@@ -54,19 +54,32 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public void Add_Row(Row row)
+        public void Insert_Row(List<string> values)
         {
-            rows.Add(row);
+            Row rowToBeInserted = new Row(this.tableName, this.columns, values);
+            rows.Add(rowToBeInserted);
+            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted);
+            Refresh_Table_Values();
         }
+
+
 
         public void Del_Row (List<string> values)
         {
             Row rowToBeDeleted = new Row(this.TableName, this.columns, values);
             rows.Remove(rowToBeDeleted);
             Programming_Café_DB.Delete_Row_Database(this, rowToBeDeleted);
+            Refresh_Table_Values();
         }
 
-        public Column Get_Collumn(string Name)
+        public void Del_Row (Row rowToBeDeleted)
+        {
+            rows.Remove(rowToBeDeleted);
+            Programming_Café_DB.Delete_Row_Database(this, rowToBeDeleted);
+            Refresh_Table_Values();
+        }
+
+        public Column Get_Column(string Name)
         {
             return (columns.Find(Collumn => Collumn.Name == Name));
         }
@@ -75,6 +88,20 @@ namespace APU_Programming_Café_Management_System
         {
             return (columns.Find(Collumn => Collumn.IsPKey == true));
         }
+
+        public string Get_ColumnValue_From_Row(Column columnToSearch, string value, Column columnToReturn)
+        {
+            List<Row> rows = Search_Row_For_Value(columnToSearch, value);
+            if(rows.Count>0)
+            {
+                return (rows[0].values[columnToReturn]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<Row> Search_Row_For_Value(Column collumn, string value)
         {
             List<Row> result = new List<Row>();
@@ -93,7 +120,7 @@ namespace APU_Programming_Café_Management_System
             List<Row> result = new List<Row>();
             foreach (Row row in Rows)
             {
-                if (row.values[Get_Collumn(collumnName)] == value)
+                if (row.values[Get_Column(collumnName)] == value)
                 {
                     result.Add(row);
                 }

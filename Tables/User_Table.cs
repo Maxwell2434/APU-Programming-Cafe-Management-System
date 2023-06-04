@@ -12,20 +12,20 @@ namespace APU_Programming_Café_Management_System
 
         public Column Id
         {
-            get { return Collumns[0]; }
-            set { Collumns[0] = value; }
+            get { return Columns[0]; }
+            set { Columns[0] = value; }
         }
 
         public Column Username
         {
-            get { return Collumns[1]; }
-            set { Collumns[1] = value; }
+            get { return Columns[1]; }
+            set { Columns[1] = value; }
         }
 
         public Column Password
         {
-            get { return Collumns[2]; }
-            set { Collumns[2] = value; }
+            get { return Columns[2]; }
+            set { Columns[2] = value; }
         }
 
 
