@@ -31,6 +31,7 @@
             this.lstViewTrainer = new System.Windows.Forms.ListView();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnChange = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstViewTrainer
@@ -60,7 +61,7 @@
             this.btnChange.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnChange.Location = new System.Drawing.Point(599, 321);
+            this.btnChange.Location = new System.Drawing.Point(599, 40);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(75, 31);
             this.btnChange.TabIndex = 25;
@@ -68,11 +69,25 @@
             this.btnChange.UseVisualStyleBackColor = false;
             this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Location = new System.Drawing.Point(599, 321);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 31);
+            this.btnAdd.TabIndex = 27;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // TrainerEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.lstViewTrainer);
@@ -87,5 +102,6 @@
         private System.Windows.Forms.ListView lstViewTrainer;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

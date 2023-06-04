@@ -30,7 +30,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            TrainerEditAdd trainerEditAdd = new TrainerEditAdd(lstViewTrainer.SelectedItems[0].SubItems[0].Text);
+            TrainerEditAdd trainerEditAdd = new TrainerEditAdd(trainerId);
             AdminUI.Initialize_UserControl(trainerEditAdd, Controls);
             trainerEditAdd.BringToFront();
         }
@@ -80,6 +80,11 @@ namespace APU_Programming_Café_Management_System.AdminForm
             
 
   
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
