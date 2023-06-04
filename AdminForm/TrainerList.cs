@@ -37,48 +37,10 @@ namespace APU_Programming_Café_Management_System
                 "Phone",
                 "Email"
             };
-            SetupListView(lstViewTrainer, columns, rows, columnsToInclude);
+            AdminUI.SetupListView(lstViewTrainer, columns, rows, columnsToInclude);
         }
 
-        public static void SetupListView(System.Windows.Forms.ListView lstView, List<Column> columns, List<Row> rows, List<string> columnsToInclude)
-        {
-            //Clear the List
-            lstView.Clear();
-            //Set the view to show details.
-            lstView.View = View.Details;
-            //Display check boxes.
-            lstView.CheckBoxes = true;
-            //Select the item and subitems when selection is made.
-            lstView.FullRowSelect = true;
-            //Display grid lines.
-            lstView.GridLines = true;
-            
-            List<int> indexes = new List<int>();
-            for(int i = 0; i < columns.Count; i++)
-            {
-                //Checks if the column is in the columnsToInclude if it is then add the column to the ListView
-                if (columnsToInclude.Contains(columns[i].Name))
-                {
-                    lstView.Columns.Add(columns[i].Name);
-                    indexes.Add(i);
-                }
-            }
-
-
-            foreach (Row row in rows)
-            {
-                List<string> values = new List<string>();
-                string[] arr_value = row.Get_Value_Arr();
-                for (int i = 0; i < indexes.Count; i++)
-                {
-                    values.Add(arr_value[indexes[i]]);
-                }
-                lstView.Items.Add(new ListViewItem(values.ToArray()));
-            }
-
-            //Resize the columns to match the content size
-            lstView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
+        
 
 
 
@@ -108,6 +70,16 @@ namespace APU_Programming_Café_Management_System
                     {
                         Programming_Café_DB.classTable.Del_Row(row);
                     }
+
+                    //Delete the trainer from the Feedback table
+                    columnToSearch = Programming_Café_DB.feedbackTable.TrainerId;
+                    List<Row> feedbackRowsByTrainerId = Programming_Café_DB.feedbackTable.Search_Row_For_Value(columnToSearch, trainerId);
+                    foreach (Row row in feedbackRowsByTrainerId)
+                    {
+                        Programming_Café_DB.feedbackTable.Del_Row(row);
+                    }
+                    
+                    //Get userId from the associated trainer from trainerTable
                     columnToSearch = Programming_Café_DB.trainerTable.Id;
                     Column columnToReturn = Programming_Café_DB.trainerTable.UserId;
                     string userId = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerId, columnToReturn);
@@ -117,7 +89,7 @@ namespace APU_Programming_Café_Management_System
                     List<Row> rows = Programming_Café_DB.trainerTable.Search_Row_For_Value(columnToSearch, trainerId);
                     Programming_Café_DB.trainerTable.Del_Row(rows[0]);
 
-                    //Delete the trainer from the User table 
+                    //Delete the trainer from the User table using the userId
                     columnToSearch = Programming_Café_DB.userTable.Id;
                     List<Row> userRowsByUserId = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, userId);
                     foreach(Row row in userRowsByUserId)

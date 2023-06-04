@@ -31,8 +31,8 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnTrainer = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnIncome = new System.Windows.Forms.Button();
+            this.btnFeedback = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -74,27 +74,28 @@
             this.btnTrainer.UseVisualStyleBackColor = true;
             this.btnTrainer.Click += new System.EventHandler(this.btnTrainer_Click);
             // 
-            // button3
+            // btnIncome
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(149, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 50);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Income";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnIncome.FlatAppearance.BorderSize = 0;
+            this.btnIncome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIncome.Location = new System.Drawing.Point(149, 0);
+            this.btnIncome.Name = "btnIncome";
+            this.btnIncome.Size = new System.Drawing.Size(67, 50);
+            this.btnIncome.TabIndex = 3;
+            this.btnIncome.Text = "Income";
+            this.btnIncome.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnFeedback
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(222, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 50);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Feedback";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnFeedback.FlatAppearance.BorderSize = 0;
+            this.btnFeedback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFeedback.Location = new System.Drawing.Point(222, 0);
+            this.btnFeedback.Name = "btnFeedback";
+            this.btnFeedback.Size = new System.Drawing.Size(89, 50);
+            this.btnFeedback.TabIndex = 4;
+            this.btnFeedback.Text = "Feedback";
+            this.btnFeedback.UseVisualStyleBackColor = true;
+            this.btnFeedback.Click += new System.EventHandler(this.btnFeedback_Click);
             // 
             // panel1
             // 
@@ -103,8 +104,8 @@
             this.panel1.Controls.Add(this.btnProfile);
             this.panel1.Controls.Add(this.btnHome);
             this.panel1.Controls.Add(this.btnTrainer);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnFeedback);
+            this.panel1.Controls.Add(this.btnIncome);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -143,8 +144,8 @@
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnTrainer;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnIncome;
+        private System.Windows.Forms.Button btnFeedback;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSignOut;
     }

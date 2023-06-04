@@ -54,11 +54,12 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public void Insert_Row(List<string> values)
+        //uniqueColumns is a list to contain the columns that must not have the same values as another row in the table
+        public void Insert_Row(List<string> values, List<Column> uniqueColumns)
         {
             Row rowToBeInserted = new Row(this.tableName, this.columns, values);
             rows.Add(rowToBeInserted);
-            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted);
+            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted, uniqueColumns);
             Refresh_Table_Values();
         }
 

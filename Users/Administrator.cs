@@ -23,22 +23,22 @@ namespace APU_Programming_Café_Management_System
         public string Name
         {
             get { return _name; }
-            set { _name = value; Update(Programming_Café_DB.adminTable.Name, value); }
+            set { _name = value; Update(Programming_Café_DB.administratorTable.Name, value); }
         }
         public string Address
         {
             get { return _address; }
-            set { _address = value; Update(Programming_Café_DB.adminTable.Address, value); }
+            set { _address = value; Update(Programming_Café_DB.administratorTable.Address, value); }
         }
         public string Phone
         {
             get { return _phone; }
-            set { _phone = value; Update(Programming_Café_DB.adminTable.Phone, value); }
+            set { _phone = value; Update(Programming_Café_DB.administratorTable.Phone, value); }
         }
         public string Email
         {
             get { return _email; }
-            set { _email = value; Update(Programming_Café_DB.adminTable.Email, value); }
+            set { _email = value; Update(Programming_Café_DB.administratorTable.Email, value); }
         }
         public string UserId
         {
@@ -48,7 +48,7 @@ namespace APU_Programming_Café_Management_System
 
         public Administrator(User user) : base(user)
         {
-            Administrator_Table adminTable = Programming_Café_DB.adminTable;
+            Administrator_Table adminTable = Programming_Café_DB.administratorTable;
             List<Row> rows = adminTable.Search_Row_For_Value(adminTable.UserId, user.Id);
             if (rows.Count == 1)
             {
@@ -64,15 +64,15 @@ namespace APU_Programming_Café_Management_System
 
         public void Update(Column collumnAffected, string value)
         {
-            Row rowToBeChanged = Programming_Café_DB.adminTable.Rows.Find(row => row.values[Programming_Café_DB.adminTable.Id] == _id);
-            for(int i = 0; i < Programming_Café_DB.adminTable.Rows.Count; i++)
+            Row rowToBeChanged = Programming_Café_DB.administratorTable.Rows.Find(row => row.values[Programming_Café_DB.administratorTable.Id] == _id);
+            for(int i = 0; i < Programming_Café_DB.administratorTable.Rows.Count; i++)
             {
-                if (Programming_Café_DB.adminTable.Rows[i] == rowToBeChanged)
+                if (Programming_Café_DB.administratorTable.Rows[i] == rowToBeChanged)
                 {
                     // Update the dictionary using the property's setter
-                    Dictionary<Column, string> updatedValues = Programming_Café_DB.adminTable.Rows[i].values;
+                    Dictionary<Column, string> updatedValues = Programming_Café_DB.administratorTable.Rows[i].values;
                     updatedValues[collumnAffected] = value;
-                    Programming_Café_DB.adminTable.Rows[i].values = updatedValues;
+                    Programming_Café_DB.administratorTable.Rows[i].values = updatedValues;
                 }
             }
         }

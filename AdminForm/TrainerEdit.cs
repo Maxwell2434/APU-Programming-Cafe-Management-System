@@ -20,7 +20,9 @@ namespace APU_Programming_Café_Management_System.AdminForm
             InitializeComponent();
             this.trainerId = trainerId;
             Load_ListView();
-
+            string trainerName = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(Programming_Café_DB.trainerTable.Id, trainerId, Programming_Café_DB.trainerTable.Name);
+            lblTitle.Text = "Modules Handled by " + trainerName;
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -66,17 +68,17 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
             List<Column> newColumns = new List<Column>
             {
-                Programming_Café_DB.module_Table.Name,
+                Programming_Café_DB.moduleTable.Name,
                 Programming_Café_DB.classTable.Level
             };
 
 
-            columnToSearch = Programming_Café_DB.module_Table.Id;
-            Column columnToReturn = Programming_Café_DB.module_Table.Name;
+            columnToSearch = Programming_Café_DB.moduleTable.Id;
+            Column columnToReturn = Programming_Café_DB.moduleTable.Name;
             List<Row> newRows = new List<Row>();
             for (int i = 0; i< rows.Count; i++)
             {
-                string ModuleName = Programming_Café_DB.module_Table.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
                 string Level = rows[i].values[Programming_Café_DB.classTable.Level];
                 List<string> arr_values = new List<string>
                 {
@@ -94,7 +96,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
                 "Level",
             };
 
-            TrainerList.SetupListView(lstViewTrainer, newColumns, newRows, columnsToInclude);
+            AdminUI.SetupListView(lstViewTrainer, newColumns, newRows, columnsToInclude);
 
             
 
@@ -106,6 +108,11 @@ namespace APU_Programming_Café_Management_System.AdminForm
             TrainerEditAdd trainerEditAdd = new TrainerEditAdd(this, trainerId);
             AdminUI.Initialize_UserControl(trainerEditAdd, Controls);
             trainerEditAdd.BringToFront();
+
+        }
+
+        private void TrainerEdit_Load(object sender, EventArgs e)
+        {
 
         }
     }

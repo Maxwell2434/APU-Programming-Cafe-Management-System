@@ -86,6 +86,12 @@
     <Compile Include="AdminForm\TrainerEditAdd.Designer.cs">
       <DependentUpon>TrainerEditAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminForm\TrainerFeedback.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\TrainerFeedback.Designer.cs">
+      <DependentUpon>TrainerFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm\TrainerListAdd.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,7 @@
     </Compile>
     <Compile Include="Class.cs" />
     <Compile Include="Tables\Class_Table.cs" />
+    <Compile Include="Tables\Feedback_Table.cs" />
     <Compile Include="Tables\Module_Table.cs" />
     <Compile Include="Users\Administrator.cs" />
     <Compile Include="Tables\Administrator_Table.cs" />
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\TrainerEditAdd.resx">
       <DependentUpon>TrainerEditAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\TrainerFeedback.resx">
+      <DependentUpon>TrainerFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\TrainerListAdd.resx">
       <DependentUpon>TrainerListAdd.cs</DependentUpon>

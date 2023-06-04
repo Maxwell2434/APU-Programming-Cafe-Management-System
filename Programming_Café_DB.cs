@@ -16,12 +16,13 @@ namespace APU_Programming_Café_Management_System
         public static string connectionString;
         private DataSet _dataset;
         SqlConnection connection;
-        private static Administrator_Table _adminTable;
+        private static Administrator_Table _administratorTable;
         private static Trainer_Table _trainerTable;
         private static Student_Table _studentTable;
         private static User_Table _userTable;
         private static Class_Table _classTable;
         private static Module_Table _moduleTable;
+        private static Feedback_Table _feedbackTable;
        
         //Constructor
         public Programming_Café_DB()
@@ -30,10 +31,11 @@ namespace APU_Programming_Café_Management_System
             _dataset = dataSet;
             _studentTable = new Student_Table(dataSet.Tables["Students"]);
             userTable = new User_Table(_dataset.Tables["Users"]);
-            _adminTable = new Administrator_Table(_dataset.Tables["Administrators"]);
+            _administratorTable = new Administrator_Table(_dataset.Tables["Administrators"]);
             _trainerTable = new Trainer_Table(_dataset.Tables["Trainers"]);
             _classTable = new Class_Table(_dataset.Tables["Classes"]);
             _moduleTable = new Module_Table(_dataset.Tables["Modules"]);
+            _feedbackTable = new Feedback_Table(_dataset.Tables["Feedbacks"]);
         }
 
         //Property
@@ -69,10 +71,10 @@ namespace APU_Programming_Café_Management_System
             set { _userTable = value; }
         }
 
-        public static Administrator_Table adminTable
+        public static Administrator_Table administratorTable
         {
-            get { return _adminTable; }
-            set { _adminTable = value; }
+            get { return _administratorTable; }
+            set { _administratorTable = value; }
         }
 
         public static Trainer_Table trainerTable
@@ -87,10 +89,16 @@ namespace APU_Programming_Café_Management_System
             set { _classTable = value; }
         }
 
-        public static Module_Table module_Table
+        public static Module_Table moduleTable
         {
             get { return _moduleTable; }
             set { _moduleTable = value; }
+        }
+
+        public static Feedback_Table feedbackTable
+        {
+            get { return _feedbackTable; }
+            set { _feedbackTable = value; }
         }
 
         //Methods
@@ -167,10 +175,10 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        public static void Insert_Row_Database(Table table, Row rowToBeInserted)
+        public static void Insert_Row_Database(Table table, Row rowToBeInserted, List<Column> uniqueColumns)
         {
             // Check if the row already exists
-            bool rowExists = Check_Row_Exists(table, rowToBeInserted);
+            bool rowExists = Check_Row_Exists(table, rowToBeInserted, uniqueColumns);
             if (rowExists == false)
             {
                 string commandString = "INSERT INTO " + table.TableName + " (";
@@ -243,7 +251,7 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public static bool Check_Row_Exists(Table table, Row row)
+        public static bool Check_Row_Exists(Table table, Row row, List<Column> uniqueColumns)
         {
             string commandString = "SELECT COUNT(*) FROM " + table.TableName + " WHERE ";
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -252,31 +260,41 @@ namespace APU_Programming_Café_Management_System
             {
                 if (kvp.Key.Name == "Username" || kvp.Key.Name == "UserId")
                 {
-                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(table.TableName),kvp.Key.Name, kvp.Value).Length > 0)
+                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(table.TableName), kvp.Key.Name, kvp.Value).Length > 0)
+
+                    //if (table.Search_Row_For_Value(kvp.Key, kvp.Value).Count > 0)
                     {
                         return true;
                     }
                 }
+                
+                if(uniqueColumns.Contains(kvp.Key))
+                {
+                    commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
 
-                commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
-
-                // Add parameter for the value
-                SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
-                parameters.Add(parameter);
+                    // Add parameter for the value
+                    SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
+                    parameters.Add(parameter);
+                }
+                
             }
-
-            // Remove trailing "AND"
-            commandString = commandString.Remove(commandString.Length - 5);
-
-            // Execute the query
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(commandString, connection))
+            if(parameters.Count > 0)
             {
-                cmd.Parameters.AddRange(parameters.ToArray());
-                connection.Open();
-                int count = (int)cmd.ExecuteScalar();
-                return count > 0;
+                // Remove trailing "AND"
+                commandString = commandString.Remove(commandString.Length - 5);
+
+                // Execute the query
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(commandString, connection))
+                {
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    connection.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
             }
+            return false;
+           
         }
         
 

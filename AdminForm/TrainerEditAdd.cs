@@ -19,9 +19,9 @@ namespace APU_Programming_Café_Management_System.AdminForm
             InitializeComponent();
             this.trainerEdit = trainerEdit;
             this.trainerId = trainerId;
-            foreach (Row row in Programming_Café_DB.module_Table.Rows)
+            foreach (Row row in Programming_Café_DB.moduleTable.Rows)
             {
-                cmbBoxModule.Items.Add(row.values[Programming_Café_DB.module_Table.Name]);
+                cmbBoxModule.Items.Add(row.values[Programming_Café_DB.moduleTable.Name]);
             }
             cmbBoxLevel.Items.Add("Beginner");
             cmbBoxLevel.Items.Add("Intermediate");
@@ -30,10 +30,10 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            Column columnToSearch = Programming_Café_DB.module_Table.Name;
+            Column columnToSearch = Programming_Café_DB.moduleTable.Name;
             string moduleName = cmbBoxModule.SelectedItem.ToString();
-            Column columnToReturn = Programming_Café_DB.module_Table.Id;
-            string moduleId = Programming_Café_DB.module_Table.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+            Column columnToReturn = Programming_Café_DB.moduleTable.Id;
+            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
             string level = cmbBoxLevel.SelectedItem.ToString();
 
             List<string> values = new List<string>
@@ -66,7 +66,14 @@ namespace APU_Programming_Café_Management_System.AdminForm
                 ""
             };
 
-            Programming_Café_DB.classTable.Insert_Row(values);
+            //trainerId, moduleId, and level must not have the same values as another row in the table
+            List<Column> uniqueColumns = new List<Column>
+            {
+                Programming_Café_DB.classTable.TrainerId,
+                Programming_Café_DB.classTable.ModuleId,
+                Programming_Café_DB.classTable.Level
+            };
+            Programming_Café_DB.classTable.Insert_Row(values, uniqueColumns);
             trainerEdit.Load_ListView();
             this.Dispose();
             

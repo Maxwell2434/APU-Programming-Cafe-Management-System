@@ -59,7 +59,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
                 int rowCount = Programming_Café_DB.userTable.Rows.Count;
 
                 //Insert new User
-                Programming_Café_DB.userTable.Insert_Row(userValues);
+                Programming_Café_DB.userTable.Insert_Row(userValues, Programming_Café_DB.userTable.Columns);
 
 
                 //Check if a new User has been created if Yes then associate the new User as a trainer
@@ -72,7 +72,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
                     //Add the foreign key, userId to the trainerValues
                     trainerValues.Add(UserId);
 
-                    Programming_Café_DB.trainerTable.Insert_Row(trainerValues);
+                    Programming_Café_DB.trainerTable.Insert_Row(trainerValues, Programming_Café_DB.trainerTable.Columns);
                     trainerList.Load_Trainer_ListView();
                     this.Dispose();
 
