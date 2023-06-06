@@ -74,7 +74,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(420, 42);
+            this.label2.Location = new System.Drawing.Point(407, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 28;
@@ -83,7 +83,7 @@
             // cmbBoxLevel
             // 
             this.cmbBoxLevel.FormattingEnabled = true;
-            this.cmbBoxLevel.Location = new System.Drawing.Point(423, 61);
+            this.cmbBoxLevel.Location = new System.Drawing.Point(410, 72);
             this.cmbBoxLevel.Name = "cmbBoxLevel";
             this.cmbBoxLevel.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxLevel.TabIndex = 27;
@@ -92,7 +92,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(256, 42);
+            this.label1.Location = new System.Drawing.Point(243, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 16);
             this.label1.TabIndex = 26;
@@ -101,7 +101,7 @@
             // cmbBoxModule
             // 
             this.cmbBoxModule.FormattingEnabled = true;
-            this.cmbBoxModule.Location = new System.Drawing.Point(259, 61);
+            this.cmbBoxModule.Location = new System.Drawing.Point(246, 72);
             this.cmbBoxModule.Name = "cmbBoxModule";
             this.cmbBoxModule.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxModule.TabIndex = 25;
@@ -110,7 +110,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(342, 125);
+            this.label3.Location = new System.Drawing.Point(329, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 34;
@@ -133,7 +133,7 @@
             "18",
             "19",
             "20"});
-            this.cmbBoxStartHour.Location = new System.Drawing.Point(345, 144);
+            this.cmbBoxStartHour.Location = new System.Drawing.Point(332, 155);
             this.cmbBoxStartHour.Name = "cmbBoxStartHour";
             this.cmbBoxStartHour.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxStartHour.TabIndex = 33;
@@ -142,7 +142,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(178, 125);
+            this.label4.Location = new System.Drawing.Point(165, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 16);
             this.label4.TabIndex = 32;
@@ -159,7 +159,7 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.cmbBoxScheduleDay.Location = new System.Drawing.Point(181, 144);
+            this.cmbBoxScheduleDay.Location = new System.Drawing.Point(168, 155);
             this.cmbBoxScheduleDay.Name = "cmbBoxScheduleDay";
             this.cmbBoxScheduleDay.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxScheduleDay.TabIndex = 31;
@@ -168,7 +168,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(508, 125);
+            this.label5.Location = new System.Drawing.Point(495, 136);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 16);
             this.label5.TabIndex = 36;
@@ -191,7 +191,7 @@
             "18",
             "19",
             "20"});
-            this.cmbBoxEndHour.Location = new System.Drawing.Point(511, 144);
+            this.cmbBoxEndHour.Location = new System.Drawing.Point(498, 155);
             this.cmbBoxEndHour.Name = "cmbBoxEndHour";
             this.cmbBoxEndHour.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxEndHour.TabIndex = 35;
@@ -200,7 +200,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(342, 208);
+            this.label6.Location = new System.Drawing.Point(329, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 16);
             this.label6.TabIndex = 38;
@@ -216,7 +216,7 @@
             "500",
             "600",
             "700"});
-            this.cmbBoxFee.Location = new System.Drawing.Point(345, 227);
+            this.cmbBoxFee.Location = new System.Drawing.Point(332, 238);
             this.cmbBoxFee.Name = "cmbBoxFee";
             this.cmbBoxFee.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxFee.TabIndex = 37;
@@ -242,6 +242,7 @@
             this.Controls.Add(this.cmbBoxModule);
             this.Name = "TrainerClassesUpdate";
             this.Size = new System.Drawing.Size(800, 406);
+            this.Load += new System.EventHandler(this.TrainerClassesUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

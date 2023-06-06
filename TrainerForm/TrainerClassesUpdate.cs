@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,8 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             this.trainerClasses = trainerClasses;
             this.trainer = trainer;
             this.selectedRow = selectedRow;
+           
+
             foreach (Row row in Programming_Café_DB.moduleTable.Rows)
             {
                 cmbBoxModule.Items.Add(row.values[Programming_Café_DB.moduleTable.Name]);
@@ -29,7 +32,6 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             cmbBoxLevel.Items.Add("Beginner");
             cmbBoxLevel.Items.Add("Intermediate");
             cmbBoxLevel.Items.Add("Advance");
-            this.trainer = trainer;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -40,47 +42,21 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         private void btnAssign_Click(object sender, EventArgs e)
         {
             //Check if trainer has any conflicting schedules
-            bool conflictingSchedule = false;
-            Class_Table classTable = Programming_Café_DB.classTable;
-            Column columnToSearch = Programming_Café_DB.trainerTable.Id;
-            List<Row> classesRowsByTrainerId = classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
-            foreach(Row row in classesRowsByTrainerId)
-            {
-                //Check if any rows contain the same date as the one selected in the comboBox
-                if(row.values.ContainsValue(cmbBoxScheduleDay.Text))
-                {
-                    //If so, check if either the start hour or end hour is the same
-                    if (row.values[classTable.StartHour] == cmbBoxStartHour.Text || row.values[classTable.EndHour] == cmbBoxEndHour.Text)
-                    {
-                        //If yes then it is a conflicting schedule
-                        MessageBox.Show("Conflicting Class Schedule, trainer already has another class in the same time frame");
-                        conflictingSchedule= true;
-                    }
-
-                }
-
-            }
-
+            bool conflictingSchedule = trainerClasses.CheckForConflictingSchedule(selectedRow, cmbBoxScheduleDay.Text, cmbBoxStartHour.Text, cmbBoxEndHour.Text);
+            
             if(!conflictingSchedule)
             {
-                bool ModuleandLevelExists = false;
-                string moduleId = "";
-                //Check if trainer already has another class with the same module and level
-                foreach(Row row in classesRowsByTrainerId)
-                {
-                    columnToSearch = Programming_Café_DB.moduleTable.Name;
-                    Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-                    moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn);
-                    
-                    if (row.values[classTable.ModuleId] == moduleId && row.values[classTable.Level] == cmbBoxLevel.Text)
-                    {
-                        ModuleandLevelExists= true;
-                    }
-                }
+                bool ModuleAndLevelExists = trainerClasses.CheckForExistingModulesAndLevels(selectedRow, cmbBoxModule.Text, cmbBoxLevel.Text);
 
-                if(!ModuleandLevelExists)
+                if(!ModuleAndLevelExists)
                 {
+                    Class_Table classTable = Programming_Café_DB.classTable;
                     string tableName = classTable.TableName;
+                    Column columnToSearch = Programming_Café_DB.moduleTable.Name;
+                    string moduleName = cmbBoxModule.Text;
+                    Column columnToReturn = Programming_Café_DB.moduleTable.Id;
+                    string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+
                     Dictionary<Column, string> newValues = new Dictionary<Column, string>
                     {
                         { classTable.Id, selectedRow.values[classTable.Id] },
@@ -94,12 +70,31 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                         { classTable.Duration, selectedRow.values[classTable.Duration] }
                     };
                     Programming_Café_DB.Update_Table_Database(tableName, selectedRow, newValues);
+                    Programming_Café_DB.classTable.Refresh_Table_Values();
+                    trainerClasses.Load_Classes_ListView();
+                    this.Dispose();
                 }
+
             }
 
 
         }
 
+        private void TrainerClassesUpdate_Load(object sender, EventArgs e)
+        {
+            string moduleId = selectedRow.values[Programming_Café_DB.classTable.ModuleId];
+            Column columnToSearch = Programming_Café_DB.moduleTable.Id;
+            Column columnToReturn = Programming_Café_DB.moduleTable.Name;
+            string moduleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleId, columnToReturn);
+            cmbBoxModule.Text = moduleName;
 
+            cmbBoxLevel.Text = selectedRow.values[Programming_Café_DB.classTable.Level];
+            cmbBoxScheduleDay.Text = selectedRow.values[Programming_Café_DB.classTable.ScheduleDay];
+            cmbBoxStartHour.Text = selectedRow.values[Programming_Café_DB.classTable.StartHour];
+            cmbBoxEndHour.Text = selectedRow.values[Programming_Café_DB.classTable.EndHour];
+            cmbBoxFee.Text = selectedRow.values[Programming_Café_DB.classTable.Fee];
+            
+
+        }
     }
 }

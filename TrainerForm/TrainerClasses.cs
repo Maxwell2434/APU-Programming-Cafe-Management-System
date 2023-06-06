@@ -88,9 +88,97 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
         }
 
+        public bool CheckForConflictingSchedule(Row selectedRow, string ScheduleDay, string StartHour, string EndHour)
+        {
+            //Check if trainer has any conflicting schedules
+            bool conflictingSchedule = false;
+            Class_Table classTable = Programming_Café_DB.classTable;
+            Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
+            List<Row> classesRowsByTrainerId = classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            foreach (Row row in classesRowsByTrainerId)
+            {
+                if (row != selectedRow)
+                {
+                    //Check if any rows contain the same date as the one selected in the comboBox
+                    if (row.values.ContainsValue(ScheduleDay))
+                    {
+                        int existingStartHour = Convert.ToInt32(row.values[classTable.StartHour]);
+                        int existingEndHour = Convert.ToInt32(row.values[classTable.EndHour]);
+                        int selectedStartHour = Convert.ToInt32(StartHour);
+                        int selectedEndHour = Convert.ToInt32(EndHour);
+
+                        //Check if the selected End Hour is equal to the selected Start Hour
+                        if (selectedStartHour >= selectedEndHour)
+                        {
+                            //If yes then it is a conflicting schedule
+                            conflictingSchedule = true;
+                            MessageBox.Show("Conflicting Class Schedule, trainer already has another class in the same time frame");
+
+                        }
+                        
+                        //Check if the selected End Hour is inside the timeframe of an existing class time
+                        else if (selectedEndHour > existingStartHour && selectedEndHour <= existingEndHour)
+                        {
+                            //If yes then it is a conflicting schedule
+                            conflictingSchedule = true;
+                            MessageBox.Show("Conflicting Class Schedule, trainer already has another class in the same time frame");
+
+                        }
+                        //Check if the selected Start Hour is inside the timeframe of an existing class time
+                        else if (selectedStartHour > existingStartHour && selectedStartHour < existingEndHour)
+                        {
+                            //If yes then it is a conflicting schedule
+                            conflictingSchedule = true;
+                            MessageBox.Show("Conflicting Class Schedule, trainer already has another class in the same time frame");
+
+                        }
+                        //Check if the selected Start Hour is earlier and if the selected End Hour is later
+                        else if (selectedStartHour < existingStartHour && selectedEndHour > existingEndHour)
+                        {
+                            //If yes then it is a conflicting schedule
+                            conflictingSchedule = true;
+                            MessageBox.Show("Conflicting Class Schedule, trainer already has another class in the same time frame");
+
+                        }
+                    }
+                }
+            }
+            return conflictingSchedule;
+        }
+
+        public bool CheckForExistingModulesAndLevels(Row selectedRow, string moduleName, string level)
+        {
+            bool ModuleAndLevelExists = false;
+            Class_Table classTable = Programming_Café_DB.classTable;
+            Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
+            List<Row> classesRowsByTrainerId = classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            string moduleId = "";
+            //Check if trainer already has another class with the same module and level
+            foreach (Row row in classesRowsByTrainerId)
+            {
+                columnToSearch = Programming_Café_DB.moduleTable.Name;
+                Column columnToReturn = Programming_Café_DB.moduleTable.Id;
+                moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+
+                //if the selected row is not equal to the row in loop
+                if (selectedRow != row)
+                {
+                    //If the row in the loop is not equal to the module and level selected in the combo box
+                    if (row.values[classTable.ModuleId] == moduleId && row.values[classTable.Level] == level)
+                    {
+                        ModuleAndLevelExists = true;
+                        MessageBox.Show("Trainer is already handling this module and level");
+
+                    }
+                }
+
+            }
+            return ModuleAndLevelExists;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            TrainerClassesAdd trainerClassesAdd = new TrainerClassesAdd(this);
+            TrainerClassesAdd trainerClassesAdd = new TrainerClassesAdd(this, trainer);
             AdminUI.Initialize_UserControl(trainerClassesAdd, Controls);
             trainerClassesAdd.BringToFront();
         }

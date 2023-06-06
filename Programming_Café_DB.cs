@@ -173,6 +173,7 @@ namespace APU_Programming_Café_Management_System
                 connection.Open();
                 cmd.ExecuteScalar();
             }
+
         }
 
         public static void Insert_Row_Database(Table table, Row rowToBeInserted, List<Column> uniqueColumns)
