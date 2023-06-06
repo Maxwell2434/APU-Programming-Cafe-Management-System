@@ -22,23 +22,29 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            int i = 0;
+            //Record the indexes of the checked || selected items in the ListView
+            List<int> itemIndexes = new List<int>();
             foreach (ListViewItem item in lstViewTrainer.Items)
             {
                 if (item.Checked || item.Selected)
                 {
+                    itemIndexes.Add(item.Index);
 
-                    string trainerId = Programming_Café_DB.trainerTable.Rows[item.Index + i].values[Programming_Café_DB.trainerTable.Id];
-
-                    Column columnToSearch = Programming_Café_DB.feedbackTable.TrainerId;
-                    List<Row> feedbackRowsByTrainerId = Programming_Café_DB.feedbackTable.Search_Row_For_Value(columnToSearch, trainerId);
-                    foreach (Row row in feedbackRowsByTrainerId)
-                    {
-                        Programming_Café_DB.feedbackTable.Del_Row(row);
-                    }
-                    i++;
                 }
             }
+
+            Feedback_Table feedbackTable = Programming_Café_DB.feedbackTable;
+            Column columnToSearch = feedbackTable.AdministratorId;
+            List<Row> feedbackRowsByAdministratorId = feedbackTable.Search_Row_For_Value(columnToSearch, administrator.Id);
+
+
+            //Delete the feedback based on the item indexes of the ListView
+            //Deletes starting backwards to avoid troubles with indexing
+            for (int i = itemIndexes.Count - 1; i >= 0; i--)
+            {
+                Programming_Café_DB.feedbackTable.Del_Row(feedbackRowsByAdministratorId[itemIndexes[i]]);
+            }
+
             Load_ListView();
         }
             
@@ -52,13 +58,12 @@ namespace APU_Programming_Café_Management_System.AdminForm
         public void Load_ListView()
         {
             lstViewTrainer.Items.Clear();
-            //Get all columns & rows from matching trainerId from classTable
+            //Get all columns & rows from matching adminId from feedbackTable
             Feedback_Table feedbackTable = Programming_Café_DB.feedbackTable;
             Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
             Column columnToSearch = feedbackTable.AdministratorId;
 
-            string administratorId = administrator.Id;
-            List<Row> rows = feedbackTable.Search_Row_For_Value(columnToSearch, administratorId);
+            List<Row> rows = feedbackTable.Search_Row_For_Value(columnToSearch, administrator.Id);
 
             List<Column> newColumns = new List<Column>
             {

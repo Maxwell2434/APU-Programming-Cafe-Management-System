@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APU_Programming_Café_Management_System
 {
-    public class Trainer
+    public class Trainer : User
     {
         private string _id;
         private string _name;
@@ -46,10 +46,10 @@ namespace APU_Programming_Café_Management_System
             set { _userId = value; Update(Programming_Café_DB.trainerTable.UserId, value); }
         }
 
-        public Trainer(string UserId)
+        public Trainer(User user) : base(user)
         {
             Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
-            List<Row> rows = trainerTable.Search_Row_For_Value(trainerTable.UserId, UserId);
+            List<Row> rows = trainerTable.Search_Row_For_Value(trainerTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[trainerTable.Id];
@@ -57,7 +57,6 @@ namespace APU_Programming_Café_Management_System
                 _address = rows[0].values[trainerTable.Address];
                 _phone = rows[0].values[trainerTable.Phone];
                 _email = rows[0].values[trainerTable.Email];
-                _userId = rows[0].values[trainerTable.UserId];
 
             }
 

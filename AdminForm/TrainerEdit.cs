@@ -32,28 +32,33 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            int i = 0;
+            //Record the indexes of the checked || selected items in the ListView
+            List<int> itemIndexes = new List<int>();
             foreach (ListViewItem item in lstViewTrainer.Items)
             {
                 if (item.Checked || item.Selected)
                 {
+                    itemIndexes.Add(item.Index);
 
-                    string classId = Programming_Café_DB.classTable.Rows[item.Index + i].values[Programming_Café_DB.classTable.Id];
-                    Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-
-
-                    //Delete the class from the classTable and Database
-                    columnToSearch = Programming_Café_DB.classTable.Id;
-                    List<Row> rows = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, classId);
-                    Programming_Café_DB.classTable.Del_Row(rows[0]);
-
-
-
-                    //Update ListView
-                    Load_ListView();
-                    i++;
                 }
             }
+
+            Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
+            List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainerId);
+
+            //Delete the class and its related dependencies based on the item indexes of the ListView
+            //Deletes starting backwards to avoid troubles with indexing
+            for (int i = itemIndexes.Count - 1; i >= 0; i--)
+            {
+
+                Programming_Café_DB.classTable.Del_Row(classRowsByTrainerId[itemIndexes[i]]);
+                //Update ListView
+                Load_ListView();
+            }
+
+                    
+    
+            
         }
 
         public void Load_ListView()

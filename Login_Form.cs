@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using APU_Programming_Café_Management_System.TrainerForm;
 
 namespace APU_Programming_Café_Management_System
 {
@@ -31,8 +32,15 @@ namespace APU_Programming_Café_Management_System
                 if(user.role.isAdministrator == true)
                 {
                     this.Hide();
-                    AdminUI adminHomePage = new AdminUI(user);
-                    adminHomePage.ShowDialog();
+                    AdminUI adminUI = new AdminUI(user);
+                    adminUI.ShowDialog();
+                    this.Close();
+                }
+                else if(user.role.isTrainer == true)
+                {
+                    this.Hide();
+                    TrainerUI trainerUI = new TrainerUI(user);
+                    trainerUI.ShowDialog();
                     this.Close();
                 }
             }

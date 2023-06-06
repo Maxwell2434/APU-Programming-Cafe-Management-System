@@ -27,26 +27,25 @@ namespace APU_Programming_Café_Management_System.Tables
             set { Columns[2] = value; }
         }
 
-  
 
-        public Column ScheduleDay
+        public Column Level
         {
             get { return Columns[3]; }
             set { Columns[3] = value; }
         }
 
-        public Column StartHour
+        public Column ScheduleDay
         {
             get { return Columns[4]; }
             set { Columns[4] = value; }
         }
 
-        public Column EndHour
+        public Column StartHour
         {
             get { return Columns[5]; }
             set { Columns[5] = value; }
         }
-        public Column Level
+        public Column EndHour
         {
             get { return Columns[6]; }
             set { Columns[6] = value;}
@@ -69,10 +68,10 @@ namespace APU_Programming_Café_Management_System.Tables
             Add_Collumn(new Column("Id"));
             Add_Collumn(new Column("ModuleId"));
             Add_Collumn(new Column("TrainerId"));
+            Add_Collumn(new Column("Level"));
             Add_Collumn(new Column("ScheduleDay"));
             Add_Collumn(new Column("StartHour"));
             Add_Collumn(new Column("EndHour"));
-            Add_Collumn(new Column("Level"));
             Add_Collumn(new Column("Fee"));
             Add_Collumn(new Column("Duration"));
 

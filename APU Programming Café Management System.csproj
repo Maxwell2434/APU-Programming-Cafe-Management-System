@@ -102,6 +102,54 @@
     <Compile Include="Tables\Class_Table.cs" />
     <Compile Include="Tables\Feedback_Table.cs" />
     <Compile Include="Tables\Module_Table.cs" />
+    <Compile Include="TrainerForm\AdminFeedback.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\AdminFeedback.Designer.cs">
+      <DependentUpon>AdminFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\AdminFeedbackAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\AdminFeedbackAdd.Designer.cs">
+      <DependentUpon>AdminFeedbackAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClasses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClasses.Designer.cs">
+      <DependentUpon>TrainerClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClassesAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClassesAdd.Designer.cs">
+      <DependentUpon>TrainerClassesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClassesUpdate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerClassesUpdate.Designer.cs">
+      <DependentUpon>TrainerClassesUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerHome.Designer.cs">
+      <DependentUpon>TrainerHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerProfile.Designer.cs">
+      <DependentUpon>TrainerProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerUI.Designer.cs">
+      <DependentUpon>TrainerUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\Administrator.cs" />
     <Compile Include="Tables\Administrator_Table.cs" />
     <Compile Include="AdminForm\AdminProfile.cs">
@@ -111,12 +159,6 @@
       <DependentUpon>AdminProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Tables\Column.cs" />
-    <Compile Include="AdminForm\Feedback.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AdminForm\Feedback.Designer.cs">
-      <DependentUpon>Feedback.cs</DependentUpon>
-    </Compile>
     <Compile Include="Programming_Café_DB.cs" />
     <Compile Include="Login_Form.cs">
       <SubType>Form</SubType>
@@ -157,9 +199,6 @@
     <EmbeddedResource Include="AdminForm\AdminProfile.resx">
       <DependentUpon>AdminProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminForm\Feedback.resx">
-      <DependentUpon>Feedback.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\TrainerEdit.resx">
       <DependentUpon>TrainerEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +225,30 @@
     </Compile>
     <EmbeddedResource Include="AdminForm\TrainerList.resx">
       <DependentUpon>TrainerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\AdminFeedback.resx">
+      <DependentUpon>AdminFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\AdminFeedbackAdd.resx">
+      <DependentUpon>AdminFeedbackAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerClasses.resx">
+      <DependentUpon>TrainerClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerClassesAdd.resx">
+      <DependentUpon>TrainerClassesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerClassesUpdate.resx">
+      <DependentUpon>TrainerClassesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerHome.resx">
+      <DependentUpon>TrainerHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerProfile.resx">
+      <DependentUpon>TrainerProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerUI.resx">
+      <DependentUpon>TrainerUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Programming_Café_DatabaseDataSet.xsc">
       <DependentUpon>Programming_Café_DatabaseDataSet.xsd</DependentUpon>

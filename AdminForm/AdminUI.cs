@@ -115,8 +115,14 @@ namespace APU_Programming_Café_Management_System
                 lstView.Items.Add(new ListViewItem(values.ToArray()));
             }
 
-            //Resize the columns to match the content size
-            lstView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //Resize the columns to match the header size
+            lstView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+
+        private void btnIncome_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
