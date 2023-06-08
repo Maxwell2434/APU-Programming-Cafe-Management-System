@@ -23,6 +23,7 @@ namespace APU_Programming_Café_Management_System
         private static Class_Table _classTable;
         private static Module_Table _moduleTable;
         private static Feedback_Table _feedbackTable;
+        private static StudentModule_Table _studentModule_Table;
        
         //Constructor
         public Programming_Café_DB()
@@ -36,6 +37,7 @@ namespace APU_Programming_Café_Management_System
             _classTable = new Class_Table(_dataset.Tables["Classes"]);
             _moduleTable = new Module_Table(_dataset.Tables["Modules"]);
             _feedbackTable = new Feedback_Table(_dataset.Tables["Feedbacks"]);
+            _studentModule_Table = new StudentModule_Table(_dataset.Tables["StudentModules"]);
         }
 
         //Property
@@ -99,6 +101,12 @@ namespace APU_Programming_Café_Management_System
         {
             get { return _feedbackTable; }
             set { _feedbackTable = value; }
+        }
+
+        public static StudentModule_Table studentModuleTable
+        {
+            get { return _studentModule_Table; }
+            set { _studentModule_Table = value; }
         }
 
         //Methods

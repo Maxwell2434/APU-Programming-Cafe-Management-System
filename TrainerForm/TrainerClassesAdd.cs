@@ -29,6 +29,8 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             cmbBoxLevel.Items.Add("Beginner");
             cmbBoxLevel.Items.Add("Intermediate");
             cmbBoxLevel.Items.Add("Advance");
+
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

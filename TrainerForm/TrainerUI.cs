@@ -17,6 +17,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         TrainerHome trainerHomePage;
         AdminFeedback adminFeedback;
         TrainerClasses trainerClasses;
+        TrainerStudents trainerStudents;
         public TrainerUI(User user)
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             trainerProfilePage= new TrainerProfile(trainer);
             adminFeedback = new AdminFeedback(trainer);
             trainerClasses = new TrainerClasses(trainer);
+            trainerStudents = new TrainerStudents(trainer);
         }
 
         private void TrainerUI_Load(object sender, EventArgs e)
@@ -33,6 +35,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             Initialize_UserControl(trainerHomePage, Controls);
             Initialize_UserControl(adminFeedback, Controls);
             Initialize_UserControl(trainerClasses, Controls);
+            Initialize_UserControl(trainerStudents, Controls);
             trainerHomePage.BringToFront();
         }
 
@@ -70,6 +73,12 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         private void btnClasses_Click(object sender, EventArgs e)
         {
             trainerClasses.BringToFront();
+        }
+
+        private void btnStudents_Click(object sender, EventArgs e)
+        {
+            trainerStudents.BringToFront();
+            trainerStudents.Load_List_View();
         }
     }
 }

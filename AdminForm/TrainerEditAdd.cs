@@ -30,52 +30,61 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            Column columnToSearch = Programming_Café_DB.moduleTable.Name;
-            string moduleName = cmbBoxModule.SelectedItem.ToString();
-            Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
-            string level = cmbBoxLevel.SelectedItem.ToString();
-
-            List<string> values = new List<string>
+            if(cmbBoxModule.Text != "" && cmbBoxLevel.Text != "")
             {
-                //Id
-                "",
+                Column columnToSearch = Programming_Café_DB.moduleTable.Name;
+                string moduleName = cmbBoxModule.SelectedItem.ToString();
+                Column columnToReturn = Programming_Café_DB.moduleTable.Id;
+                string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+                string level = cmbBoxLevel.SelectedItem.ToString();
 
-                //ModuleId
-                moduleId,
-                
-                //TrainerId
-                trainerId,
-                
-                //ScheduleDay
-                "",
-                
-                //StartHour
-                "",
-                
-                //EndHour
-                "",
-                
-                //Level
-                level,
-                
-                //Fee
-                "",
-                
-                //Duration
-                ""
-            };
+                List<string> values = new List<string>
+                {
+                    //Id
+                    "",
 
-            //trainerId, moduleId, and level must not have the same values as another row in the table
-            List<Column> uniqueColumns = new List<Column>
+                    //ModuleId
+                    moduleId,
+                
+                    //TrainerId
+                    trainerId,
+
+                    //Level
+                    level,
+                
+                    //ScheduleDay
+                    "",
+                
+                    //StartHour
+                    "",
+                
+                    //EndHour
+                    "",
+               
+                
+                    //Fee
+                    "",
+                
+                    //Duration
+                    ""
+                };
+
+                //trainerId, moduleId, and level must not have the same values as another row in the table
+                List<Column> uniqueColumns = new List<Column>
+                {
+                    Programming_Café_DB.classTable.TrainerId,
+                    Programming_Café_DB.classTable.ModuleId,
+                    Programming_Café_DB.classTable.Level
+                };
+                Programming_Café_DB.classTable.Insert_Row(values, uniqueColumns);
+                trainerEdit.Load_ListView();
+                this.Dispose();
+            }
+            else
             {
-                Programming_Café_DB.classTable.TrainerId,
-                Programming_Café_DB.classTable.ModuleId,
-                Programming_Café_DB.classTable.Level
-            };
-            Programming_Café_DB.classTable.Insert_Row(values, uniqueColumns);
-            trainerEdit.Load_ListView();
-            this.Dispose();
+                MessageBox.Show("Empty values are present");
+            }
+            
             
         }
 

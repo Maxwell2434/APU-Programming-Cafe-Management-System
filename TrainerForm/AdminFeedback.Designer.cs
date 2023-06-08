@@ -31,6 +31,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lstViewTrainer = new System.Windows.Forms.ListView();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -68,11 +69,23 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(122, 32);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(191, 25);
+            this.lblTitle.TabIndex = 34;
+            this.lblTitle.Text = "Feedback to Admins";
+            // 
             // AdminFeedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lstViewTrainer);
@@ -80,6 +93,7 @@
             this.Size = new System.Drawing.Size(800, 406);
             this.Load += new System.EventHandler(this.AdminFeedback_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -88,5 +102,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListView lstViewTrainer;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

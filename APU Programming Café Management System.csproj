@@ -102,6 +102,7 @@
     <Compile Include="Tables\Class_Table.cs" />
     <Compile Include="Tables\Feedback_Table.cs" />
     <Compile Include="Tables\Module_Table.cs" />
+    <Compile Include="Tables\StudentModule_Table.cs" />
     <Compile Include="TrainerForm\AdminFeedback.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +144,12 @@
     </Compile>
     <Compile Include="TrainerForm\TrainerProfile.Designer.cs">
       <DependentUpon>TrainerProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrainerForm\TrainerStudents.Designer.cs">
+      <DependentUpon>TrainerStudents.cs</DependentUpon>
     </Compile>
     <Compile Include="TrainerForm\TrainerUI.cs">
       <SubType>Form</SubType>
@@ -246,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrainerForm\TrainerProfile.resx">
       <DependentUpon>TrainerProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerForm\TrainerStudents.resx">
+      <DependentUpon>TrainerStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrainerForm\TrainerUI.resx">
       <DependentUpon>TrainerUI.cs</DependentUpon>
