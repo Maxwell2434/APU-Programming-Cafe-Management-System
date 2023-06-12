@@ -88,6 +88,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 new Column ("Module"),
                 studentModule_Table.Level,
                 new Column ("Student"),
+                studentModule_Table.ClassId,
                 new Column ("Payment"),
                 new Column ("Month of Enrollment"),
 
@@ -131,11 +132,22 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
                         if (StudentName == "" || StudentName == null) { StudentName = "No Students"; }
 
+                        string classValue;
+                        if(classId == "0" || classId == null)
+                        {
+                            classValue = "No Class";
+                        }
+                        else
+                        {
+                            classValue = classId;
+                        }
+
                         List<string> arr_values = new List<string>
                         {
                             ModuleName,
                             Level,
                             StudentName,
+                            classValue,
                             PaymentStatus,
                             EnrollmentDate
                         };
@@ -156,6 +168,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                     "Module",
                     "Level",
                     "Student",
+                    "ClassId",
                     "Payment",
                     "Month of Enrollment"
                 };
@@ -182,7 +195,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         private void btnAdd_Click(object sender, EventArgs e)
         {
             LecturerStudentsAdd lecturerStudentsAdd = new LecturerStudentsAdd(this);
-            AdminUI.Initialize_UserControl(lecturerStudentsAdd, Controls);
+            LecturerUI.Initialize_UserControl(lecturerStudentsAdd, Controls);
             lecturerStudentsAdd.BringToFront();
         }
 
@@ -228,6 +241,32 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 //Update ListView
                 Load_List_View();
             }
+        }
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            List<int> itemIndexes = new List<int>();
+            foreach (ListViewItem item in lstView.Items)
+            {
+                if (item.Checked || item.Selected)
+                {
+                    itemIndexes.Add(item.Index);
+
+                }
+            }
+            if(itemIndexes.Count == 1)
+            {
+                Row rowSelected = listRows[itemIndexes[0]];
+                LecturerStudentsUpdate lecturerStudentsUpdate = new LecturerStudentsUpdate(rowSelected, this);
+                LecturerUI.Initialize_UserControl(lecturerStudentsUpdate, Controls);
+                lecturerStudentsUpdate.BringToFront();
+            }
+            else
+            {
+                MessageBox.Show("Please select a Student");
+            }
+
         }
     }
 }

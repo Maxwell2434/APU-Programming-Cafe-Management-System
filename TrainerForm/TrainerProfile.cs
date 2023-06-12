@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APU_Programming_Café_Management_System.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,19 +35,28 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         {
             try
             {
-                trainer.Username = txtBoxUsername.Text;
-                trainer.Password = txtBoxPassword.Text;
-                trainer.Name = txtBoxName.Text;
-                trainer.Address = txtBoxAddress.Text;
-                trainer.Phone = txtBoxPhone.Text;
-                trainer.Email = txtBoxEmail.Text;
+                Column columnToSearch = Programming_Café_DB.userTable.Username;
+                int count = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, txtBoxUsername.Text).Count;
+                if (count == 0 || trainer.Username == txtBoxUsername.Text)
+                {
+                    trainer.Username = txtBoxUsername.Text;
+                    trainer.Password = txtBoxPassword.Text;
+                    trainer.Name = txtBoxName.Text;
+                    trainer.Address = txtBoxAddress.Text;
+                    trainer.Phone = txtBoxPhone.Text;
+                    trainer.Email = txtBoxEmail.Text;
+                    MessageBox.Show("Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Username Already Exists");
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Save Failed");
             }
 
-            MessageBox.Show("Saved");
         }
 
 

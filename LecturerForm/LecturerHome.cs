@@ -22,7 +22,15 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
         private void LecturerHome_Load(object sender, EventArgs e)
         {
+            Load_Label();
+        }
+        public void Load_Label()
+        {
+            Column columnToSearch = Programming_Café_DB.lecturerTable.Id;
+            Column columnToReturn = Programming_Café_DB.lecturerTable.Name;
+            lecturer.Name = Programming_Café_DB.lecturerTable.Get_ColumnValue_From_Row(columnToSearch, lecturer.Id, columnToReturn);
             lblWelcome.Text = "Welcome, " + lecturer.Name;
         }
+
     }
 }

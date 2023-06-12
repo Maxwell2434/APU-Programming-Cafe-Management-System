@@ -143,6 +143,7 @@ namespace APU_Programming_Café_Management_System
                 connection.Open();
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+                dt.TableName = table;
                 return (dt);
             }
 
@@ -150,10 +151,11 @@ namespace APU_Programming_Café_Management_System
 
         public static void Update_Table_Database(string tableName, Row rowToBeUpdated, Dictionary<Column, string> values)
         {
+            
             string commandString = "UPDATE " + tableName + " SET ";
             Column key = null;
             List<SqlParameter> parameters = new List<SqlParameter>();
-
+            bool primaryKey = false;
             foreach (KeyValuePair<Column, string> kvp in values)
             {
                 if (!kvp.Key.IsPKey)
@@ -167,18 +169,40 @@ namespace APU_Programming_Café_Management_System
                 else if (key == null)
                 {
                     key = kvp.Key;
+                    primaryKey = true;
                 }
             }
-
-            // Remove trailing comma and space
             commandString = commandString.TrimEnd(',', ' ');
-
             // Add WHERE clause
-            commandString += " WHERE " + key.Name + " = @" + key.Name;
+            commandString += " WHERE ";
+            //If primary key exists
+            if (primaryKey)
+            {
 
-            // Add parameter for the primary key value
-            SqlParameter primaryKeyParameter = new SqlParameter("@" + key.Name, rowToBeUpdated.values[key]);
-            parameters.Add(primaryKeyParameter);
+                // Add WHERE clause
+                commandString += key.Name + " = @" + key.Name;
+
+                // Add parameter for the primary key value
+                SqlParameter primaryKeyParameter = new SqlParameter("@" + key.Name, rowToBeUpdated.values[key]);
+                parameters.Add(primaryKeyParameter);
+            }
+            else
+            {
+                foreach (KeyValuePair<Column, string> kvp in rowToBeUpdated.values)
+                {
+
+                    commandString += kvp.Key.Name + " = @n" + kvp.Key.Name + " AND ";
+
+                    // Add parameter for the value
+                    SqlParameter parameter = new SqlParameter("@n" + kvp.Key.Name, kvp.Value);
+                    parameters.Add(parameter);
+
+                }
+
+                // Remove trailing "AND"
+                commandString = commandString.Remove(commandString.Length - 5);
+            }
+
 
             // Execute the query
             using (SqlConnection connection = new SqlConnection(connectionString))

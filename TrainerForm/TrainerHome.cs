@@ -21,8 +21,16 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
         private void TrainerHome_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = "Welcome, " + trainer.Name;
+            Load_Label();
 
+        }
+
+        public void Load_Label()
+        {
+            Column columnToSearch = Programming_Café_DB.trainerTable.Id;
+            Column columnToReturn = Programming_Café_DB.trainerTable.Name;
+            trainer.Name = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainer.Id, columnToReturn);
+            lblWelcome.Text = "Welcome, " + trainer.Name;
         }
     }
 }

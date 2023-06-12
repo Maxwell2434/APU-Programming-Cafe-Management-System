@@ -63,6 +63,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         private void btnHome_Click(object sender, EventArgs e)
         {
             trainerHomePage.BringToFront();
+            trainerHomePage.Load_Label();
         }
 
         private void btnFeedback_Click(object sender, EventArgs e)

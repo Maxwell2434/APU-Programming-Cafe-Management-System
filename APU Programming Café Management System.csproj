@@ -111,6 +111,12 @@
     <Compile Include="LecturerForm\LecturerHome.Designer.cs">
       <DependentUpon>LecturerHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="LecturerForm\LecturerProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerProfile.Designer.cs">
+      <DependentUpon>LecturerProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="LecturerForm\LecturerStudents.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +128,12 @@
     </Compile>
     <Compile Include="LecturerForm\LecturerStudentsAdd.Designer.cs">
       <DependentUpon>LecturerStudentsAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudentsUpdate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudentsUpdate.Designer.cs">
+      <DependentUpon>LecturerStudentsUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="LecturerForm\LecturerUI.cs">
       <SubType>Form</SubType>
@@ -256,11 +268,17 @@
     <EmbeddedResource Include="LecturerForm\LecturerHome.resx">
       <DependentUpon>LecturerHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerProfile.resx">
+      <DependentUpon>LecturerProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LecturerForm\LecturerStudents.resx">
       <DependentUpon>LecturerStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LecturerForm\LecturerStudentsAdd.resx">
       <DependentUpon>LecturerStudentsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerStudentsUpdate.resx">
+      <DependentUpon>LecturerStudentsUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LecturerForm\LecturerUI.resx">
       <DependentUpon>LecturerUI.cs</DependentUpon>

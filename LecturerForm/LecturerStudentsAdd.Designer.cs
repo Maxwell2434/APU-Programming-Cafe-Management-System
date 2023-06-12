@@ -272,9 +272,9 @@
             this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
             this.lblTitle.Location = new System.Drawing.Point(27, 24);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(226, 32);
+            this.lblTitle.Size = new System.Drawing.Size(194, 32);
             this.lblTitle.TabIndex = 63;
-            this.lblTitle.Text = "Register Student";
+            this.lblTitle.Text = "Enroll Student";
             // 
             // label10
             // 

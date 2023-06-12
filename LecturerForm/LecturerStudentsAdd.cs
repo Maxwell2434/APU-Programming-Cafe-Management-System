@@ -78,82 +78,59 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             else
             {
 
-
+                string UserId;
                 //Check if username exists
                 int count = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text).Count;
                 if (count == 0)
                 {
-                    //Record the number of rows in userTable
-                    int rowCount = Programming_Café_DB.userTable.Rows.Count;
 
-                    //Insert new User
+                    //If username doesnt exist then Insert new User
                     Programming_Café_DB.userTable.Insert_Row(userValues, Programming_Café_DB.userTable.Columns);
 
-                }
-                else
-                {
-                    //Insert new User
-                    Programming_Café_DB.userTable.Insert_Row(userValues, Programming_Café_DB.userTable.Columns);
-
-                }
-                //Record the number of rows in userTable
-                int rowCount = Programming_Café_DB.userTable.Rows.Count;
-
-                //Insert new User
-                Programming_Café_DB.userTable.Insert_Row(userValues, Programming_Café_DB.userTable.Columns);
-
-
-                //Check if a new User has been created if Yes then associate the new User as a trainer
-                if (rowCount < Programming_Café_DB.userTable.Rows.Count)
-                {
                     //Find The Id in the newly created row in the userTable
                     List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(txtBoxUsername.Text);
-                    string UserId = rows[0].values[Programming_Café_DB.userTable.Id];
+                    UserId = rows[0].values[Programming_Café_DB.userTable.Id];
 
-                    //Add the foreign key, userId to the trainerValues
+                    //Add the foreign key, userId to the studentValues
                     studentValues.Add(UserId);
 
-                    //Record the number of rows in studentTable
-                    rowCount = Programming_Café_DB.studentTable.Rows.Count;
-                    
-                    //Attempt to insert a row in the studentTable
+                    //insert a row in the studentTable
                     Programming_Café_DB.studentTable.Insert_Row(studentValues, Programming_Café_DB.studentTable.Columns);
 
-                    //Check if a new Student has been created if Yes then create an entry in the studentModules table
-                    if (rowCount < Programming_Café_DB.studentTable.Rows.Count)
-                    {
-                        Column columnToSearch = Programming_Café_DB.studentTable.UserId;
-                        Column columnToReturn = Programming_Café_DB.studentTable.Id;
-                        string StudentId = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, UserId, columnToReturn);
-
-                        columnToSearch = Programming_Café_DB.moduleTable.Name;
-                        columnToReturn = Programming_Café_DB.moduleTable.Id;
-                        string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn);
-                        List<string> studentModuleValues = new List<string>()
-                        {
-                            StudentId,
-                            moduleId,
-                            cmbBoxLevel.Text,
-                            "",
-                            "UnPaid",
-                            cmbBoxEnrollmentMonth.Text
-                        };
-
-                        List<Column> uniqueColumns = new List<Column>
-                        { 
-                            Programming_Café_DB.studentModuleTable.StudentId, 
-                            Programming_Café_DB.studentModuleTable.ModuleId,
-                            Programming_Café_DB.studentModuleTable.Level
-                        };
-                        Programming_Café_DB.studentModuleTable.Insert_Row(studentModuleValues, uniqueColumns);
-                        lecturerStudents.Load_List_View();
-                        this.Dispose();
-                    }
-
-
-                    
-
                 }
+
+                //Create an entry in the studentModules table
+                Column columnToSearch = Programming_Café_DB.userTable.Username;
+                Column columnToReturn = Programming_Café_DB.userTable.Id;
+                UserId = Programming_Café_DB.userTable.Get_ColumnValue_From_Row(columnToSearch, txtBoxUsername.Text, columnToReturn);
+
+                columnToSearch = Programming_Café_DB.studentTable.UserId;
+                columnToReturn = Programming_Café_DB.studentTable.Id;
+                string StudentId = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, UserId, columnToReturn);
+
+                columnToSearch = Programming_Café_DB.moduleTable.Name;
+                columnToReturn = Programming_Café_DB.moduleTable.Id;
+                string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn);
+                List<string> studentModuleValues = new List<string>()
+                    {
+                        StudentId,
+                        moduleId,
+                        cmbBoxLevel.Text,
+                        "",
+                        "UnPaid",
+                        cmbBoxEnrollmentMonth.Text
+                    };
+
+                List<Column> uniqueColumns = new List<Column>
+                    {
+                        Programming_Café_DB.studentModuleTable.StudentId,
+                        Programming_Café_DB.studentModuleTable.ModuleId,
+                        Programming_Café_DB.studentModuleTable.Level
+                    };
+                Programming_Café_DB.studentModuleTable.Insert_Row(studentModuleValues, uniqueColumns);
+                lecturerStudents.Load_List_View();
+                this.Dispose();
+                
 
             }
         }

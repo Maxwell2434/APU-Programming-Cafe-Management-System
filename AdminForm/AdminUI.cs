@@ -64,6 +64,7 @@ namespace APU_Programming_Café_Management_System
         private void btnHome_Click(object sender, EventArgs e)
         {
             adminHome.BringToFront();
+            adminHome.Load_Label();
         }
 
         private void btnSignOut_Click(object sender, EventArgs e)

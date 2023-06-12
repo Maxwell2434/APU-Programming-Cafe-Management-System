@@ -34,19 +34,29 @@ namespace APU_Programming_Café_Management_System
         {
             try
             {
-                administrator.Username = txtBoxUsername.Text;
-                administrator.Password = txtBoxPassword.Text;
-                administrator.Name = txtBoxName.Text;
-                administrator.Address = txtBoxAddress.Text;
-                administrator.Phone = txtBoxPhone.Text;
-                administrator.Email = txtBoxEmail.Text;
+                Column columnToSearch = Programming_Café_DB.userTable.Username;
+                int count = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, txtBoxUsername.Text).Count;
+                if(count == 0 || administrator.Username == txtBoxUsername.Text)
+                {
+                    administrator.Username = txtBoxUsername.Text;
+                    administrator.Password = txtBoxPassword.Text;
+                    administrator.Name = txtBoxName.Text;
+                    administrator.Address = txtBoxAddress.Text;
+                    administrator.Phone = txtBoxPhone.Text;
+                    administrator.Email = txtBoxEmail.Text;
+                    MessageBox.Show("Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Username Already Exists");
+                }
+                
             }
             catch (Exception)
             {
                 MessageBox.Show("Save Failed");
             }
             
-            MessageBox.Show("Saved");
         }
     }
 }

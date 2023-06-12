@@ -9,12 +9,14 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         Lecturer lecturer;
         LecturerHome lecturerHome;
         LecturerStudents lecturerStudents;
+        LecturerProfile lecturerProfile;
         public LecturerUI(User user)
         {
             InitializeComponent();
             lecturer = new Lecturer(user);
             lecturerHome = new LecturerHome(lecturer);
             lecturerStudents = new LecturerStudents();
+            lecturerProfile = new LecturerProfile(lecturer);
         }
 
 
@@ -23,6 +25,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         {
             Initialize_UserControl(lecturerHome, Controls);
             Initialize_UserControl(lecturerStudents, Controls);
+            Initialize_UserControl(lecturerProfile, Controls);
         }
 
         public static void Initialize_UserControl(UserControl userControl, Control.ControlCollection controls)
@@ -43,6 +46,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         private void btnHome_Click(object sender, EventArgs e)
         {
             lecturerHome.BringToFront();
+            lecturerHome.Load_Label();
         }
 
 
@@ -50,6 +54,11 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         {
             lecturerStudents.BringToFront();
             lecturerStudents.Load_List_View();
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            lecturerProfile.BringToFront();
         }
     }
 }

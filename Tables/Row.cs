@@ -18,7 +18,7 @@ namespace APU_Programming_Café_Management_System
         public Dictionary<Column, string> values
         {
             get { return _values; }
-            set { _values = value; Programming_Café_DB.Update_Table_Database(tableName, this, value); }
+            set { Programming_Café_DB.Update_Table_Database(tableName, this, value); _values = value; }
         }
 
 
@@ -41,6 +41,12 @@ namespace APU_Programming_Café_Management_System
             {
                 _values.Add(collumns[i], arr_Values[i]);
             }
+        }
+
+        public Row(string tableName, Dictionary<Column, string> values)
+        {
+            this.tableName = tableName;
+            this.values = values;
         }
 
 

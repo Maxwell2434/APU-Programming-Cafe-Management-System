@@ -34,7 +34,7 @@
             this.cmbBoxModule = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lstView = new System.Windows.Forms.ListView();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -97,17 +97,18 @@
             this.lstView.TabIndex = 45;
             this.lstView.UseCompatibleStateImageBehavior = false;
             // 
-            // btnEdit
+            // btnUpdate
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEdit.Location = new System.Drawing.Point(590, 76);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 31);
-            this.btnEdit.TabIndex = 53;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUpdate.Location = new System.Drawing.Point(590, 76);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 31);
+            this.btnUpdate.TabIndex = 53;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -140,7 +141,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label2);
@@ -166,7 +167,7 @@
         private System.Windows.Forms.ComboBox cmbBoxModule;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lstView;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
     }

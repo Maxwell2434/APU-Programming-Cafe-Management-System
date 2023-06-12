@@ -21,6 +21,14 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
         private void AdminHome_Load(object sender, EventArgs e)
         {
+            Load_Label();
+        }
+
+        public void Load_Label()
+        {
+            Column columnToSearch = Programming_Café_DB.administratorTable.Id;
+            Column columnToReturn = Programming_Café_DB.administratorTable.Name;
+            administrator.Name = Programming_Café_DB.administratorTable.Get_ColumnValue_From_Row(columnToSearch, administrator.Id, columnToReturn);
             lblWelcome.Text = "Welcome, " + administrator.Name;
         }
     }
