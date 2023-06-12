@@ -15,7 +15,6 @@ namespace APU_Programming_Café_Management_System
 {
     public partial class TrainerList : UserControl
     {
-        List<string> trainerIds;
         public TrainerList()
         {
             InitializeComponent();

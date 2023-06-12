@@ -24,6 +24,7 @@ namespace APU_Programming_Café_Management_System
         private static Module_Table _moduleTable;
         private static Feedback_Table _feedbackTable;
         private static StudentModule_Table _studentModule_Table;
+        private static Lecturer_Table _lecturer_Table;
        
         //Constructor
         public Programming_Café_DB()
@@ -38,6 +39,7 @@ namespace APU_Programming_Café_Management_System
             _moduleTable = new Module_Table(_dataset.Tables["Modules"]);
             _feedbackTable = new Feedback_Table(_dataset.Tables["Feedbacks"]);
             _studentModule_Table = new StudentModule_Table(_dataset.Tables["StudentModules"]);
+            _lecturer_Table = new Lecturer_Table(_dataset.Tables["Lecturers"]);
         }
 
         //Property
@@ -109,6 +111,11 @@ namespace APU_Programming_Café_Management_System
             set { _studentModule_Table = value; }
         }
 
+        public static Lecturer_Table lecturerTable
+        {
+            get { return _lecturer_Table; }
+            set { _lecturer_Table = value; }
+        }
         //Methods
 
         //returns a list of strings that contains all the table names inside the database
@@ -231,9 +238,10 @@ namespace APU_Programming_Café_Management_System
 
         public static void Delete_Row_Database(Table table, Row rowToBeDeleted)
         {
-            
+            bool primaryKey = false;
             foreach(Column column in table.Columns)
             {
+                //If there is primary key in the columns
                 if(column.IsPKey)
                 {
                     Column primaryKeyColumn = column;
@@ -250,12 +258,45 @@ namespace APU_Programming_Café_Management_System
                         connection.Open();
                         cmd.ExecuteNonQuery();
                     }
+                    primaryKey= true;
                     break;
-                }
-                MessageBox.Show("Primary Key Not Found");
-
+                }  
             }
+            if(primaryKey == false)
+            {
+                string commandString = "DELETE FROM " + table.TableName + " WHERE ";
+                List<SqlParameter> parameters = new List<SqlParameter>();
 
+                foreach (KeyValuePair<Column, string> kvp in rowToBeDeleted.values)
+                {
+
+                        commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
+
+                        // Add parameter for the value
+                        SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
+                        parameters.Add(parameter);
+
+                }
+                if (parameters.Count > 0)
+                {
+                    // Remove trailing "AND"
+                    commandString = commandString.Remove(commandString.Length - 5);
+
+                    // Execute the query
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand(commandString, connection))
+                    {
+                        cmd.Parameters.AddRange(parameters.ToArray());
+                        connection.Open();
+                        cmd.ExecuteScalar();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Delete failed");
+                }
+            }
+            
 
 
         }

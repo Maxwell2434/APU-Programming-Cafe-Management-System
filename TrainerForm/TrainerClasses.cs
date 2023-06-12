@@ -107,7 +107,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                         int selectedStartHour = Convert.ToInt32(StartHour);
                         int selectedEndHour = Convert.ToInt32(EndHour);
 
-                        //Check if the selected End Hour is equal to the selected Start Hour
+                        //Check if the selected End Hour is equal or bigger to the selected Start Hour
                         if (selectedStartHour >= selectedEndHour)
                         {
                             //If yes then it is a conflicting schedule
@@ -125,7 +125,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
                         }
                         //Check if the selected Start Hour is inside the timeframe of an existing class time
-                        else if (selectedStartHour > existingStartHour && selectedStartHour < existingEndHour)
+                        else if (selectedStartHour >= existingStartHour && selectedStartHour < existingEndHour)
                         {
                             //If yes then it is a conflicting schedule
                             conflictingSchedule = true;

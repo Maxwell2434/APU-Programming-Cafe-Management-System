@@ -68,6 +68,12 @@
     <Compile Include="AdminForm\AdminHome.Designer.cs">
       <DependentUpon>AdminHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminForm\AdminIncome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminForm\AdminIncome.Designer.cs">
+      <DependentUpon>AdminIncome.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm\AdminUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +105,33 @@
       <DependentUpon>TrainerListAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Class.cs" />
+    <Compile Include="LecturerForm\LecturerHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerHome.Designer.cs">
+      <DependentUpon>LecturerHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudents.Designer.cs">
+      <DependentUpon>LecturerStudents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudentsAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerStudentsAdd.Designer.cs">
+      <DependentUpon>LecturerStudentsAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LecturerForm\LecturerUI.Designer.cs">
+      <DependentUpon>LecturerUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\Class_Table.cs" />
     <Compile Include="Tables\Feedback_Table.cs" />
+    <Compile Include="Tables\Lecturer_Table.cs" />
     <Compile Include="Tables\Module_Table.cs" />
     <Compile Include="Tables\StudentModule_Table.cs" />
     <Compile Include="TrainerForm\AdminFeedback.cs">
@@ -180,6 +211,7 @@
       <DependentUpon>Programming_Café_DatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\Lecturer.cs" />
     <Compile Include="Users\Role.cs" />
     <Compile Include="Tables\Row.cs" />
     <Compile Include="Tables\Student_Table.cs" />
@@ -200,6 +232,9 @@
     <EmbeddedResource Include="AdminForm\AdminHome.resx">
       <DependentUpon>AdminHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\AdminIncome.resx">
+      <DependentUpon>AdminIncome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\AdminUI.resx">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +252,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm\TrainerListAdd.resx">
       <DependentUpon>TrainerListAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerHome.resx">
+      <DependentUpon>LecturerHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerStudents.resx">
+      <DependentUpon>LecturerStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerStudentsAdd.resx">
+      <DependentUpon>LecturerStudentsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturerForm\LecturerUI.resx">
+      <DependentUpon>LecturerUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>

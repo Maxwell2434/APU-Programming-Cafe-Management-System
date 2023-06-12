@@ -16,9 +16,9 @@ namespace APU_Programming_Café_Management_System
         private Administrator administrator;
         AdminHome adminHome;
         AdminProfile adminProfilePage;
+        AdminIncome adminIncome;
         TrainerList trainerList = new TrainerList();
         TrainerFeedback trainerFeedback;
-
 
 
         public AdminUI(User user)
@@ -27,6 +27,7 @@ namespace APU_Programming_Café_Management_System
             administrator = new Administrator(user);
             adminHome = new AdminHome(administrator);
             adminProfilePage = new AdminProfile(administrator);
+            adminIncome = new AdminIncome();
             trainerFeedback= new TrainerFeedback(administrator);
         }
 
@@ -34,6 +35,7 @@ namespace APU_Programming_Café_Management_System
         {
             Initialize_UserControl(adminHome, Controls);
             Initialize_UserControl(adminProfilePage, Controls);
+            Initialize_UserControl(adminIncome, Controls);
             Initialize_UserControl(trainerList, Controls);
             Initialize_UserControl(trainerFeedback, Controls);
             adminHome.BringToFront();
@@ -92,6 +94,7 @@ namespace APU_Programming_Café_Management_System
             //Display grid lines.
             lstView.GridLines = true;
 
+
             List<int> indexes = new List<int>();
             for (int i = 0; i < columns.Count; i++)
             {
@@ -121,7 +124,7 @@ namespace APU_Programming_Café_Management_System
 
         private void btnIncome_Click(object sender, EventArgs e)
         {
-
+            adminIncome.BringToFront();
         }
 
     }

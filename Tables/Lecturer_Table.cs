@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
 
-namespace APU_Programming_Café_Management_System
+namespace APU_Programming_Café_Management_System.Tables
 {
-    public class Student_Table : Table
+    public class Lecturer_Table : Table
     {
         public Column Id
         {
@@ -22,52 +21,44 @@ namespace APU_Programming_Café_Management_System
             set { Columns[1] = value; }
         }
 
-        public Column TP_Number
+        public Column Address
         {
             get { return Columns[2]; }
             set { Columns[2] = value; }
         }
 
-        public Column Address
+        public Column Phone
         {
             get { return Columns[3]; }
             set { Columns[3] = value; }
         }
 
-        public Column Phone
+        public Column Email
         {
             get { return Columns[4]; }
             set { Columns[4] = value; }
         }
 
-        public Column Email
+        public Column UserId
         {
             get { return Columns[5]; }
             set { Columns[5] = value; }
         }
 
-        public Column UserId
+        public Lecturer_Table(DataTable dt)
         {
-            get { return Columns[6]; }
-            set { Columns[6] = value;}
-        }
-
-        public Student_Table(DataTable dt)
-        {
-
             TableName = dt.TableName;
             Add_Collumn(new Column("Id"));
             Add_Collumn(new Column("Name"));
-            Add_Collumn(new Column("TP_Number"));
             Add_Collumn(new Column("Address"));
             Add_Collumn(new Column("Phone"));
             Add_Collumn(new Column("Email"));
             Add_Collumn(new Column("UserId"));
 
             Add_Rows(dt);
-            
-        }
 
+
+        }
 
     }
 }

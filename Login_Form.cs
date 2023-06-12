@@ -10,12 +10,12 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using APU_Programming_Café_Management_System.TrainerForm;
+using APU_Programming_Café_Management_System.LecturerForm;
 
 namespace APU_Programming_Café_Management_System
 {
     public partial class Login_Form : Form
     {
-        string connectionString;
         Programming_Café_DB Programming_Café_Database;
         public Login_Form()
         {
@@ -41,6 +41,13 @@ namespace APU_Programming_Café_Management_System
                     this.Hide();
                     TrainerUI trainerUI = new TrainerUI(user);
                     trainerUI.ShowDialog();
+                    this.Close();
+                }
+                else if(user.role.isLecturer == true)
+                {
+                    this.Hide();
+                    LecturerUI lecturerUI = new LecturerUI(user);
+                    lecturerUI.ShowDialog();
                     this.Close();
                 }
             }

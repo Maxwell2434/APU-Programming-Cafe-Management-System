@@ -1,6 +1,6 @@
-﻿namespace APU_Programming_Café_Management_System.TrainerForm
+﻿namespace APU_Programming_Café_Management_System.LecturerForm
 {
-    partial class TrainerHome
+    partial class LecturerHome
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,21 +37,22 @@
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblWelcome.Location = new System.Drawing.Point(263, 95);
+            this.lblWelcome.Location = new System.Drawing.Point(256, 91);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(147, 32);
-            this.lblWelcome.TabIndex = 1;
+            this.lblWelcome.TabIndex = 2;
             this.lblWelcome.Text = "Welcome, ";
             // 
-            // TrainerHome
+            // LecturerHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Controls.Add(this.lblWelcome);
-            this.Name = "TrainerHome";
+            this.ForeColor = System.Drawing.SystemColors.Control;
+            this.Name = "LecturerHome";
             this.Size = new System.Drawing.Size(800, 406);
-            this.Load += new System.EventHandler(this.TrainerHome_Load);
+            this.Load += new System.EventHandler(this.LecturerHome_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
