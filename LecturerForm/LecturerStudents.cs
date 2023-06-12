@@ -211,7 +211,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
                 }
             }
-
+            
             //Delete the studentModule entry based on the item indexes of the ListView
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
@@ -223,23 +223,66 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                     studentIsInMultipleModules = true;
                 }
 
-                Programming_Café_DB.studentModuleTable.Del_Row(listRows[itemIndexes[i]]);
+                //Figure out if coaching class has finished or no
+                bool coachingClassFinished = false;
                 
-                //If student doesnt have other modules enrolled then delete the subsequent student and user from the tables
-                if (!studentIsInMultipleModules)
-                {
-                    Row studentRowToBeDeleted = Programming_Café_DB.studentTable.Search_Row_For_Value(Programming_Café_DB.studentTable.Id, studentId)[0];
+                //Get duration by classId from the classTable
+                string classId = listRows[itemIndexes[i]].values[Programming_Café_DB.studentModuleTable.ClassId];
+                Column columnToSearch = Programming_Café_DB.classTable.Id;
+                Column columnToReturn = Programming_Café_DB.classTable.Duration;
+                int duration = Convert.ToInt32(Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn));
+                
+                //if duration is 0 which means that there were no classes, set the default value which is 3 months
+                if(duration == 0) { duration = 3; }
 
-                    Column columnToSearch = Programming_Café_DB.studentTable.Id;
-                    Column columnToReturn = Programming_Café_DB.studentTable.UserId;
-                    string userId = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, studentId, columnToReturn);
-                    Row userRowToBeDeleted = Programming_Café_DB.userTable.Search_Row_For_Value(Programming_Café_DB.userTable.Id, userId)[0];
-                    Programming_Café_DB.studentTable.Del_Row(studentRowToBeDeleted);
-                    Programming_Café_DB.userTable.Del_Row(userRowToBeDeleted);
+                //Get Enrollment Month from the selected student's enrolled module Table
+                int enrollmentMonth = Convert.ToInt32(listRows[itemIndexes[i]].values[Programming_Café_DB.studentModuleTable.EnrollmentMonth]);
+                
+                //Check the difference between the current time and the enrollment month is bigger or equal than duration
+                if(DateTime.Now.Month - enrollmentMonth >= duration)
+                {
+                    //then it means the class has finished 
+                    coachingClassFinished = true;
                 }
 
-                //Update ListView
-                Load_List_View();
+                if(!coachingClassFinished)
+                {
+                    //Ask the user if they want to delete the entry even though the class hasn't ended yet
+                    DialogResult result = MessageBox.Show("The Coaching Class Duration hasn't ended yet, Do you still want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    //Check the user's choice
+                    if (result == DialogResult.Yes)
+                    {
+                        //User clicked Yes
+                        coachingClassFinished = true;
+                    }
+                    
+                }
+
+                if (coachingClassFinished)
+                {
+                    Programming_Café_DB.studentModuleTable.Del_Row(listRows[itemIndexes[i]]);
+                    //If student doesnt have other modules enrolled then delete the subsequent student and user from the tables
+                    if (!studentIsInMultipleModules)
+                    {
+
+
+                        Row studentRowToBeDeleted = Programming_Café_DB.studentTable.Search_Row_For_Value(Programming_Café_DB.studentTable.Id, studentId)[0];
+
+                        columnToSearch = Programming_Café_DB.studentTable.Id;
+                        columnToReturn = Programming_Café_DB.studentTable.UserId;
+                        string userId = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, studentId, columnToReturn);
+                        Row userRowToBeDeleted = Programming_Café_DB.userTable.Search_Row_For_Value(Programming_Café_DB.userTable.Id, userId)[0];
+                        Programming_Café_DB.studentTable.Del_Row(studentRowToBeDeleted);
+                        Programming_Café_DB.userTable.Del_Row(userRowToBeDeleted);
+
+
+
+                    }
+
+                    //Update ListView
+                    Load_List_View();
+                }
             }
         }
 

@@ -30,7 +30,7 @@
         {
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
-            this.btnFeedback = new System.Windows.Forms.Button();
+            this.btnRequests = new System.Windows.Forms.Button();
             this.btnStudents = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSignOut = new System.Windows.Forms.Button();
@@ -63,17 +63,18 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // btnFeedback
+            // btnRequests
             // 
-            this.btnFeedback.FlatAppearance.BorderSize = 0;
-            this.btnFeedback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFeedback.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnFeedback.Location = new System.Drawing.Point(168, 0);
-            this.btnFeedback.Name = "btnFeedback";
-            this.btnFeedback.Size = new System.Drawing.Size(89, 50);
-            this.btnFeedback.TabIndex = 4;
-            this.btnFeedback.Text = "Requests";
-            this.btnFeedback.UseVisualStyleBackColor = true;
+            this.btnRequests.FlatAppearance.BorderSize = 0;
+            this.btnRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequests.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRequests.Location = new System.Drawing.Point(168, 0);
+            this.btnRequests.Name = "btnRequests";
+            this.btnRequests.Size = new System.Drawing.Size(89, 50);
+            this.btnRequests.TabIndex = 4;
+            this.btnRequests.Text = "Requests";
+            this.btnRequests.UseVisualStyleBackColor = true;
+            this.btnRequests.Click += new System.EventHandler(this.btnRequests_Click);
             // 
             // btnStudents
             // 
@@ -94,7 +95,7 @@
             this.panel1.Controls.Add(this.btnSignOut);
             this.panel1.Controls.Add(this.btnProfile);
             this.panel1.Controls.Add(this.btnHome);
-            this.panel1.Controls.Add(this.btnFeedback);
+            this.panel1.Controls.Add(this.btnRequests);
             this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -134,7 +135,7 @@
 
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Button btnFeedback;
+        private System.Windows.Forms.Button btnRequests;
         private System.Windows.Forms.Button btnStudents;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSignOut;
