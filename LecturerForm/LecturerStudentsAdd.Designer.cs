@@ -345,6 +345,7 @@
             this.Controls.Add(this.btnRegister);
             this.Name = "LecturerStudentsAdd";
             this.Size = new System.Drawing.Size(800, 406);
+            this.Load += new System.EventHandler(this.LecturerStudentsAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

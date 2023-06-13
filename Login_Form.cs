@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using APU_Programming_Café_Management_System.TrainerForm;
 using APU_Programming_Café_Management_System.LecturerForm;
+using APU_Programming_Café_Management_System.StudentForm;
 
 namespace APU_Programming_Café_Management_System
 {
@@ -48,6 +49,13 @@ namespace APU_Programming_Café_Management_System
                     this.Hide();
                     LecturerUI lecturerUI = new LecturerUI(user);
                     lecturerUI.ShowDialog();
+                    this.Close();
+                }
+                else if(user.role.isStudent == true)
+                {
+                    this.Hide();
+                    StudentUI studentUI = new StudentUI(user);
+                    studentUI.ShowDialog();
                     this.Close();
                 }
             }

@@ -192,5 +192,10 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             txtBoxPassword.Text = password;
 
         }
+
+        private void LecturerStudentsAdd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -147,6 +147,48 @@
     <Compile Include="LecturerForm\LecturerUI.Designer.cs">
       <DependentUpon>LecturerUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentForm\StudentHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentHome.Designer.cs">
+      <DependentUpon>StudentHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentInvoice.Designer.cs">
+      <DependentUpon>StudentInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentProfile.Designer.cs">
+      <DependentUpon>StudentProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentRequests.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentRequests.Designer.cs">
+      <DependentUpon>StudentRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentRequestsAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentRequestsAdd.Designer.cs">
+      <DependentUpon>StudentRequestsAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentSchedule.Designer.cs">
+      <DependentUpon>StudentSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentForm\StudentUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentForm\StudentUI.Designer.cs">
+      <DependentUpon>StudentUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\Class_Table.cs" />
     <Compile Include="Tables\Feedback_Table.cs" />
     <Compile Include="Tables\Lecturer_Table.cs" />
@@ -235,6 +277,7 @@
     <Compile Include="Tables\Row.cs" />
     <Compile Include="Tables\Student_Table.cs" />
     <Compile Include="Tables\Table.cs" />
+    <Compile Include="Users\Student.cs" />
     <Compile Include="Users\Trainer.cs" />
     <Compile Include="AdminForm\TrainerList.cs">
       <SubType>UserControl</SubType>
@@ -307,6 +350,27 @@
     </Compile>
     <EmbeddedResource Include="AdminForm\TrainerList.resx">
       <DependentUpon>TrainerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentHome.resx">
+      <DependentUpon>StudentHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentInvoice.resx">
+      <DependentUpon>StudentInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentProfile.resx">
+      <DependentUpon>StudentProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentRequests.resx">
+      <DependentUpon>StudentRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentRequestsAdd.resx">
+      <DependentUpon>StudentRequestsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentSchedule.resx">
+      <DependentUpon>StudentSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentForm\StudentUI.resx">
+      <DependentUpon>StudentUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrainerForm\AdminFeedback.resx">
       <DependentUpon>AdminFeedback.cs</DependentUpon>

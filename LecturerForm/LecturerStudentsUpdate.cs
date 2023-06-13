@@ -44,7 +44,6 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
             string level = studentModuleRow.values[Programming_Café_DB.studentModuleTable.Level];
             lblTitle.Text = "Update Student " + StudentName + " Enrolled Module and Class";
-            
             cmbBoxModule.Text = moduleName;
             cmbBoxLevel.Text = level;
             

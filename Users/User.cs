@@ -98,13 +98,13 @@ namespace APU_Programming_Café_Management_System
             {
                 _role.isTrainer= true;
             }
-            else if (Programming_Café_DB.studentTable.Search_Row_For_Value("UserId", _id).Count == 1)
-            {
-                _role.isStudent = true;
-            }
             else if (Programming_Café_DB.lecturerTable.Search_Row_For_Value("UserId", _id).Count == 1)
             {
                 _role.isLecturer = true;
+            }
+            else if (Programming_Café_DB.studentTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            {
+                _role.isStudent = true;
             }
 
         }

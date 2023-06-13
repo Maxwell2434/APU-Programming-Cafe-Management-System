@@ -63,6 +63,13 @@ namespace APU_Programming_Café_Management_System
             Refresh_Table_Values();
         }
 
+        public void Insert_Row(Row rowToBeInserted)
+        {
+            rows.Add(rowToBeInserted);
+            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted, columns);
+            Refresh_Table_Values();
+        }
+
 
 
         public void Del_Row (List<string> values)
