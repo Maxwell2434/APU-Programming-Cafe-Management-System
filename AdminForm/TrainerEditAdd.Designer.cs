@@ -34,6 +34,7 @@
             this.cmbBoxModule = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnAssign = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -98,11 +99,23 @@
             this.btnAssign.UseVisualStyleBackColor = false;
             this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(59, 45);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(287, 25);
+            this.lblTitle.TabIndex = 49;
+            this.lblTitle.Text = "Assign Trainer to Module & Level";
+            // 
             // TrainerEditAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAssign);
             this.Controls.Add(this.label2);
@@ -124,5 +137,6 @@
         private System.Windows.Forms.ComboBox cmbBoxModule;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAssign;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

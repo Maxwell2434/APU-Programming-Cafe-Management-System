@@ -63,7 +63,7 @@ namespace APU_Programming_Café_Management_System
 
         private void Login_Form_Load(object sender, EventArgs e)
         {
-
+            //test
         }
     }
 }

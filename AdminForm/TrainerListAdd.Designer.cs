@@ -42,6 +42,7 @@
             this.txtBoxUsername = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnRegister
@@ -196,11 +197,23 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(46, 31);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(150, 25);
+            this.lblTitle.TabIndex = 49;
+            this.lblTitle.Text = "Register Trainer";
+            // 
             // TrainerListAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.txtBoxPassword);
             this.Controls.Add(this.label5);
@@ -239,5 +252,6 @@
         private System.Windows.Forms.TextBox txtBoxUsername;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
