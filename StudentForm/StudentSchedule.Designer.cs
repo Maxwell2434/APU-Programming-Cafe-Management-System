@@ -40,94 +40,102 @@
             // 
             // btnFriday
             // 
+            this.btnFriday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnFriday.FlatAppearance.BorderSize = 0;
-            this.btnFriday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFriday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFriday.Location = new System.Drawing.Point(455, 40);
             this.btnFriday.Name = "btnFriday";
             this.btnFriday.Size = new System.Drawing.Size(75, 50);
             this.btnFriday.TabIndex = 5;
             this.btnFriday.Text = "Friday";
-            this.btnFriday.UseVisualStyleBackColor = true;
+            this.btnFriday.UseVisualStyleBackColor = false;
             this.btnFriday.Click += new System.EventHandler(this.btnFriday_Click);
             // 
             // btnMonday
             // 
+            this.btnMonday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnMonday.FlatAppearance.BorderSize = 0;
-            this.btnMonday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMonday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMonday.Location = new System.Drawing.Point(69, 40);
             this.btnMonday.Name = "btnMonday";
             this.btnMonday.Size = new System.Drawing.Size(80, 50);
             this.btnMonday.TabIndex = 6;
             this.btnMonday.Text = "Monday";
-            this.btnMonday.UseVisualStyleBackColor = true;
+            this.btnMonday.UseVisualStyleBackColor = false;
             this.btnMonday.Click += new System.EventHandler(this.btnMonday_Click);
             // 
             // btnTuesday
             // 
+            this.btnTuesday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnTuesday.FlatAppearance.BorderSize = 0;
-            this.btnTuesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTuesday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTuesday.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTuesday.Location = new System.Drawing.Point(155, 40);
             this.btnTuesday.Name = "btnTuesday";
             this.btnTuesday.Size = new System.Drawing.Size(91, 50);
             this.btnTuesday.TabIndex = 7;
             this.btnTuesday.Text = "Tuesday";
-            this.btnTuesday.UseVisualStyleBackColor = true;
+            this.btnTuesday.UseVisualStyleBackColor = false;
             this.btnTuesday.Click += new System.EventHandler(this.btnTuesday_Click);
             // 
             // btnThursday
             // 
+            this.btnThursday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnThursday.FlatAppearance.BorderSize = 0;
-            this.btnThursday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThursday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnThursday.Location = new System.Drawing.Point(363, 40);
             this.btnThursday.Name = "btnThursday";
             this.btnThursday.Size = new System.Drawing.Size(86, 50);
             this.btnThursday.TabIndex = 9;
             this.btnThursday.Text = "Thursday";
-            this.btnThursday.UseVisualStyleBackColor = true;
+            this.btnThursday.UseVisualStyleBackColor = false;
             this.btnThursday.Click += new System.EventHandler(this.btnThursday_Click);
             // 
             // btnWednesday
             // 
+            this.btnWednesday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnWednesday.FlatAppearance.BorderSize = 0;
-            this.btnWednesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWednesday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnWednesday.Location = new System.Drawing.Point(252, 40);
             this.btnWednesday.Name = "btnWednesday";
             this.btnWednesday.Size = new System.Drawing.Size(105, 50);
             this.btnWednesday.TabIndex = 8;
             this.btnWednesday.Text = "Wednesday";
-            this.btnWednesday.UseVisualStyleBackColor = true;
+            this.btnWednesday.UseVisualStyleBackColor = false;
             this.btnWednesday.Click += new System.EventHandler(this.btnWednesday_Click);
             // 
             // btnSaturday
             // 
+            this.btnSaturday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnSaturday.FlatAppearance.BorderSize = 0;
-            this.btnSaturday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaturday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSaturday.Location = new System.Drawing.Point(536, 40);
             this.btnSaturday.Name = "btnSaturday";
             this.btnSaturday.Size = new System.Drawing.Size(84, 50);
             this.btnSaturday.TabIndex = 10;
             this.btnSaturday.Text = "Saturday";
-            this.btnSaturday.UseVisualStyleBackColor = true;
+            this.btnSaturday.UseVisualStyleBackColor = false;
             this.btnSaturday.Click += new System.EventHandler(this.btnSaturday_Click);
             // 
             // btnSunday
             // 
+            this.btnSunday.BackColor = System.Drawing.Color.DarkCyan;
             this.btnSunday.FlatAppearance.BorderSize = 0;
-            this.btnSunday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSunday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSunday.Location = new System.Drawing.Point(626, 40);
             this.btnSunday.Name = "btnSunday";
             this.btnSunday.Size = new System.Drawing.Size(77, 50);
             this.btnSunday.TabIndex = 11;
             this.btnSunday.Text = "Sunday";
-            this.btnSunday.UseVisualStyleBackColor = true;
+            this.btnSunday.UseVisualStyleBackColor = false;
             this.btnSunday.Click += new System.EventHandler(this.btnSunday_Click);
             // 
             // lstView
             // 
             this.lstView.HideSelection = false;
-            this.lstView.Location = new System.Drawing.Point(92, 110);
+            this.lstView.Location = new System.Drawing.Point(69, 110);
             this.lstView.Name = "lstView";
-            this.lstView.Size = new System.Drawing.Size(586, 199);
+            this.lstView.Size = new System.Drawing.Size(634, 199);
             this.lstView.TabIndex = 52;
             this.lstView.UseCompatibleStateImageBehavior = false;
             // 
@@ -155,11 +163,11 @@
 
         private System.Windows.Forms.Button btnFriday;
         private System.Windows.Forms.Button btnMonday;
-        private System.Windows.Forms.Button btnTuesday;
         private System.Windows.Forms.Button btnThursday;
         private System.Windows.Forms.Button btnWednesday;
         private System.Windows.Forms.Button btnSaturday;
         private System.Windows.Forms.Button btnSunday;
         private System.Windows.Forms.ListView lstView;
+        private System.Windows.Forms.Button btnTuesday;
     }
 }

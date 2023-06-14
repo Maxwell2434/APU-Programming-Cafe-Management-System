@@ -42,6 +42,7 @@
             this.cmbBoxEndHour = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbBoxFee = new System.Windows.Forms.ComboBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBack
@@ -221,11 +222,23 @@
             this.cmbBoxFee.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxFee.TabIndex = 37;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(28, 21);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(256, 25);
+            this.lblTitle.TabIndex = 52;
+            this.lblTitle.Text = "Update Coaching Class Info";
+            // 
             // TrainerClassesUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbBoxFee);
             this.Controls.Add(this.label5);
@@ -264,5 +277,6 @@
         private System.Windows.Forms.ComboBox cmbBoxEndHour;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbBoxFee;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

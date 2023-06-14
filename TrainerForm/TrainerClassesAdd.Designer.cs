@@ -42,6 +42,7 @@
             this.cmbBoxLevel = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbBoxModule = new System.Windows.Forms.ComboBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBack
@@ -221,11 +222,23 @@
             this.cmbBoxModule.Size = new System.Drawing.Size(121, 24);
             this.cmbBoxModule.TabIndex = 39;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(37, 29);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(192, 25);
+            this.lblTitle.TabIndex = 51;
+            this.lblTitle.Text = "Add Coaching Class";
+            // 
             // TrainerClassesAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbBoxFee);
             this.Controls.Add(this.label5);
@@ -263,5 +276,6 @@
         private System.Windows.Forms.ComboBox cmbBoxLevel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbBoxModule;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
