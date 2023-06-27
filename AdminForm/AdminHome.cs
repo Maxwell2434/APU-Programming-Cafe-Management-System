@@ -28,7 +28,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
         {
             Column columnToSearch = Programming_Café_DB.administratorTable.Id;
             Column columnToReturn = Programming_Café_DB.administratorTable.Name;
-            administrator.Name = Programming_Café_DB.administratorTable.Get_ColumnValue_From_Row(columnToSearch, administrator.Id, columnToReturn);
+            administrator.Name = Programming_Café_DB.administratorTable.GetColumnValueFromRow(columnToSearch, administrator.Id, columnToReturn);
             lblWelcome.Text = "Welcome, " + administrator.Name;
         }
     }

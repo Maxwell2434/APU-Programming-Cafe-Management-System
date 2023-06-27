@@ -38,7 +38,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
 
             //Only get the Requests from RequestTable by the current student
             columnToSearch = RequestTable.StudentId;
-            List<Row> requestRowsByStudentId = RequestTable.Search_Row_For_Value(columnToSearch, student.Id);
+            List<Row> requestRowsByStudentId = RequestTable.SearchRowForValue(columnToSearch, student.Id);
 
 
 
@@ -55,12 +55,12 @@ namespace APU_Programming_Café_Management_System.StudentForm
                 //Get Student Name
                 columnToSearch = Programming_Café_DB.studentTable.Id;
                 columnToReturn = Programming_Café_DB.studentTable.Name;
-                string studentName = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, requestRowsByStudentId[i].values[RequestTable.StudentId], columnToReturn);
+                string studentName = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, requestRowsByStudentId[i].values[RequestTable.StudentId], columnToReturn);
 
                 //Get Module Name
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, requestRowsByStudentId[i].values[RequestTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, requestRowsByStudentId[i].values[RequestTable.ModuleId], columnToReturn);
 
                 //Get Level
                 string Level = requestRowsByStudentId[i].values[RequestTable.Level];
@@ -111,7 +111,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
                 {
                     
                     Row rowToBeDeleted = Programming_Café_DB.requestTable.Rows[itemIndexes[i]];
-                    Programming_Café_DB.requestTable.Del_Row(rowToBeDeleted);
+                    Programming_Café_DB.requestTable.DelRow(rowToBeDeleted);
                 }
               
                 Load_List_View();

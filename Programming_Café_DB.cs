@@ -1,11 +1,8 @@
 ﻿using APU_Programming_Café_Management_System.Tables;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace APU_Programming_Café_Management_System
@@ -15,120 +12,61 @@ namespace APU_Programming_Café_Management_System
         //Fields
         public static string connectionString;
         private DataSet _dataset;
-        SqlConnection connection;
-        private static Administrator_Table _administratorTable;
-        private static Trainer_Table _trainerTable;
-        private static Student_Table _studentTable;
-        private static User_Table _userTable;
-        private static Class_Table _classTable;
-        private static Module_Table _moduleTable;
-        private static Feedback_Table _feedbackTable;
-        private static StudentModule_Table _studentModule_Table;
-        private static Lecturer_Table _lecturer_Table;
-        private static Request_Table _request_Table;
-       
-        //Constructor
-        public Programming_Café_DB()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["APU_Programming_Café_Management_System_DB"].ConnectionString;
-            _dataset = dataSet;
-            _studentTable = new Student_Table(dataSet.Tables["Students"]);
-            userTable = new User_Table(_dataset.Tables["Users"]);
-            _administratorTable = new Administrator_Table(_dataset.Tables["Administrators"]);
-            _trainerTable = new Trainer_Table(_dataset.Tables["Trainers"]);
-            _classTable = new Class_Table(_dataset.Tables["Classes"]);
-            _moduleTable = new Module_Table(_dataset.Tables["Modules"]);
-            _feedbackTable = new Feedback_Table(_dataset.Tables["Feedbacks"]);
-            _studentModule_Table = new StudentModule_Table(_dataset.Tables["StudentModules"]);
-            _lecturer_Table = new Lecturer_Table(_dataset.Tables["Lecturers"]);
-            _request_Table = new Request_Table(_dataset.Tables["Requests"]);
-        }
+        private SqlConnection connection;
 
-        //Property
+        public static Student_Table studentTable;
+        public static User_Table userTable;
+        public static Administrator_Table administratorTable;
+        public static Trainer_Table trainerTable;
+        public static Class_Table classTable;
+        public static Module_Table moduleTable;
+        public static Feedback_Table feedbackTable;
+        public static StudentModule_Table studentModuleTable;
+        public static Lecturer_Table lecturerTable;
+        public static Request_Table requestTable;
+
+
+        //Properties
         public DataSet dataSet
         {
             get
             {
-                List<string> tableNames = Get_Table_List();
+                List<string> tableNames = GetTableList();
                 DataSet ds = new DataSet();
                 int i = 0;
                 foreach (string tableName in tableNames)
                 {
-                    ds.Tables.Add(Get_DataTable_From_Table(tableName));
+                    ds.Tables.Add(GetDataTableFromTable(tableName));
                     ds.Tables[i].TableName = tableName;
                     i++;
                 }
-                
+
 
                 return ds;
             }
         }
 
-
-        public static Student_Table studentTable
+        //Constructor
+        public Programming_Café_DB()
         {
-            get { return _studentTable; }
-            set { _studentTable = value; }
-        }
-
-        public static User_Table userTable
-        {
-            get { return _userTable; }
-            set { _userTable = value; }
-        }
-
-        public static Administrator_Table administratorTable
-        {
-            get { return _administratorTable; }
-            set { _administratorTable = value; }
-        }
-
-        public static Trainer_Table trainerTable
-        {
-            get { return _trainerTable; }
-            set { _trainerTable = value; }
-        }
-
-        public static Class_Table classTable
-        {
-            get { return _classTable; }
-            set { _classTable = value; }
-        }
-
-        public static Module_Table moduleTable
-        {
-            get { return _moduleTable; }
-            set { _moduleTable = value; }
-        }
-
-        public static Feedback_Table feedbackTable
-        {
-            get { return _feedbackTable; }
-            set { _feedbackTable = value; }
-        }
-
-        public static StudentModule_Table studentModuleTable
-        {
-            get { return _studentModule_Table; }
-            set { _studentModule_Table = value; }
-        }
-
-        public static Lecturer_Table lecturerTable
-        {
-            get { return _lecturer_Table; }
-            set { _lecturer_Table = value; }
-        }
-
-        public static Request_Table requestTable
-        {
-            get { return _request_Table; }
-            set { _request_Table = value; }
+            connectionString = ConfigurationManager.ConnectionStrings["APU_Programming_Café_Management_System_DB"].ConnectionString;
+            _dataset = dataSet;
+            studentTable = new Student_Table(_dataset.Tables["Students"]);
+            userTable = new User_Table(_dataset.Tables["Users"]);
+            administratorTable = new Administrator_Table(_dataset.Tables["Administrators"]);
+            trainerTable = new Trainer_Table(_dataset.Tables["Trainers"]);
+            classTable = new Class_Table(_dataset.Tables["Classes"]);
+            moduleTable = new Module_Table(_dataset.Tables["Modules"]);
+            feedbackTable = new Feedback_Table(_dataset.Tables["Feedbacks"]);
+            studentModuleTable = new StudentModule_Table(_dataset.Tables["StudentModules"]);
+            lecturerTable = new Lecturer_Table(_dataset.Tables["Lecturers"]);
+            requestTable = new Request_Table(_dataset.Tables["Requests"]);
         }
 
         //Methods
 
         //returns a list of strings that contains all the table names inside the database
-        public List<string> Get_Table_List()
+        public List<string> GetTableList()
         {
             using (connection = new SqlConnection(connectionString))
             {
@@ -143,8 +81,8 @@ namespace APU_Programming_Café_Management_System
             }
         }
 
-        //a that takes a parameter of a tablename and then returns a DataTable from the database
-        public static DataTable Get_DataTable_From_Table(string table)
+        //takes a parameter of a tablename and then returns the corresponding DataTable from the database
+        public static DataTable GetDataTableFromTable(string table)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlDataAdapter da = new SqlDataAdapter("select * from " + table, connection))
@@ -158,9 +96,10 @@ namespace APU_Programming_Café_Management_System
 
         }
 
-        public static void Update_Table_Database(string tableName, Row rowToBeUpdated, Dictionary<Column, string> values)
+        //Update Table in the database
+        public static void UpdateTableDatabase(string tableName, Row rowToBeUpdated, Dictionary<Column, string> values)
         {
-            
+
             string commandString = "UPDATE " + tableName + " SET ";
             Column key = null;
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -223,11 +162,11 @@ namespace APU_Programming_Café_Management_System
             }
 
         }
-
-        public static void Insert_Row_Database(Table table, Row rowToBeInserted, List<Column> uniqueColumns)
+        //Insert a row in the specified table in the database
+        public static void InsertRowDatabase(Table table, Row rowToBeInserted, List<Column> uniqueColumns)
         {
             // Check if the row already exists
-            bool rowExists = Check_Row_Exists(table, rowToBeInserted, uniqueColumns);
+            bool rowExists = CheckRowExists(table, rowToBeInserted, uniqueColumns);
             if (rowExists == false)
             {
                 string commandString = "INSERT INTO " + table.TableName + " (";
@@ -268,14 +207,14 @@ namespace APU_Programming_Café_Management_System
                 System.Windows.Forms.MessageBox.Show("Row already exists.");
             }
         }
-
-        public static void Delete_Row_Database(Table table, Row rowToBeDeleted)
+        //Delete row in the specified table
+        public static void DeleteRowDatabase(Table table, Row rowToBeDeleted)
         {
             bool primaryKey = false;
-            foreach(Column column in table.Columns)
+            foreach (Column column in table.Columns)
             {
                 //If there is primary key in the columns
-                if(column.IsPKey)
+                if (column.IsPKey)
                 {
                     Column primaryKeyColumn = column;
                     string primaryKeyColumnName = column.Name;
@@ -291,11 +230,11 @@ namespace APU_Programming_Café_Management_System
                         connection.Open();
                         cmd.ExecuteNonQuery();
                     }
-                    primaryKey= true;
+                    primaryKey = true;
                     break;
-                }  
+                }
             }
-            if(primaryKey == false)
+            if (primaryKey == false)
             {
                 string commandString = "DELETE FROM " + table.TableName + " WHERE ";
                 List<SqlParameter> parameters = new List<SqlParameter>();
@@ -303,11 +242,11 @@ namespace APU_Programming_Café_Management_System
                 foreach (KeyValuePair<Column, string> kvp in rowToBeDeleted.values)
                 {
 
-                        commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
+                    commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
 
-                        // Add parameter for the value
-                        SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
-                        parameters.Add(parameter);
+                    // Add parameter for the value
+                    SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
+                    parameters.Add(parameter);
 
                 }
                 if (parameters.Count > 0)
@@ -329,12 +268,12 @@ namespace APU_Programming_Café_Management_System
                     MessageBox.Show("Delete failed");
                 }
             }
-            
+
 
 
         }
-
-        public static bool Check_Row_Exists(Table table, Row row, List<Column> uniqueColumns)
+        //check if a row exists in the database table
+        public static bool CheckRowExists(Table table, Row row, List<Column> uniqueColumns)
         {
             string commandString = "SELECT COUNT(*) FROM " + table.TableName + " WHERE ";
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -343,15 +282,15 @@ namespace APU_Programming_Café_Management_System
             {
                 if (kvp.Key.Name == "Username" || kvp.Key.Name == "UserId")
                 {
-                    if (Get_DataRows_From_DataTable(Get_DataTable_From_Table(table.TableName), kvp.Key.Name, kvp.Value).Length > 0)
+                    if (Get_DataRows_From_DataTable(GetDataTableFromTable(table.TableName), kvp.Key.Name, kvp.Value).Length > 0)
 
                     //if (table.Search_Row_For_Value(kvp.Key, kvp.Value).Count > 0)
                     {
                         return true;
                     }
                 }
-                
-                if(uniqueColumns.Contains(kvp.Key))
+
+                if (uniqueColumns.Contains(kvp.Key))
                 {
                     commandString += kvp.Key.Name + " = @" + kvp.Key.Name + " AND ";
 
@@ -359,9 +298,9 @@ namespace APU_Programming_Café_Management_System
                     SqlParameter parameter = new SqlParameter("@" + kvp.Key.Name, kvp.Value);
                     parameters.Add(parameter);
                 }
-                
+
             }
-            if(parameters.Count > 0)
+            if (parameters.Count > 0)
             {
                 // Remove trailing "AND"
                 commandString = commandString.Remove(commandString.Length - 5);
@@ -377,10 +316,9 @@ namespace APU_Programming_Café_Management_System
                 }
             }
             return false;
-           
+
         }
         
-
         public static DataRow[] Get_DataRows_From_DataTable(DataTable dt, string columnName, string value)
         {
             DataRow[] filteredRows = dt.Select(columnName + " = '" + value + "'");

@@ -35,14 +35,14 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
             Feedback_Table feedbackTable = Programming_Café_DB.feedbackTable;
             Column columnToSearch = feedbackTable.AdministratorId;
-            List<Row> feedbackRowsByAdministratorId = feedbackTable.Search_Row_For_Value(columnToSearch, administrator.Id);
+            List<Row> feedbackRowsByAdministratorId = feedbackTable.SearchRowForValue(columnToSearch, administrator.Id);
 
 
             //Delete the feedback based on the item indexes of the ListView
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
             {
-                Programming_Café_DB.feedbackTable.Del_Row(feedbackRowsByAdministratorId[itemIndexes[i]]);
+                Programming_Café_DB.feedbackTable.DelRow(feedbackRowsByAdministratorId[itemIndexes[i]]);
             }
 
             Load_ListView();
@@ -63,7 +63,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
             Column columnToSearch = feedbackTable.AdministratorId;
 
-            List<Row> rows = feedbackTable.Search_Row_For_Value(columnToSearch, administrator.Id);
+            List<Row> rows = feedbackTable.SearchRowForValue(columnToSearch, administrator.Id);
 
             List<Column> newColumns = new List<Column>
             {
@@ -77,7 +77,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             List<Row> newRows = new List<Row>();
             for (int i = 0; i < rows.Count; i++)
             {
-                string TrainerName = trainerTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[feedbackTable.TrainerId], columnToReturn);
+                string TrainerName = trainerTable.GetColumnValueFromRow(columnToSearch, rows[i].values[feedbackTable.TrainerId], columnToReturn);
                 string Feedback = rows[i].values[feedbackTable.Feedback];
                 List<string> arr_values = new List<string>
                 {

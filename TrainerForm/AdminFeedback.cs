@@ -35,7 +35,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             Column columnToSearch = feedbackTable.TrainerId;
 
             string trainerId = trainer.Id;
-            List<Row> rows = feedbackTable.Search_Row_For_Value(columnToSearch, trainerId);
+            List<Row> rows = feedbackTable.SearchRowForValue(columnToSearch, trainerId);
 
             List<Column> newColumns = new List<Column>
             {
@@ -49,7 +49,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             List<Row> newRows = new List<Row>();
             for (int i = 0; i < rows.Count; i++)
             {
-                string AdministratorName = administrator.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[feedbackTable.AdministratorId], columnToReturn);
+                string AdministratorName = administrator.GetColumnValueFromRow(columnToSearch, rows[i].values[feedbackTable.AdministratorId], columnToReturn);
                 string Feedback = rows[i].values[feedbackTable.Feedback];
                 List<string> arr_values = new List<string>
                 {
@@ -90,14 +90,14 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
             Feedback_Table feedbackTable = Programming_Café_DB.feedbackTable;
             Column columnToSearch = feedbackTable.TrainerId;
-            List<Row> feedbackRowsByTrainerId = feedbackTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> feedbackRowsByTrainerId = feedbackTable.SearchRowForValue(columnToSearch, trainer.Id);
 
 
             //Delete the feedback based on the item indexes of the ListView
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
             {
-                Programming_Café_DB.feedbackTable.Del_Row(feedbackRowsByTrainerId[itemIndexes[i]]);
+                Programming_Café_DB.feedbackTable.DelRow(feedbackRowsByTrainerId[itemIndexes[i]]);
             }
 
             Load_ListView();

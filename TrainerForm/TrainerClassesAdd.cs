@@ -44,7 +44,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             Column columnToSearch = Programming_Café_DB.moduleTable.Name;
             string moduleName = cmbBoxModule.Text;
             Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+            string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
 
             //Get all values first
             List<string> values = new List<string>
@@ -90,7 +90,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                     {
                         Class_Table classTable = Programming_Café_DB.classTable;
                         List<Column> uniqueColumns = classTable.Columns;
-                        Programming_Café_DB.classTable.Insert_Row(values, uniqueColumns);
+                        Programming_Café_DB.classTable.InsertRow(values, uniqueColumns);
                         trainerClasses.Load_Classes_ListView();
                         this.Dispose();
                     }

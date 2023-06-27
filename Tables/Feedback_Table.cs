@@ -39,12 +39,12 @@ namespace APU_Programming_Café_Management_System.Tables
         public Feedback_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("TrainerId"));
-            Add_Collumn(new Column("AdministratorId"));
-            Add_Collumn(new Column("Feedback"));
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("TrainerId"));
+            AddColumn(new Column("AdministratorId"));
+            AddColumn(new Column("Feedback"));
 
-            Add_Rows(dt);
+            AddRows(dt);
         }
     }
 }

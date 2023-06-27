@@ -27,10 +27,10 @@ namespace APU_Programming_Café_Management_System.Tables
         public Module_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("Name"));
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("Name"));
 
-            Add_Rows(dt);
+            AddRows(dt);
 
 
         }

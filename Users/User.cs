@@ -13,29 +13,14 @@ namespace APU_Programming_Café_Management_System
 {
     public class User
     {
+        //Fields
         private string _id;
         private string _username; 
         private string _password;
         private Role _role;
         private bool _login;
 
-        public User(string Username, string Password) 
-        {
-            _username = Username;
-            _password = Password;
-            _role = new Role();
-            _login = login_Attempt();
-        }
-
-        public User (User user)
-        {
-            _id = user.Id;
-            _username = user.Username;
-            _password = user.Password;
-            _role = new Role();
-            _login = login_Attempt();
-        }
-
+        //Properties
         public string Id
         {
             get { return _id; }
@@ -62,11 +47,29 @@ namespace APU_Programming_Café_Management_System
             get { return _login; }
             set { _login = value; }
         }
-   
 
+        //Constructor
+        public User(string Username, string Password)
+        {
+            _username = Username;
+            _password = Password;
+            _role = new Role();
+            _login = login_Attempt();
+        }
+
+        public User(User user)
+        {
+            _id = user.Id;
+            _username = user.Username;
+            _password = user.Password;
+            _role = new Role();
+            _login = login_Attempt();
+        }
+
+        //Methods
         public bool login_Attempt()
         {
-            List<Row> rows = Programming_Café_DB.userTable.Search_Row_For_Username_Value(_username);
+            List<Row> rows = Programming_Café_DB.userTable.SearchRowForUsernameValue(_username);
             if (rows.Count == 1)
             {
                 if (rows[0].values[Programming_Café_DB.userTable.Password] == _password)
@@ -90,26 +93,26 @@ namespace APU_Programming_Café_Management_System
         {
             
 
-            if (Programming_Café_DB.administratorTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            if (Programming_Café_DB.administratorTable.SearchRowForValue("UserId", _id).Count == 1)
             {
                 _role.isAdministrator = true;
             }
-            else if (Programming_Café_DB.trainerTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            else if (Programming_Café_DB.trainerTable.SearchRowForValue("UserId", _id).Count == 1)
             {
                 _role.isTrainer= true;
             }
-            else if (Programming_Café_DB.lecturerTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            else if (Programming_Café_DB.lecturerTable.SearchRowForValue("UserId", _id).Count == 1)
             {
                 _role.isLecturer = true;
             }
-            else if (Programming_Café_DB.studentTable.Search_Row_For_Value("UserId", _id).Count == 1)
+            else if (Programming_Café_DB.studentTable.SearchRowForValue("UserId", _id).Count == 1)
             {
                 _role.isStudent = true;
             }
 
         }
 
-        public void Update(Column collumnAffected, string value)
+        public void Update(Column columnAffected, string value)
         {
             Row rowToBeChanged = Programming_Café_DB.userTable.Rows.Find(row => row.values[Programming_Café_DB.userTable.Id] == _id);
             for (int i = 0; i < Programming_Café_DB.userTable.Rows.Count; i++)
@@ -118,7 +121,7 @@ namespace APU_Programming_Café_Management_System
                 {
                     // Update the dictionary using the property's setter
                     Dictionary<Column, string> updatedValues = Programming_Café_DB.userTable.Rows[i].values;
-                    updatedValues[collumnAffected] = value;
+                    updatedValues[columnAffected] = value;
                     Programming_Café_DB.userTable.Rows[i].values = updatedValues;
                 }
             }

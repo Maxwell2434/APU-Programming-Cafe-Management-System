@@ -27,7 +27,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             Column columnToSearch = Programming_Café_DB.administratorTable.Name;
             string adminName = cmbBoxAdmin.SelectedItem.ToString();
             Column columnToReturn = Programming_Café_DB.administratorTable.Id;
-            string adminId = Programming_Café_DB.administratorTable.Get_ColumnValue_From_Row(columnToSearch, adminName, columnToReturn);
+            string adminId = Programming_Café_DB.administratorTable.GetColumnValueFromRow(columnToSearch, adminName, columnToReturn);
 
             List<string> values = new List<string>
             {
@@ -44,7 +44,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                 rchTxtBoxFeedback.Text,
             };
 
-            Programming_Café_DB.feedbackTable.Insert_Row(values, Programming_Café_DB.feedbackTable.Columns);
+            Programming_Café_DB.feedbackTable.InsertRow(values, Programming_Café_DB.feedbackTable.Columns);
             adminFeedback.Load_ListView();
             this.Dispose();
         }

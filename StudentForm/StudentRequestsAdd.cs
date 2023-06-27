@@ -35,7 +35,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
         {
             Column columnToSearch = Programming_Café_DB.moduleTable.Name;
             Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn);
+            string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, cmbBoxModule.Text, columnToReturn);
             List<string> requestValues = new List<string>
             {
                 //first value is empty because its a primary key
@@ -54,7 +54,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
             {
                 bool ModulesAndLevelExists = false;
                 columnToSearch = Programming_Café_DB.studentModuleTable.StudentId;
-                List<Row> rows = Programming_Café_DB.studentModuleTable.Search_Row_For_Value(columnToSearch, student.Id);
+                List<Row> rows = Programming_Café_DB.studentModuleTable.SearchRowForValue(columnToSearch, student.Id);
                 foreach(Row row in rows)
                 {
                     if (row.values[Programming_Café_DB.studentModuleTable.ModuleId] == moduleId && row.values[Programming_Café_DB.studentModuleTable.Level] == cmbBoxLevel.Text)
@@ -71,7 +71,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
                         Programming_Café_DB.requestTable.ModuleId,
                         Programming_Café_DB.requestTable.Level
                     };
-                    Programming_Café_DB.requestTable.Insert_Row(requestValues, uniqueColumns);
+                    Programming_Café_DB.requestTable.InsertRow(requestValues, uniqueColumns);
                     studentRequests.Load_List_View();
                     this.Dispose();
                 }

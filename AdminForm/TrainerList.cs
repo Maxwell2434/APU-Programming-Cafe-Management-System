@@ -73,36 +73,36 @@ namespace APU_Programming_Café_Management_System
 
 
                 //Delete the dependencies of the trainer on the classes table
-                List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainerId);
+                List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.SearchRowForValue(columnToSearch, trainerId);
                 foreach (Row row in classRowsByTrainerId)
                 {
-                    Programming_Café_DB.classTable.Del_Row(row);
+                    Programming_Café_DB.classTable.DelRow(row);
                 }
 
                 //Delete the trainer from the Feedback table
                 columnToSearch = Programming_Café_DB.feedbackTable.TrainerId;
-                List<Row> feedbackRowsByTrainerId = Programming_Café_DB.feedbackTable.Search_Row_For_Value(columnToSearch, trainerId);
+                List<Row> feedbackRowsByTrainerId = Programming_Café_DB.feedbackTable.SearchRowForValue(columnToSearch, trainerId);
                 foreach (Row row in feedbackRowsByTrainerId)
                 {
-                    Programming_Café_DB.feedbackTable.Del_Row(row);
+                    Programming_Café_DB.feedbackTable.DelRow(row);
                 }
 
                 //Get userId from the associated trainer from trainerTable
                 columnToSearch = Programming_Café_DB.trainerTable.Id;
                 Column columnToReturn = Programming_Café_DB.trainerTable.UserId;
-                string userId = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerId, columnToReturn);
+                string userId = Programming_Café_DB.trainerTable.GetColumnValueFromRow(columnToSearch, trainerId, columnToReturn);
 
                 //Delete the trainer from the trainerTable and Database
                 columnToSearch = Programming_Café_DB.trainerTable.Id;
-                List<Row> rows = Programming_Café_DB.trainerTable.Search_Row_For_Value(columnToSearch, trainerId);
-                Programming_Café_DB.trainerTable.Del_Row(rows[0]);
+                List<Row> rows = Programming_Café_DB.trainerTable.SearchRowForValue(columnToSearch, trainerId);
+                Programming_Café_DB.trainerTable.DelRow(rows[0]);
 
                 //Delete the trainer from the User table using the userId
                 columnToSearch = Programming_Café_DB.userTable.Id;
-                List<Row> userRowsByUserId = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, userId);
+                List<Row> userRowsByUserId = Programming_Café_DB.userTable.SearchRowForValue(columnToSearch, userId);
                 foreach (Row row in userRowsByUserId)
                 {
-                    Programming_Café_DB.userTable.Del_Row(row);
+                    Programming_Café_DB.userTable.DelRow(row);
                 }
 
 
@@ -120,7 +120,7 @@ namespace APU_Programming_Café_Management_System
                 string trainerName = lstViewTrainer.CheckedItems[0].SubItems[0].Text;
                 Column columnToSearch = Programming_Café_DB.trainerTable.Name;
                 Column columnToReturn = Programming_Café_DB.trainerTable.Id;
-                string trainerId = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerName, columnToReturn);
+                string trainerId = Programming_Café_DB.trainerTable.GetColumnValueFromRow(columnToSearch, trainerName, columnToReturn);
                 TrainerEdit trainerEdit = new TrainerEdit(trainerId);
                 AdminUI.Initialize_UserControl(trainerEdit, Controls);
                 trainerEdit.BringToFront();

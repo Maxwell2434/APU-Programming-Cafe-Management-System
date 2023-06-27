@@ -49,15 +49,15 @@ namespace APU_Programming_Café_Management_System.Tables
         public StudentModule_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("StudentId"));
-            Add_Collumn(new Column("ModuleId"));
-            Add_Collumn(new Column("Level"));
-            Add_Collumn(new Column("ClassId"));
-            Add_Collumn(new Column("PaymentStatus"));
-            Add_Collumn(new Column("EnrollmentMonth"));
+            AddColumn(new Column("StudentId"));
+            AddColumn(new Column("ModuleId"));
+            AddColumn(new Column("Level"));
+            AddColumn(new Column("ClassId"));
+            AddColumn(new Column("PaymentStatus"));
+            AddColumn(new Column("EnrollmentMonth"));
 
 
-            Add_Rows(dt);
+            AddRows(dt);
 
         }
     }

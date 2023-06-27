@@ -55,7 +55,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                     Column columnToSearch = Programming_Café_DB.moduleTable.Name;
                     string moduleName = cmbBoxModule.Text;
                     Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-                    string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+                    string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
 
                     Dictionary<Column, string> newValues = new Dictionary<Column, string>
                     {
@@ -69,8 +69,8 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                         { classTable.Fee, cmbBoxFee.Text },
                         { classTable.Duration, selectedRow.values[classTable.Duration] }
                     };
-                    Programming_Café_DB.Update_Table_Database(tableName, selectedRow, newValues);
-                    Programming_Café_DB.classTable.Refresh_Table_Values();
+                    Programming_Café_DB.UpdateTableDatabase(tableName, selectedRow, newValues);
+                    Programming_Café_DB.classTable.RefreshTableValues();
                     trainerClasses.Load_Classes_ListView();
                     this.Dispose();
                 }
@@ -85,7 +85,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             string moduleId = selectedRow.values[Programming_Café_DB.classTable.ModuleId];
             Column columnToSearch = Programming_Café_DB.moduleTable.Id;
             Column columnToReturn = Programming_Café_DB.moduleTable.Name;
-            string moduleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleId, columnToReturn);
+            string moduleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleId, columnToReturn);
             cmbBoxModule.Text = moduleName;
 
             cmbBoxLevel.Text = selectedRow.values[Programming_Café_DB.classTable.Level];

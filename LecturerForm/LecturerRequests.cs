@@ -49,12 +49,12 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 //Get Student Name
                 columnToSearch = Programming_Café_DB.studentTable.Id;
                 columnToReturn = Programming_Café_DB.studentTable.Name;
-                string studentName = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[RequestTable.StudentId], columnToReturn);
+                string studentName = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, rows[i].values[RequestTable.StudentId], columnToReturn);
 
                 //Get Module Name
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[RequestTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, rows[i].values[RequestTable.ModuleId], columnToReturn);
 
                 //Get Level
                 string Level = rows[i].values[RequestTable.Level];
@@ -114,9 +114,9 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                         Programming_Café_DB.studentModuleTable.ModuleId,
                         Programming_Café_DB.studentModuleTable.Level
                     };
-                Programming_Café_DB.studentModuleTable.Insert_Row(studentModuleValues, uniqueColumns);
+                Programming_Café_DB.studentModuleTable.InsertRow(studentModuleValues, uniqueColumns);
                 Row rowToBeDeleted = Programming_Café_DB.requestTable.Rows[itemIndexes[0]];
-                Programming_Café_DB.requestTable.Del_Row(rowToBeDeleted);
+                Programming_Café_DB.requestTable.DelRow(rowToBeDeleted);
                 Load_List_View();
             }
             else
@@ -140,7 +140,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             if (itemIndexes.Count == 1)
             {
                 Row rowToBeDeleted = Programming_Café_DB.requestTable.Rows[itemIndexes[0]];
-                Programming_Café_DB.requestTable.Del_Row(rowToBeDeleted);
+                Programming_Café_DB.requestTable.DelRow(rowToBeDeleted);
                 Load_List_View();
             }
             else

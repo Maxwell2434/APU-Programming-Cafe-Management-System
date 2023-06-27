@@ -48,7 +48,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
             Module_Table ModuleTable = Programming_Café_DB.moduleTable;
             Column columnToSearch = studentModule_Table.StudentId;
             Column columnToReturn;
-            List<Row> studentModuleRows = studentModule_Table.Search_Row_For_Value(columnToSearch, student.Id);
+            List<Row> studentModuleRows = studentModule_Table.SearchRowForValue(columnToSearch, student.Id);
             List<Row> SortedByModules = new List<Row>();
             if (cmbBoxModule.Text != "All")
             {
@@ -57,7 +57,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
                 columnToReturn = ModuleTable.Id;
                 foreach (Row row in studentModuleRows)
                 {
-                    if (row.values[studentModule_Table.ModuleId] == ModuleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn))
+                    if (row.values[studentModule_Table.ModuleId] == ModuleTable.GetColumnValueFromRow(columnToSearch, cmbBoxModule.Text, columnToReturn))
                     {
                         SortedByModules.Add(row);
                     }
@@ -105,7 +105,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
                 string ModuleId = row.values[studentModule_Table.ModuleId];
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, ModuleId, columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, ModuleId, columnToReturn);
 
                 //Get Level from the current row on the studentModule_Table
                 string Level = row.values[studentModule_Table.Level];
@@ -114,10 +114,10 @@ namespace APU_Programming_Café_Management_System.StudentForm
                 string classId = row.values[studentModule_Table.ClassId];
                 columnToSearch = Programming_Café_DB.classTable.Id;
                 columnToReturn = Programming_Café_DB.classTable.Fee;
-                string fee = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+                string fee = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
                 columnToSearch = studentModuleTable.ClassId;
-                List<Row> studentModuleRowsByClassId = studentModuleTable.Search_Row_For_Value(columnToSearch, classId);
+                List<Row> studentModuleRowsByClassId = studentModuleTable.SearchRowForValue(columnToSearch, classId);
                 string PaymentStatus = "";
                 string EnrollmentDate = "";
                 foreach (Row studentModuleRow in studentModuleRowsByClassId)
@@ -191,9 +191,9 @@ namespace APU_Programming_Café_Management_System.StudentForm
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
             {
-                Programming_Café_DB.studentModuleTable.Del_Row(listRows[itemIndexes[i]]);
+                Programming_Café_DB.studentModuleTable.DelRow(listRows[itemIndexes[i]]);
                 listRows[itemIndexes[i]].values[Programming_Café_DB.studentModuleTable.PaymentStatus] = "Paid";
-                Programming_Café_DB.studentModuleTable.Insert_Row(listRows[itemIndexes[i]]);
+                Programming_Café_DB.studentModuleTable.InsertRow(listRows[itemIndexes[i]]);
             }
             Load_List_View();
         }

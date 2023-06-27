@@ -29,13 +29,13 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
         public void Load_Classes_ListView()
         {
-            lstViewTrainer.Items.Clear();
+            lstViewClasses.Items.Clear();
             //Get all columns & rows from matching trainerId from classTable
             Class_Table ClassTable = Programming_Café_DB.classTable;
             List<Column> columns = ClassTable.Columns;
             Column columnToSearch = ClassTable.TrainerId;
 
-            List<Row> rows = ClassTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> rows = ClassTable.SearchRowForValue(columnToSearch, trainer.Id);
 
             List<Column> newColumns = new List<Column>
             {
@@ -53,7 +53,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             List<Row> newRows = new List<Row>();
             for (int i = 0; i < rows.Count; i++)
             {
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[ClassTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, rows[i].values[ClassTable.ModuleId], columnToReturn);
                 string ScheduleDay = rows[i].values[ClassTable.ScheduleDay];
                 string StartHour = rows[i].values[ClassTable.StartHour];
                 string EndHour = rows[i].values[ClassTable.EndHour];
@@ -83,7 +83,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                 "Fee"
             };
 
-            AdminUI.SetupListView(lstViewTrainer, newColumns, newRows, columnsToInclude);
+            AdminUI.SetupListView(lstViewClasses, newColumns, newRows, columnsToInclude);
 
 
         }
@@ -94,7 +94,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             bool conflictingSchedule = false;
             Class_Table classTable = Programming_Café_DB.classTable;
             Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-            List<Row> classesRowsByTrainerId = classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> classesRowsByTrainerId = classTable.SearchRowForValue(columnToSearch, trainer.Id);
             foreach (Row row in classesRowsByTrainerId)
             {
                 if (row != selectedRow)
@@ -151,14 +151,14 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             bool ModuleAndLevelExists = false;
             Class_Table classTable = Programming_Café_DB.classTable;
             Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-            List<Row> classesRowsByTrainerId = classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> classesRowsByTrainerId = classTable.SearchRowForValue(columnToSearch, trainer.Id);
             string moduleId = "";
             //Check if trainer already has another class with the same module and level
             foreach (Row row in classesRowsByTrainerId)
             {
                 columnToSearch = Programming_Café_DB.moduleTable.Name;
                 Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-                moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+                moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
 
                 //if the selected row is not equal to the row in loop
                 if (selectedRow != row)
@@ -187,7 +187,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
         {
             //Record the indexes of the checked || selected items in the ListView
             List<int> itemIndexes = new List<int>();
-            foreach (ListViewItem item in lstViewTrainer.Items)
+            foreach (ListViewItem item in lstViewClasses.Items)
             {
                 if (item.Checked || item.Selected)
                 {
@@ -197,14 +197,14 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             }
             
             Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-            List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.SearchRowForValue(columnToSearch, trainer.Id);
 
             //Delete the class and its related dependencies based on the item indexes of the ListView
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
             {
 
-                Programming_Café_DB.classTable.Del_Row(classRowsByTrainerId[itemIndexes[i]]);
+                Programming_Café_DB.classTable.DelRow(classRowsByTrainerId[itemIndexes[i]]);
                 //Update ListView
                 Load_Classes_ListView();
             }
@@ -212,11 +212,11 @@ namespace APU_Programming_Café_Management_System.TrainerForm
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (lstViewTrainer.CheckedItems.Count == 1)
+            if (lstViewClasses.CheckedItems.Count == 1)
             {
                 Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-                List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainer.Id);
-                int index = lstViewTrainer.CheckedItems[0].Index;
+                List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.SearchRowForValue(columnToSearch, trainer.Id);
+                int index = lstViewClasses.CheckedItems[0].Index;
                 
 
                 TrainerClassesUpdate trainerClassesUpdate = new TrainerClassesUpdate(this, trainer, classRowsByTrainerId[index]);

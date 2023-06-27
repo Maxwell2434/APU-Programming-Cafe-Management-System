@@ -32,18 +32,18 @@ namespace APU_Programming_Café_Management_System
         public User_Table(DataTable dt) 
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("Username"));
-            Add_Collumn(new Column("Password")); 
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("Username"));
+            AddColumn(new Column("Password")); 
             
-            Add_Rows(dt);
+            AddRows(dt);
 
         }
 
 
-        public List<Row> Search_Row_For_Username_Value(string value)
+        public List<Row> SearchRowForUsernameValue(string value)
         {
-            return (Search_Row_For_Value(Username, value));
+            return (SearchRowForValue(Username, value));
         }
     }
 }

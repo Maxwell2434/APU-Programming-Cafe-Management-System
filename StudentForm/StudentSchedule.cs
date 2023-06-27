@@ -84,7 +84,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
             Column columnToSearch = Programming_Café_DB.studentModuleTable.StudentId;
             Column columnToReturn;
             List<Row> studentModuleRows = studentModule_Table.Rows;
-            List<Row> SortedByStudent = Programming_Café_DB.studentModuleTable.Search_Row_For_Value(columnToSearch, student.Id);
+            List<Row> SortedByStudent = Programming_Café_DB.studentModuleTable.SearchRowForValue(columnToSearch, student.Id);
             
 
             List<Column> newColumns = new List<Column>
@@ -107,27 +107,27 @@ namespace APU_Programming_Café_Management_System.StudentForm
                     //Get schedule day from the classTable
                     columnToSearch = Programming_Café_DB.classTable.Id;
                     columnToReturn = Programming_Café_DB.classTable.ScheduleDay;
-                    string scheduleDay = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+                    string scheduleDay = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
                     //Check if the schedule day is the same as the selected day
                     if(scheduleDay == day)
                     {
                         //Get StartHour and EndHour
                         columnToReturn = Programming_Café_DB.classTable.StartHour;
-                        string startHour = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+                        string startHour = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
                         columnToReturn = Programming_Café_DB.classTable.EndHour;
-                        string endHour = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+                        string endHour = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
 
                         //Get trainerId from the current class
                         columnToReturn = Programming_Café_DB.classTable.TrainerId;
-                        string trainerId = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+                        string trainerId = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
                         //Get trainerName from trainerId 
                         columnToSearch = Programming_Café_DB.trainerTable.Id;
                         columnToReturn = Programming_Café_DB.trainerTable.Name;
-                        string trainerName = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerId, columnToReturn);
+                        string trainerName = Programming_Café_DB.trainerTable.GetColumnValueFromRow(columnToSearch, trainerId, columnToReturn);
 
 
                         StudentModule_Table studentModuleTable = Programming_Café_DB.studentModuleTable;
@@ -136,7 +136,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
                         columnToSearch = Programming_Café_DB.moduleTable.Id;
                         columnToReturn = Programming_Café_DB.moduleTable.Name;
                         string ModuleId = row.values[studentModule_Table.ModuleId];
-                        string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, ModuleId, columnToReturn);
+                        string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, ModuleId, columnToReturn);
 
                         //Get Level from the current row on the studentModule_Table
                         string Level = row.values[studentModule_Table.Level];

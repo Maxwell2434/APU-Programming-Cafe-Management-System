@@ -9,12 +9,14 @@ namespace APU_Programming_Café_Management_System
 {
     public class Administrator : User
     {
+        //Fields
         private string _id;
         private string _name;
         private string _address;
         private string _phone;
         private string _email;
 
+        //Properties
         public new string Id
         {
             get { return _id; }
@@ -46,10 +48,11 @@ namespace APU_Programming_Café_Management_System
             set { base.Id = value; }
         }
 
+        //Constructor
         public Administrator(User user) : base(user)
         {
             Administrator_Table adminTable = Programming_Café_DB.administratorTable;
-            List<Row> rows = adminTable.Search_Row_For_Value(adminTable.UserId, user.Id);
+            List<Row> rows = adminTable.SearchRowForValue(adminTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[adminTable.Id];
@@ -62,6 +65,7 @@ namespace APU_Programming_Café_Management_System
 
         }
 
+        //Methods
         public void Update(Column collumnAffected, string value)
         {
             Row rowToBeChanged = Programming_Café_DB.administratorTable.Rows.Find(row => row.values[Programming_Café_DB.administratorTable.Id] == _id);

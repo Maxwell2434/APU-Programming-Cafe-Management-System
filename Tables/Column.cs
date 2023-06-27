@@ -13,7 +13,6 @@ namespace APU_Programming_Café_Management_System
         //FIELDS
         private string name;
         private bool isPKey;
-        private string[] _values;
 
         //PROPERTIES
         public string Name
@@ -28,11 +27,6 @@ namespace APU_Programming_Café_Management_System
             set { isPKey = value; }  
         }
 
-        public string[] values
-        {
-            get { return _values; }
-            set { _values = value; }
-        }
 
         //CONSTRUCTOR
         public Column(string name) 

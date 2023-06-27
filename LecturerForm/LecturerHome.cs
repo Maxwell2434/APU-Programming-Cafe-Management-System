@@ -28,7 +28,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
         {
             Column columnToSearch = Programming_Café_DB.lecturerTable.Id;
             Column columnToReturn = Programming_Café_DB.lecturerTable.Name;
-            lecturer.Name = Programming_Café_DB.lecturerTable.Get_ColumnValue_From_Row(columnToSearch, lecturer.Id, columnToReturn);
+            lecturer.Name = Programming_Café_DB.lecturerTable.GetColumnValueFromRow(columnToSearch, lecturer.Id, columnToReturn);
             lblWelcome.Text = "Welcome, " + lecturer.Name;
         }
 

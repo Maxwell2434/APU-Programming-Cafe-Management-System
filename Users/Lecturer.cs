@@ -49,7 +49,7 @@ namespace APU_Programming_Café_Management_System.Users
         public Lecturer(User user) : base(user)
         {
             Lecturer_Table lecturerTable = Programming_Café_DB.lecturerTable;
-            List<Row> rows = lecturerTable.Search_Row_For_Value(lecturerTable.UserId, user.Id);
+            List<Row> rows = lecturerTable.SearchRowForValue(lecturerTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[lecturerTable.Id];

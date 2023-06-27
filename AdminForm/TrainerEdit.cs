@@ -20,7 +20,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             InitializeComponent();
             this.trainerId = trainerId;
             Load_ListView();
-            string trainerName = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(Programming_Café_DB.trainerTable.Id, trainerId, Programming_Café_DB.trainerTable.Name);
+            string trainerName = Programming_Café_DB.trainerTable.GetColumnValueFromRow(Programming_Café_DB.trainerTable.Id, trainerId, Programming_Café_DB.trainerTable.Name);
             lblTitle.Text = "Modules Handled by " + trainerName;
             
         }
@@ -44,14 +44,14 @@ namespace APU_Programming_Café_Management_System.AdminForm
             }
 
             Column columnToSearch = Programming_Café_DB.classTable.TrainerId;
-            List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, trainerId);
+            List<Row> classRowsByTrainerId = Programming_Café_DB.classTable.SearchRowForValue(columnToSearch, trainerId);
 
             //Delete the class and its related dependencies based on the item indexes of the ListView
             //Deletes starting backwards to avoid troubles with indexing
             for (int i = itemIndexes.Count - 1; i >= 0; i--)
             {
 
-                Programming_Café_DB.classTable.Del_Row(classRowsByTrainerId[itemIndexes[i]]);
+                Programming_Café_DB.classTable.DelRow(classRowsByTrainerId[itemIndexes[i]]);
                 //Update ListView
                 Load_ListView();
             }
@@ -69,7 +69,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             List<Column> columns = ClassTable.Columns;
             Column columnToSearch = ClassTable.TrainerId;
 
-            List<Row> rows = ClassTable.Search_Row_For_Value(columnToSearch, trainerId);
+            List<Row> rows = ClassTable.SearchRowForValue(columnToSearch, trainerId);
 
             List<Column> newColumns = new List<Column>
             {
@@ -83,7 +83,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
             List<Row> newRows = new List<Row>();
             for (int i = 0; i< rows.Count; i++)
             {
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
                 string Level = rows[i].values[Programming_Café_DB.classTable.Level];
                 List<string> arr_values = new List<string>
                 {

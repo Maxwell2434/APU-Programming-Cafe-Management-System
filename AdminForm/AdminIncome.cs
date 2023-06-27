@@ -53,12 +53,12 @@ namespace APU_Programming_Café_Management_System.AdminForm
                 //Get Trainer Name
                 columnToSearch = Programming_Café_DB.trainerTable.Id;
                 columnToReturn = Programming_Café_DB.trainerTable.Name;
-                string trainerName = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[Programming_Café_DB.classTable.TrainerId], columnToReturn);
+                string trainerName = Programming_Café_DB.trainerTable.GetColumnValueFromRow(columnToSearch, rows[i].values[Programming_Café_DB.classTable.TrainerId], columnToReturn);
 
                 //Get Module Name
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, rows[i].values[Programming_Café_DB.classTable.ModuleId], columnToReturn);
                 
                 //Get Level
                 string Level = rows[i].values[Programming_Café_DB.classTable.Level];
@@ -68,7 +68,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
 
                 //Get number of students in the class
                 string classId = rows[i].values[Programming_Café_DB.classTable.Id];
-                List<Row> studentRowsByClassId = Programming_Café_DB.studentModuleTable.Search_Row_For_Value(Programming_Café_DB.studentModuleTable.ClassId, classId);
+                List<Row> studentRowsByClassId = Programming_Café_DB.studentModuleTable.SearchRowForValue(Programming_Café_DB.studentModuleTable.ClassId, classId);
                 int numberOfStudents = studentRowsByClassId.Count;
 
                 int income = Convert.ToInt32(Fee) * numberOfStudents;

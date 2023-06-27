@@ -26,7 +26,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
             txtBoxUsername.Text = student.Username;
             txtBoxPassword.Text = student.Password;
             txtBoxName.Text = student.Name;
-            txtBoxTPNumber.Text = student.TP_Number;
+            txtBoxTPNumber.Text = student.TPNumber;
             txtBoxAddress.Text = student.Address;
             txtBoxPhone.Text = student.Phone;
             txtBoxEmail.Text = student.Email;
@@ -37,7 +37,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
             try
             {
                 Column columnToSearch = Programming_Café_DB.userTable.Username;
-                int count = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, txtBoxUsername.Text).Count;
+                int count = Programming_Café_DB.userTable.SearchRowForValue(columnToSearch, txtBoxUsername.Text).Count;
                 if (count == 0 || student.Username == txtBoxUsername.Text)
                 {
                     student.Username = txtBoxUsername.Text;

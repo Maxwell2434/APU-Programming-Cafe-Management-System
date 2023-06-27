@@ -35,7 +35,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
                 Column columnToSearch = Programming_Café_DB.moduleTable.Name;
                 string moduleName = cmbBoxModule.SelectedItem.ToString();
                 Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-                string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+                string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
                 string level = cmbBoxLevel.SelectedItem.ToString();
 
                 List<string> values = new List<string>
@@ -76,7 +76,7 @@ namespace APU_Programming_Café_Management_System.AdminForm
                     Programming_Café_DB.classTable.ModuleId,
                     Programming_Café_DB.classTable.Level
                 };
-                Programming_Café_DB.classTable.Insert_Row(values, uniqueColumns);
+                Programming_Café_DB.classTable.InsertRow(values, uniqueColumns);
                 trainerEdit.Load_ListView();
                 this.Dispose();
             }

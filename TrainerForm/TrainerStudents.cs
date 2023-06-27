@@ -43,7 +43,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             List<Column> columns = ClassTable.Columns;
             Column columnToSearch = ClassTable.TrainerId;
             Column columnToReturn;
-            List<Row> classRowsByTrainerId = ClassTable.Search_Row_For_Value(columnToSearch, trainer.Id);
+            List<Row> classRowsByTrainerId = ClassTable.SearchRowForValue(columnToSearch, trainer.Id);
             List<Row> SortedByModules = new List<Row>();
             if (cmbBoxModule.Text != "All")
             {
@@ -52,7 +52,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                 columnToReturn = ModuleTable.Id;
                 foreach (Row row in classRowsByTrainerId)
                 {
-                    if (row.values[ClassTable.ModuleId] == ModuleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn))
+                    if (row.values[ClassTable.ModuleId] == ModuleTable.GetColumnValueFromRow(columnToSearch, cmbBoxModule.Text, columnToReturn))
                     {
                         SortedByModules.Add(row);
                     }
@@ -100,7 +100,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
                 string ModuleId = row.values[ClassTable.ModuleId];
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, ModuleId, columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, ModuleId, columnToReturn);
                 
                 //Get Level from the current row on the ClassTable
                 string Level = row.values[ClassTable.Level];
@@ -108,7 +108,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                 
                 
                 columnToSearch = studentModuleTable.ClassId;
-                List<Row> studentModuleRowsByClassId = studentModuleTable.Search_Row_For_Value(columnToSearch, classId);
+                List<Row> studentModuleRowsByClassId = studentModuleTable.SearchRowForValue(columnToSearch, classId);
                 string StudentName="";
                 string PaymentStatus="";
                 string EnrollmentDate="";
@@ -121,7 +121,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
                         string StudentId = studentModuleRow.values[studentModuleTable.StudentId];
                         columnToSearch = Programming_Café_DB.studentTable.Id;
                         columnToReturn = Programming_Café_DB.studentTable.Name;
-                        StudentName = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, StudentId, columnToReturn);
+                        StudentName = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, StudentId, columnToReturn);
                         PaymentStatus = studentModuleRow.values[studentModuleTable.PaymentStatus];
                         EnrollmentDate = studentModuleRow.values[studentModuleTable.EnrollmentMonth];
 

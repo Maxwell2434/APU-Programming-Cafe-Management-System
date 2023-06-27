@@ -65,17 +65,17 @@ namespace APU_Programming_Café_Management_System.Tables
         public Class_Table(DataTable dt) 
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("ModuleId"));
-            Add_Collumn(new Column("TrainerId"));
-            Add_Collumn(new Column("Level"));
-            Add_Collumn(new Column("ScheduleDay"));
-            Add_Collumn(new Column("StartHour"));
-            Add_Collumn(new Column("EndHour"));
-            Add_Collumn(new Column("Fee"));
-            Add_Collumn(new Column("Duration"));
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("ModuleId"));
+            AddColumn(new Column("TrainerId"));
+            AddColumn(new Column("Level"));
+            AddColumn(new Column("ScheduleDay"));
+            AddColumn(new Column("StartHour"));
+            AddColumn(new Column("EndHour"));
+            AddColumn(new Column("Fee"));
+            AddColumn(new Column("Duration"));
 
-            Add_Rows(dt);
+            AddRows(dt);
 
         }
     }

@@ -29,7 +29,7 @@ namespace APU_Programming_Café_Management_System.StudentForm
         {
             Column columnToSearch = Programming_Café_DB.studentTable.Id;
             Column columnToReturn = Programming_Café_DB.studentTable.Name;
-            student.Name = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, student.Id, columnToReturn);
+            student.Name = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, student.Id, columnToReturn);
             lblWelcome.Text = "Welcome, " + student.Name;
         }
     }

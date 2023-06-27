@@ -11,11 +11,12 @@ namespace APU_Programming_Café_Management_System
 {
     public class Table
     {
+        //Fields
         private string tableName;
         private List<Column> columns = new List<Column>();
         private List<Row> rows = new List<Row>(); 
 
-
+        //Properties
         public string TableName
         {
             get { return tableName; }
@@ -31,75 +32,53 @@ namespace APU_Programming_Café_Management_System
             get { return rows; }
             set { rows = value; }
         }
-       
-        //Constructor
-        /*
-        public Table(string tableName, List<Collumn> collumns, List<Row> rows)
-        {
-            this.tableName = tableName;
-            this.collumns = collumns;
-            this.rows = rows;
-        }
-        */
-        public void Add_Collumn (Column collumn)
-        {
-            columns.Add(collumn);
-        }
 
-        public void Add_Rows (DataTable dt)
+        //Methods
+        public void AddColumn (Column column)
+        {
+            columns.Add(column);
+        }
+        public void AddRows (DataTable dt)
         {
             foreach (DataRow dr in dt.Rows)
             {
                 rows.Add(new Row(dr, columns));
             }
         }
-
-        //uniqueColumns is a list to contain the columns that must not have the same values as another row in the table
-        public void Insert_Row(List<string> values, List<Column> uniqueColumns)
+        public void InsertRow(List<string> values, List<Column> uniqueColumns)
         {
+            //uniqueColumns is a list to contain the columns that must not have the same values as another row in the table
             Row rowToBeInserted = new Row(this.tableName, this.columns, values);
             rows.Add(rowToBeInserted);
-            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted, uniqueColumns);
-            Refresh_Table_Values();
+            Programming_Café_DB.InsertRowDatabase(this, rowToBeInserted, uniqueColumns);
+            RefreshTableValues();
         }
-
-        public void Insert_Row(Row rowToBeInserted)
+        public void InsertRow(Row rowToBeInserted)
         {
             rows.Add(rowToBeInserted);
-            Programming_Café_DB.Insert_Row_Database(this, rowToBeInserted, columns);
-            Refresh_Table_Values();
+            Programming_Café_DB.InsertRowDatabase(this, rowToBeInserted, columns);
+            RefreshTableValues();
         }
-
-
-
-        public void Del_Row (List<string> values)
+        public void DelRow (List<string> values)
         {
             Row rowToBeDeleted = new Row(this.TableName, this.columns, values);
             rows.Remove(rowToBeDeleted);
-            Programming_Café_DB.Delete_Row_Database(this, rowToBeDeleted);
-            Refresh_Table_Values();
+            Programming_Café_DB.DeleteRowDatabase(this, rowToBeDeleted);
+            RefreshTableValues();
         }
-
-        public void Del_Row (Row rowToBeDeleted)
+        public void DelRow (Row rowToBeDeleted)
         {
             rows.Remove(rowToBeDeleted);
-            Programming_Café_DB.Delete_Row_Database(this, rowToBeDeleted);
-            Refresh_Table_Values();
+            Programming_Café_DB.DeleteRowDatabase(this, rowToBeDeleted);
+            RefreshTableValues();
         }
-
-        public Column Get_Column(string Name)
+        public Column GetColumn(string Name)
         {
             return (columns.Find(Collumn => Collumn.Name == Name));
         }
-
-        public Column Get_Primary_Key_Collumn()
+        public string GetColumnValueFromRow(Column columnToSearch, string value, Column columnToReturn)
         {
-            return (columns.Find(Collumn => Collumn.IsPKey == true));
-        }
-
-        public string Get_ColumnValue_From_Row(Column columnToSearch, string value, Column columnToReturn)
-        {
-            List<Row> rows = Search_Row_For_Value(columnToSearch, value);
+            List<Row> rows = SearchRowForValue(columnToSearch, value);
             if(rows.Count>0)
             {
                 return (rows[0].values[columnToReturn]);
@@ -109,39 +88,35 @@ namespace APU_Programming_Café_Management_System
                 return null;
             }
         }
-
-        public List<Row> Search_Row_For_Value(Column collumn, string value)
+        public List<Row> SearchRowForValue(Column column, string value)
         {
             List<Row> result = new List<Row>();
             foreach (Row row in Rows)
             {
-                if (row.values[collumn] == value)
+                if (row.values[column] == value)
                 {
                     result.Add(row);
                 }
             }
             return result;
         }
-
-        public List<Row> Search_Row_For_Value(string collumnName, string value)
+        public List<Row> SearchRowForValue(string columnName, string value)
         {
             List<Row> result = new List<Row>();
             foreach (Row row in Rows)
             {
-                if (row.values[Get_Column(collumnName)] == value)
+                if (row.values[GetColumn(columnName)] == value)
                 {
                     result.Add(row);
                 }
             }
             return result;
         }
-
-        public void Refresh_Table_Values()
+        public void RefreshTableValues()
         {
             rows.Clear();
-            Add_Rows(Programming_Café_DB.Get_DataTable_From_Table(tableName));
+            AddRows(Programming_Café_DB.GetDataTableFromTable(tableName));
         }
-
 
 
     }

@@ -36,7 +36,7 @@ namespace APU_Programming_Café_Management_System.TrainerForm
             try
             {
                 Column columnToSearch = Programming_Café_DB.userTable.Username;
-                int count = Programming_Café_DB.userTable.Search_Row_For_Value(columnToSearch, txtBoxUsername.Text).Count;
+                int count = Programming_Café_DB.userTable.SearchRowForValue(columnToSearch, txtBoxUsername.Text).Count;
                 if (count == 0 || trainer.Username == txtBoxUsername.Text)
                 {
                     trainer.Username = txtBoxUsername.Text;

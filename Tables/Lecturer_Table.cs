@@ -48,14 +48,14 @@ namespace APU_Programming_Café_Management_System.Tables
         public Lecturer_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("Name"));
-            Add_Collumn(new Column("Address"));
-            Add_Collumn(new Column("Phone"));
-            Add_Collumn(new Column("Email"));
-            Add_Collumn(new Column("UserId"));
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("Name"));
+            AddColumn(new Column("Address"));
+            AddColumn(new Column("Phone"));
+            AddColumn(new Column("Email"));
+            AddColumn(new Column("UserId"));
 
-            Add_Rows(dt);
+            AddRows(dt);
 
 
         }

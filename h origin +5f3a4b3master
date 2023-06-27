@@ -1,0 +1,161 @@
+[33mcommit 83e8eb1954e942e63278c64fd4981ecd653e2e16[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: MichaelTanadi <mictndi@gmail.com>
+Date:   Sun Jun 18 20:26:31 2023 +0700
+
+    Finishing touches
+
+[33mcommit efc3343f540f9d5b50c911b2a2cd4cbbc6e0150e[m
+Author: MichaelTanadi <mictndi@gmail.com>
+Date:   Sun Jun 18 15:57:46 2023 +0700
+
+    Renamed some functions and properties
+
+[33mcommit 1282535517e7dc97a76d098d4a74ef763d482ee7[m
+Author: MichaelTanadi <mictndi@gmail.com>
+Date:   Fri Jun 16 23:40:43 2023 +0700
+
+    Small error fixes
+
+[33mcommit 5f3a4b3446505688a55af53041f7a22e63b69b02[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Wed Jun 14 23:22:30 2023 +0700
+
+    Updated the UI a bit
+
+[33mcommit b66d41d741bb4b127185e1329d90794e1c0790b0[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Wed Jun 14 22:28:04 2023 +0700
+
+    Added Database file
+
+[33mcommit fe476cb900507f9e6d4f49c67c016b850baef15c[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Tue Jun 13 20:50:56 2023 +0700
+
+    Finished With Student Forms
+
+[33mcommit 0783144fdc7d78a3de80a7001bac043eb8e4bbc9[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Mon Jun 12 22:59:23 2023 +0700
+
+    Finished with Lecturer Forms
+
+[33mcommit abf8f3f6c2666ad9b5853410115c223336b11691[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Mon Jun 12 15:34:21 2023 +0700
+
+    Finished Lecturer part except for the request
+
+[33mcommit fe7f1d7b365aac54dee3ed6f371c577bf0ff10f2[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Mon Jun 12 10:27:29 2023 +0700
+
+    Created LecturerUI On Process with LecturerStudents
+
+[33mcommit 7425c0a7292a7dc1a7736d6e6ea52bd457da74b6[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Thu Jun 8 23:36:44 2023 +0700
+
+    Finished All TrainerForm Features
+
+[33mcommit b88092b505bba568ee6d395b323b7643dde1abd6[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Tue Jun 6 13:25:58 2023 +0700
+
+    idkaaa
+
+[33mcommit b53a7af6b62951b41aa2973cd158ae584db0fbab[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Tue Jun 6 09:19:06 2023 +0700
+
+    On Process with TrainerClass Update
+
+[33mcommit 9d9ac2fbcb773f0bc8480f82b1832a478981fdab[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Mon Jun 5 03:19:35 2023 +0700
+
+    Done with Admin other than the income page
+
+[33mcommit d8114a2ed65c98cabf54822c205018cb7e53052a[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sun Jun 4 21:37:51 2023 +0700
+
+    Finished Admin parts of Home, Trainer, and Profile
+
+[33mcommit 289d334342f70bdcddb305305a284978de4bc767[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sun Jun 4 17:57:54 2023 +0700
+
+    idk
+
+[33mcommit ef5ffdf368f4a593a6829e23da1c77d68dd03467[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sun Jun 4 17:49:57 2023 +0700
+
+    idk anymore
+
+[33mcommit ca4c152c98461707e75f0cfe1aee382d6866609a[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sat Jun 3 22:56:30 2023 +0700
+
+    Added Del in AdminForms TrainerList
+
+[33mcommit 810f830cfd3d7e683913092b719d9716d62c3707[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sat Jun 3 21:49:00 2023 +0700
+
+    Before chatgpt changes
+
+[33mcommit 47d2faff035bfd8971b4715cb03f87045ac46c5e[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Sat Jun 3 18:47:15 2023 +0700
+
+    Added TrainerTables and AdminTrainer forms
+
+[33mcommit 2dc3ac54a0ca6d634a634a162a9c71468a96f7c3[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Fri Jun 2 21:35:30 2023 +0700
+
+    Done with Updating AdminProfile
+
+[33mcommit d2cfd67f0124a21d10590714625606045137b946[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Fri Jun 2 19:13:19 2023 +0700
+
+    On Process to change tables to static
+
+[33mcommit 66fcc32d7eda66a14e4ca6dcae8af821e6a31d57[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Fri Jun 2 15:46:59 2023 +0700
+
+    Finished making User & admin Table
+
+[33mcommit f9b94acd32340a1406d1a03aa7dc1c1a5f2a66e4[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Fri Jun 2 12:42:56 2023 +0700
+
+    Test
+
+[33mcommit 85a78078eecff35f1c1438f481f053932a416d16[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Fri Jun 2 12:42:35 2023 +0700
+
+    Test
+
+[33mcommit 4088a29353edf10aeb3574a022676bee5be840c0[m
+Author: Maxwell2434 <maxwell.maxwell2434@gmail.com>
+Date:   Thu Jun 1 00:46:17 2023 +0700
+
+    Commit Test
+
+[33mcommit 5cf3df42ced88069778c0834c17a5deff0f7b9a3[m
+Author: Asus <Asus@MAXWELL>
+Date:   Thu Jun 1 00:28:21 2023 +0700
+
+    Add project files.
+
+[33mcommit 132252ca81d08d79e3ca0894db9e766e05c1aaf7[m
+Author: Asus <Asus@MAXWELL>
+Date:   Thu Jun 1 00:28:19 2023 +0700
+
+    Add .gitattributes and .gitignore.

@@ -35,12 +35,12 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             string studentId = studentModuleRow.values[Programming_Café_DB.studentModuleTable.StudentId];
             Column columnToSearch = Programming_Café_DB.studentTable.Id;
             Column columnToReturn = Programming_Café_DB.studentTable.Name;
-            string StudentName = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, studentId, columnToReturn);
+            string StudentName = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, studentId, columnToReturn);
 
             string moduleId = studentModuleRow.values[Programming_Café_DB.studentModuleTable.ModuleId];
             columnToSearch = Programming_Café_DB.moduleTable.Id;
             columnToReturn = Programming_Café_DB.moduleTable.Name;
-            string moduleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleId, columnToReturn);
+            string moduleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleId, columnToReturn);
 
             string level = studentModuleRow.values[Programming_Café_DB.studentModuleTable.Level];
             lblTitle.Text = "Update Student " + StudentName + " Enrolled Module and Class";
@@ -57,11 +57,11 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             Column columnToSearch = Programming_Café_DB.moduleTable.Name;
             string moduleName = cmbBoxModule.Text;
             Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+            string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
 
             bool ModuleAndLevelExists = false;
             columnToSearch = studentModuleTable.StudentId;
-            foreach(Row row in studentModuleTable.Search_Row_For_Value(columnToSearch, studentModuleRow.values[columnToSearch]))
+            foreach(Row row in studentModuleTable.SearchRowForValue(columnToSearch, studentModuleRow.values[columnToSearch]))
             {
                 if (row.values[studentModuleTable.ModuleId] == moduleId && row.values[studentModuleTable.Level] == cmbBoxLevel.Text)
                 {
@@ -89,7 +89,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 values[studentModuleTable.ClassId] = cmbBoxClassId.Text;
                 studentModuleRow.values = values;
 
-                Programming_Café_DB.studentModuleTable.Refresh_Table_Values();
+                Programming_Café_DB.studentModuleTable.RefreshTableValues();
                 lecturerStudents.Load_List_View();
                 this.Dispose();
             }
@@ -116,12 +116,12 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             string moduleName = cmbBoxModule.Text;
             Column columnToSearch = Programming_Café_DB.moduleTable.Name;
             Column columnToReturn = Programming_Café_DB.moduleTable.Id;
-            string moduleId = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, moduleName, columnToReturn);
+            string moduleId = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, moduleName, columnToReturn);
             string level = cmbBoxLevel.Text;
 
             //Filter class rows by moduleId and level
             columnToSearch = Programming_Café_DB.classTable.ModuleId;
-            foreach(Row classRowByModuleId in Programming_Café_DB.classTable.Search_Row_For_Value(columnToSearch, moduleId))
+            foreach(Row classRowByModuleId in Programming_Café_DB.classTable.SearchRowForValue(columnToSearch, moduleId))
             {
                 if (classRowByModuleId.values[Programming_Café_DB.classTable.Level] == level)
                 {
@@ -155,12 +155,12 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             string classId = cmbBoxClassId.Text;
             Column columnToSearch = Programming_Café_DB.classTable.Id;
             Column columnToReturn = Programming_Café_DB.classTable.TrainerId;
-            string trainerId = Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn);
+            string trainerId = Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn);
 
             //Get trainerName from trainerTable and set the lblTrainer.text to the trainerName 
             columnToSearch = Programming_Café_DB.trainerTable.Id;
             columnToReturn = Programming_Café_DB.trainerTable.Name;
-            string trainerName = Programming_Café_DB.trainerTable.Get_ColumnValue_From_Row(columnToSearch, trainerId, columnToReturn);
+            string trainerName = Programming_Café_DB.trainerTable.GetColumnValueFromRow(columnToSearch, trainerId, columnToReturn);
             lblTrainer.Text = "Trainer :" + trainerName;
         }
     }

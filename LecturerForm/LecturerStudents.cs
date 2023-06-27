@@ -56,7 +56,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 columnToReturn = ModuleTable.Id;
                 foreach (Row row in studentModuleRows)
                 {
-                    if (row.values[studentModule_Table.ModuleId] == ModuleTable.Get_ColumnValue_From_Row(columnToSearch, cmbBoxModule.Text, columnToReturn))
+                    if (row.values[studentModule_Table.ModuleId] == ModuleTable.GetColumnValueFromRow(columnToSearch, cmbBoxModule.Text, columnToReturn))
                     {
                         SortedByModules.Add(row);
                     }
@@ -105,7 +105,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 columnToSearch = Programming_Café_DB.moduleTable.Id;
                 columnToReturn = Programming_Café_DB.moduleTable.Name;
                 string ModuleId = row.values[studentModule_Table.ModuleId];
-                string ModuleName = Programming_Café_DB.moduleTable.Get_ColumnValue_From_Row(columnToSearch, ModuleId, columnToReturn);
+                string ModuleName = Programming_Café_DB.moduleTable.GetColumnValueFromRow(columnToSearch, ModuleId, columnToReturn);
 
                 //Get Level from the current row on the studentModule_Table
                 string Level = row.values[studentModule_Table.Level];
@@ -113,7 +113,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
 
                 columnToSearch = studentModuleTable.ClassId;
-                List<Row> studentModuleRowsByClassId = studentModuleTable.Search_Row_For_Value(columnToSearch, classId);
+                List<Row> studentModuleRowsByClassId = studentModuleTable.SearchRowForValue(columnToSearch, classId);
                 string StudentName = "";
                 string PaymentStatus = "";
                 string EnrollmentDate = "";
@@ -126,7 +126,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                         string StudentId = studentModuleRow.values[studentModuleTable.StudentId];
                         columnToSearch = Programming_Café_DB.studentTable.Id;
                         columnToReturn = Programming_Café_DB.studentTable.Name;
-                        StudentName = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, StudentId, columnToReturn);
+                        StudentName = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, StudentId, columnToReturn);
                         PaymentStatus = studentModuleRow.values[studentModuleTable.PaymentStatus];
                         EnrollmentDate = studentModuleRow.values[studentModuleTable.EnrollmentMonth];
 
@@ -218,7 +218,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
             {
                 bool studentIsInMultipleModules = false;
                 string studentId = listRows[itemIndexes[i]].values[Programming_Café_DB.studentModuleTable.StudentId];
-                if(Programming_Café_DB.studentModuleTable.Search_Row_For_Value(Programming_Café_DB.studentModuleTable.StudentId, studentId).Count > 1)
+                if(Programming_Café_DB.studentModuleTable.SearchRowForValue(Programming_Café_DB.studentModuleTable.StudentId, studentId).Count > 1)
                 {
                     studentIsInMultipleModules = true;
                 }
@@ -230,7 +230,7 @@ namespace APU_Programming_Café_Management_System.LecturerForm
                 string classId = listRows[itemIndexes[i]].values[Programming_Café_DB.studentModuleTable.ClassId];
                 Column columnToSearch = Programming_Café_DB.classTable.Id;
                 Column columnToReturn = Programming_Café_DB.classTable.Duration;
-                int duration = Convert.ToInt32(Programming_Café_DB.classTable.Get_ColumnValue_From_Row(columnToSearch, classId, columnToReturn));
+                int duration = Convert.ToInt32(Programming_Café_DB.classTable.GetColumnValueFromRow(columnToSearch, classId, columnToReturn));
                 
                 //if duration is 0 which means that there were no classes, set the default value which is 3 months
                 if(duration == 0) { duration = 3; }
@@ -261,20 +261,20 @@ namespace APU_Programming_Café_Management_System.LecturerForm
 
                 if (coachingClassFinished)
                 {
-                    Programming_Café_DB.studentModuleTable.Del_Row(listRows[itemIndexes[i]]);
+                    Programming_Café_DB.studentModuleTable.DelRow(listRows[itemIndexes[i]]);
                     //If student doesnt have other modules enrolled then delete the subsequent student and user from the tables
                     if (!studentIsInMultipleModules)
                     {
 
 
-                        Row studentRowToBeDeleted = Programming_Café_DB.studentTable.Search_Row_For_Value(Programming_Café_DB.studentTable.Id, studentId)[0];
+                        Row studentRowToBeDeleted = Programming_Café_DB.studentTable.SearchRowForValue(Programming_Café_DB.studentTable.Id, studentId)[0];
 
                         columnToSearch = Programming_Café_DB.studentTable.Id;
                         columnToReturn = Programming_Café_DB.studentTable.UserId;
-                        string userId = Programming_Café_DB.studentTable.Get_ColumnValue_From_Row(columnToSearch, studentId, columnToReturn);
-                        Row userRowToBeDeleted = Programming_Café_DB.userTable.Search_Row_For_Value(Programming_Café_DB.userTable.Id, userId)[0];
-                        Programming_Café_DB.studentTable.Del_Row(studentRowToBeDeleted);
-                        Programming_Café_DB.userTable.Del_Row(userRowToBeDeleted);
+                        string userId = Programming_Café_DB.studentTable.GetColumnValueFromRow(columnToSearch, studentId, columnToReturn);
+                        Row userRowToBeDeleted = Programming_Café_DB.userTable.SearchRowForValue(Programming_Café_DB.userTable.Id, userId)[0];
+                        Programming_Café_DB.studentTable.DelRow(studentRowToBeDeleted);
+                        Programming_Café_DB.userTable.DelRow(userRowToBeDeleted);
 
 
 

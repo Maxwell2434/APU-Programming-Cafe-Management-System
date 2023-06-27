@@ -8,13 +8,15 @@ namespace APU_Programming_Café_Management_System.Users
 {
     public class Student : User
     {
+        //Fields
         private string _id;
         private string _name;
         private string _address;
-        private string _TP_Number;
+        private string _tpNumber;
         private string _phone;
         private string _email;
-
+        private string _userId;
+        //Properties
         public new string Id
         {
             get { return _id; }
@@ -25,10 +27,10 @@ namespace APU_Programming_Café_Management_System.Users
             get { return _name; }
             set { _name = value; Update(Programming_Café_DB.studentTable.Name, value); }
         }
-        public string TP_Number
+        public string TPNumber
         {
-            get { return _TP_Number; }
-            set { _TP_Number = value;}
+            get { return _tpNumber; }
+            set { _tpNumber = value;}
         }
         public string Address
         {
@@ -54,12 +56,12 @@ namespace APU_Programming_Café_Management_System.Users
         public Student(User user) : base(user)
         {
             Student_Table studentTable = Programming_Café_DB.studentTable;
-            List<Row> rows = studentTable.Search_Row_For_Value(studentTable.UserId, user.Id);
+            List<Row> rows = studentTable.SearchRowForValue(studentTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[studentTable.Id];
                 _name = rows[0].values[studentTable.Name];
-                _TP_Number = rows[0].values[studentTable.TP_Number];
+                _tpNumber = rows[0].values[studentTable.TP_Number];
                 _address = rows[0].values[studentTable.Address];
                 _phone = rows[0].values[studentTable.Phone];
                 _email = rows[0].values[studentTable.Email];
@@ -68,7 +70,7 @@ namespace APU_Programming_Café_Management_System.Users
 
         }
 
-        public void Update(Column collumnAffected, string value)
+        public void Update(Column columnAffected, string value)
         {
             Row rowToBeChanged = Programming_Café_DB.studentTable.Rows.Find(row => row.values[Programming_Café_DB.studentTable.Id] == _id);
             for (int i = 0; i < Programming_Café_DB.studentTable.Rows.Count; i++)
@@ -77,7 +79,7 @@ namespace APU_Programming_Café_Management_System.Users
                 {
                     // Update the dictionary using the property's setter
                     Dictionary<Column, string> updatedValues = Programming_Café_DB.studentTable.Rows[i].values;
-                    updatedValues[collumnAffected] = value;
+                    updatedValues[columnAffected] = value;
                     Programming_Café_DB.studentTable.Rows[i].values = updatedValues;
                 }
             }

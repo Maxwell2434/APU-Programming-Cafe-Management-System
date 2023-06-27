@@ -104,7 +104,6 @@
     <Compile Include="AdminForm\TrainerListAdd.Designer.cs">
       <DependentUpon>TrainerListAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class.cs" />
     <Compile Include="LecturerForm\LecturerHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -428,8 +427,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Programming Café Database_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Programming Café Database.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

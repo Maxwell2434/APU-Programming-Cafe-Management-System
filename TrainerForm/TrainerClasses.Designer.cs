@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstViewTrainer = new System.Windows.Forms.ListView();
+            this.lstViewClasses = new System.Windows.Forms.ListView();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lstViewTrainer
+            // lstViewClasses
             // 
-            this.lstViewTrainer.HideSelection = false;
-            this.lstViewTrainer.Location = new System.Drawing.Point(127, 101);
-            this.lstViewTrainer.Name = "lstViewTrainer";
-            this.lstViewTrainer.Size = new System.Drawing.Size(546, 199);
-            this.lstViewTrainer.TabIndex = 8;
-            this.lstViewTrainer.UseCompatibleStateImageBehavior = false;
+            this.lstViewClasses.HideSelection = false;
+            this.lstViewClasses.Location = new System.Drawing.Point(127, 101);
+            this.lstViewClasses.Name = "lstViewClasses";
+            this.lstViewClasses.Size = new System.Drawing.Size(546, 199);
+            this.lstViewClasses.TabIndex = 8;
+            this.lstViewClasses.UseCompatibleStateImageBehavior = false;
             // 
             // btnUpdate
             // 
@@ -100,7 +100,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.lstViewTrainer);
+            this.Controls.Add(this.lstViewClasses);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
@@ -114,7 +114,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lstViewTrainer;
+        private System.Windows.Forms.ListView lstViewClasses;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblTitle;

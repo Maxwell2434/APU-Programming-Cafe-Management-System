@@ -49,7 +49,7 @@ namespace APU_Programming_Café_Management_System
         public Trainer(User user) : base(user)
         {
             Trainer_Table trainerTable = Programming_Café_DB.trainerTable;
-            List<Row> rows = trainerTable.Search_Row_For_Value(trainerTable.UserId, user.Id);
+            List<Row> rows = trainerTable.SearchRowForValue(trainerTable.UserId, user.Id);
             if (rows.Count == 1)
             {
                 _id = rows[0].values[trainerTable.Id];

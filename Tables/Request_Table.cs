@@ -37,13 +37,13 @@ namespace APU_Programming_Café_Management_System.Tables
         public Request_Table(DataTable dt)
         {
             TableName = dt.TableName;
-            Add_Collumn(new Column("Id"));
-            Add_Collumn(new Column("StudentId"));
-            Add_Collumn(new Column("ModuleId"));
-            Add_Collumn(new Column("Level"));
+            AddColumn(new Column("Id"));
+            AddColumn(new Column("StudentId"));
+            AddColumn(new Column("ModuleId"));
+            AddColumn(new Column("Level"));
 
 
-            Add_Rows(dt);
+            AddRows(dt);
 
         }
     }
